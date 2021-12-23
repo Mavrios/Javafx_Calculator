@@ -14,6 +14,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
@@ -124,8 +125,11 @@ public class CalcApp extends Application{
 
     @Override
     public void start(Stage primaryStage) throws ScriptException {
-        
-        
+        /*                 Handle KeyEvents                     */
+        gridPane.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
+            String activated = keyEvent.getText();
+            eqn.appendText(activated); // Must filter characters
+        });
         /*                     Nums                         */
         button0.setOnAction((ActionEvent event) -> {
             eqn.appendText("0");
@@ -170,9 +174,21 @@ public class CalcApp extends Application{
         buttonDiv.setOnAction((ActionEvent event) -> {
             eqn.appendText("/");
         });
+//        buttonSin.setOnAction((ActionEvent event) -> {
+//            eqn.appendText("sin");
+//        });
+//        buttonCos.setOnAction((ActionEvent event) -> {
+//            eqn.appendText("cos");
+//        });
+//        buttonSqrt.setOnAction((ActionEvent event) -> {
+//            eqn.appendText("sqrt");
+//        });
+//        buttonPow.setOnAction((ActionEvent event) -> {
+//            eqn.appendText("pow");
+//        });
 
         buttonEq.setOnAction((ActionEvent event) -> {
-            String tmp;
+//            String tmp;
 //            tmp = eqn.getText().replace("sin", "Math.sin").
 //                    replace("cos", "Math.cos").
 //                    replace("tan", "Math.tan").
