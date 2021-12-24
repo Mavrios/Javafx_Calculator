@@ -282,9 +282,12 @@ public class FXMLDocumentController implements Initializable {
             }
             
         }
-        
-        
-       // System.out.println(event.getText());
+        else{
+            if(event.getCode() == KeyCode.BACK_SPACE){
+                if(!TA.getText().isEmpty())
+                    TA.deleteText(TA.getLength()-1, TA.getLength());
+            }
+        }
     }
 
 }
