@@ -4,6 +4,7 @@
  */
 package javafxapplication2;
 
+import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -12,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
@@ -63,70 +65,119 @@ public class FXMLDocumentController implements Initializable {
     private Button buttonEq;
     
     boolean flag = true;
-    
-    String Temp = "";
+    boolean I_flag = true;
+    boolean R_flag = false;
     
     
     
     @FXML
     private void handleButtonAction1(ActionEvent event) {
+        if(R_flag == true){
+            TA.clear();
+        }
+        
         flag = true;
+        R_flag = false;
         TA.appendText("1");
-        Temp = Temp + "1";
     }
     
     @FXML
     private void handleButtonAction2(ActionEvent event) {
+        if(R_flag == true){
+            TA.clear();
+        }
+
         flag = true;
+        R_flag = false;
         TA.appendText("2");
     }
     
     @FXML
     private void handleButtonAction3(ActionEvent event) {
+        if(R_flag == true){
+            TA.clear();
+        }
+
         flag = true;
+        R_flag = false;
         TA.appendText("3");
     }
 
     @FXML
     private void handleButtonAction4(ActionEvent event) {
+        if(R_flag == true){
+            TA.clear();
+        }
+
         flag = true;
+        R_flag = false;
         TA.appendText("4");
     }    
     
     
     @FXML
     private void handleButtonAction5(ActionEvent event) {
+        if(R_flag == true){
+            TA.clear();
+        }
+
         flag = true;
+        R_flag = false;
         TA.appendText("5");
     }
 
     @FXML
     private void handleButtonAction6(ActionEvent event) {
+        if(R_flag == true){
+            TA.clear();
+        }
+
         flag = true;
+        R_flag = false;
         TA.appendText("6");
     }
 
     @FXML
     private void handleButtonAction7(ActionEvent event) {
+        if(R_flag == true){
+            TA.clear();
+        }
+
         flag = true;
+        R_flag = false;
         TA.appendText("7");
     }    
 
     @FXML
     private void handleButtonAction8(ActionEvent event) {
+        if(R_flag == true){
+            TA.clear();
+        }
+
         flag = true;
+        R_flag = false;
         TA.appendText("8");
     }
     
     @FXML
     private void handleButtonAction9(ActionEvent event) {
+        if(R_flag == true){
+            TA.clear();
+        }
+
         flag = true;
+        R_flag = false;
         TA.appendText("9");
     }
 
     @FXML
     private void handleButtonAction0(ActionEvent event) {
+        if(R_flag == true){
+            TA.clear();
+        }
+
         flag = true;
+        R_flag = false;
         TA.appendText("0");
     }
 
@@ -136,6 +187,7 @@ public class FXMLDocumentController implements Initializable {
         if(flag == false){
         TA.deleteText(TA.getLength()-1, TA.getLength());
         }
+        R_flag = false;
         flag = false;
         TA.appendText("+");
     }
@@ -146,6 +198,7 @@ public class FXMLDocumentController implements Initializable {
     if(flag == false){
         TA.deleteText(TA.getLength()-1, TA.getLength());
         }
+        R_flag = false;    
         flag = false;
         TA.appendText("-");
     }    
@@ -155,6 +208,7 @@ public class FXMLDocumentController implements Initializable {
         if(flag == false){
         TA.deleteText(TA.getLength()-1, TA.getLength());
         }
+        R_flag = false;
         flag = false;
         TA.appendText("*");
     }
@@ -163,36 +217,74 @@ public class FXMLDocumentController implements Initializable {
     if(flag == false){
         TA.deleteText(TA.getLength()-1, TA.getLength());
     }
+        R_flag = false;    
         flag = false;
         TA.appendText("/");
     }
     @FXML
     private void handleButtonActionDot(ActionEvent event) {
         TA.appendText(".");
+        R_flag = false;
         flag = true;
     }    
     
     @FXML
     private void handleButtonActionC(ActionEvent event) {
+        flag = true;    
+        R_flag = false;
         TA.clear();
     }    
         
     
     @FXML
     private void handleButtonActionEqu(ActionEvent event) {
+        flag = true;
+        R_flag = true;
         ScriptEngineManager mgr = new ScriptEngineManager();
         ScriptEngine engine = mgr.getEngineByName("JavaScript");
         try{
             TA.setText(engine.eval(TA.getText()).toString());
         }catch(ScriptException e){
             TA.setText("Undefined!!");
-        }
-        
+        }     
     }    
+
         
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void handleButton(javafx.scene.input.KeyEvent event) {
+        
+        if(!event.getText().isEmpty()){
+            if((event.getText().charAt(0) >= '0' && event.getText().charAt(0) <= '9' ) ){
+            if(R_flag == true){
+                TA.clear();
+                }
+                flag = true;
+                R_flag = false;
+                TA.appendText(event.getText());    
+            }
+            
+            else if(event.getText().charAt(0) == '-'  || event.getText().charAt(0) == '+' || event.getText().charAt(0) == '/' || event.getText().charAt(0) == '*'   ){
+                if(flag == false){
+                    TA.deleteText(TA.getLength()-1, TA.getLength());
+                }
+                
+                R_flag = false;    
+                flag = false;
+            
+                TA.appendText(event.getText());    
+
+            }
+            
+        }
+        
+        
+       // System.out.println(event.getText());
+    }
 
 }
