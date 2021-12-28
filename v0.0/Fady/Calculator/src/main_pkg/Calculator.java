@@ -15,9 +15,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -47,6 +53,12 @@ public class Calculator extends Application {
     Button pow;
     Button dott;
     
+    /*----------------Menu----------------*/
+    MenuBar bar;
+    Menu file;
+    MenuItem convert;
+    /*------------------------------------*/
+    
     HBox hbox1;
     HBox hbox2;
     HBox hbox3;
@@ -55,12 +67,18 @@ public class Calculator extends Application {
     
     TextField TA;
     
+    FlowPane flow;
+    FlowPane flow2;
+    BorderPane root2;
     BorderPane root;
     
     String equ;
     String res;
     ScriptEngineManager mgr ;
     ScriptEngine engine;
+    
+    Scene scene;
+    Scene scene2;
         
     
     @Override
@@ -145,6 +163,7 @@ public class Calculator extends Application {
         TA = new TextField();
         TA.setStyle("-fx-font-size: 24");
         TA.setPrefHeight(80);
+        
         TA.textProperty().addListener(new ChangeListener<String> () {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -157,8 +176,25 @@ public class Calculator extends Application {
             }
         } );
         
+        /*--------------------Menu-----------------------*/
+        bar = new MenuBar();
+        file = new Menu("Converter");
+        convert = new MenuItem("Volume");
+        file.getItems().add(convert);
+        bar.getMenus().add(file);
+        flow = new FlowPane();
+        flow.getChildren().add(bar);
+        flow.getChildren().add(TA);
+        
+        /*flow2 = new FlowPane();
+        flow2.getChildren().add(bar);
+        flow2.getChildren().add(TA);*/
+        root2 = new BorderPane();
+        //root2.setTop(flow2);
+        /*-----------------------------------------------*/
+        
         root = new BorderPane(vbox);
-        root.setTop(TA);
+        root.setTop(flow);
         
         
         /* ------------------Button Handling------------------*/
@@ -171,12 +207,12 @@ public class Calculator extends Application {
             public void handle(ActionEvent event) {
                 equ = TA.getText();
                 try {
-                    res = engine.eval(equ).toString();
+                    TA.setText(engine.eval(equ).toString());
+
                 } catch (ScriptException ex) {
-                    Logger.getLogger(Calculator.class.getName()).log(Level.SEVERE, null, ex);
+                    TA.setText("Undefined!!");
                 }
-                TA.clear();
-                TA.appendText(res);
+               
             }
         } );
         
@@ -303,12 +339,37 @@ public class Calculator extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Scene scene = new Scene(root,300,300);
+        /*-------------------------------------------*/
+        int flag = 1;
+        scene2 = new Scene(root2,300,300);
+        /*-------------------------------------------*/
+        
+        
+        scene = new Scene(root,300,300);
+         //-----------------testing keyboard input----------------//
+         /*-----------------BackSpace-----------------------------*/
+         scene.setOnKeyPressed(new EventHandler<KeyEvent> () {
+             @Override
+             public void handle(KeyEvent event) {
+                 if(event.getCode()==KeyCode.BACK_SPACE)
+                 {
+                     TA.deletePreviousChar();
+                 }
+                 else
+                    TA.appendText(event.getText());   
+             }
+         });
+         
          primaryStage.setTitle("Calculator");
-         primaryStage.setScene(scene);
-         primaryStage.setMinHeight(vbox.getPrefHeight());
-         primaryStage.setMinWidth(vbox.getPrefWidth());
-         primaryStage.show();
+         if(flag==0)
+             primaryStage.setScene(scene2);
+         else
+         {
+            primaryStage.setScene(scene);
+            primaryStage.setMinHeight(vbox.getPrefHeight());
+            primaryStage.setMinWidth(vbox.getPrefWidth());
+         }
+        primaryStage.show();
     }
 
     /**
