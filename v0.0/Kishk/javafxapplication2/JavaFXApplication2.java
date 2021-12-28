@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -21,6 +22,13 @@ public class JavaFXApplication2 extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         Scene scene = new Scene(root);
         scene.getStylesheets().add("javafxapplication2/Button.css");
+        scene.getStylesheets().add("javafxapplication2/Base.css");
+        scene.getStylesheets().add("javafxapplication2/Text.css");
+        stage.setResizable(false);
+        stage.setMinWidth(340);
+        stage.setMinHeight(530);
+
+        stage.initStyle(StageStyle.DECORATED);
         stage.setScene(scene);
         stage.setTitle("Calculator v0.0");
         stage.show();

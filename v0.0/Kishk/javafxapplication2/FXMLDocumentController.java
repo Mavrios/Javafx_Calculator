@@ -13,7 +13,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
@@ -25,12 +29,18 @@ import javax.script.ScriptException;
  */
 public class FXMLDocumentController implements Initializable {
     
-    @FXML
-    private Label label;
-    @FXML
     public Button button1;
     @FXML
-    private Button button2;
+    private TextArea TA;
+    boolean flag = true;
+    boolean I_flag = true;
+    boolean R_flag = false;
+    @FXML
+    private VBox Vbox;
+    boolean Vbox_Flag = false;
+    boolean Menu_Flag = false;
+    @FXML
+    private AnchorPane ScientificPane;
     @FXML
     private Button button7;
     @FXML
@@ -48,7 +58,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button buttonMulti;
     @FXML
-    private Button button3;
+    private Button button2;
+    
     @FXML
     private Button buttonMin;
     @FXML
@@ -60,15 +71,54 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button buttonDot;
     @FXML
-    private TextArea TA;
+    private Button equals;
     @FXML
-    private Button buttonEq;
+    private Button button3;
+    @FXML
+    private Button buttonMod;
+    @FXML
+    private Button buttonBks;
+    @FXML
+    private Button buttonExp;
+    @FXML
+    private Button buttonFact;
+    @FXML
+    private Button buttonEuler;
+    @FXML
+    private Button buttonAbs;
+    @FXML
+    private Button buttonCBraces;
+    @FXML
+    private Button buttonPI;
+    @FXML
+    private Button buttonDivX;
+    @FXML
+    private Button buttonOBraces;
+    @FXML
+    private Button buttonPM;
+    @FXML
+    private Button button2nd;
+    @FXML
+    private Button buttonPower2;
+    @FXML
+    private Button buttonSqrt;
+    @FXML
+    private Button buttonXpY;
+    @FXML
+    private Button button10PowerX;
+    @FXML
+    private Button buttonLog;
     
-    boolean flag = true;
-    boolean I_flag = true;
-    boolean R_flag = false;
+    @FXML
+    private Button buttonLn;
+    @FXML
+    private ToggleButton TogButton;
+    @FXML
+    private VBox MenuBox;
     
     
+    
+
     
     @FXML
     private void handleButtonAction1(ActionEvent event) {
@@ -243,7 +293,8 @@ public class FXMLDocumentController implements Initializable {
         ScriptEngineManager mgr = new ScriptEngineManager();
         ScriptEngine engine = mgr.getEngineByName("JavaScript");
         try{
-            TA.setText(engine.eval(TA.getText()).toString());
+            if(!TA.getText().isEmpty())
+                TA.setText(engine.eval(TA.getText()).toString());
         }catch(ScriptException e){
             TA.setText("Undefined!!");
         }     
@@ -253,7 +304,9 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        Vbox.setVisible(false);
+        MenuBox.setVisible(false);
+
     }    
 
     @FXML
@@ -288,6 +341,28 @@ public class FXMLDocumentController implements Initializable {
                     TA.deleteText(TA.getLength()-1, TA.getLength());
             }
         }
+    }
+
+    @FXML
+    private void Trigonometry(ActionEvent event) {
+        Vbox_Flag = !Vbox_Flag;
+        Vbox.setVisible(Vbox_Flag);
+        
+    }
+
+    @FXML
+    private void ScientificPaneClicked(MouseEvent event) {
+        Vbox.setVisible(false);
+        MenuBox.setVisible(false);
+        Menu_Flag = false;
+        Vbox_Flag = false;
+
+    }
+
+    @FXML
+    private void MenuHandling(ActionEvent event) {
+        Menu_Flag = !Menu_Flag;
+        MenuBox.setVisible(Menu_Flag);
     }
 
 }

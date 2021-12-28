@@ -3,39 +3,107 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" onKeyPressed="#handleButton" prefHeight="334.0" prefWidth="142.0" style="-fx-background-color: Silver;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication2.FXMLDocumentController">
+<AnchorPane id="AnchorPane" onKeyPressed="#handleButton" prefHeight="550.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication2.FXMLDocumentController">
     <children>
-        <Button fx:id="button7" layoutX="2.0" layoutY="70.0" onAction="#handleButtonAction7" prefHeight="38.0" prefWidth="48.0" text="7" />
-        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <Button fx:id="button8" layoutX="60.0" layoutY="70.0" onAction="#handleButtonAction8" prefHeight="38.0" prefWidth="48.0" text="8" />
-      <Button fx:id="button9" layoutX="120.0" layoutY="70.0" onAction="#handleButtonAction9" prefHeight="38.0" prefWidth="48.0" text="9" />
-      <Button fx:id="buttonDiv" layoutX="180.0" layoutY="70.0" onAction="#handleButtonActionD" prefHeight="38.0" prefWidth="48.0" text="/" />
-      <Button fx:id="button4" layoutX="2.0" layoutY="120.0" onAction="#handleButtonAction4" prefHeight="38.0" prefWidth="48.0" text="4" />
-      <Button fx:id="button5" layoutX="60.0" layoutY="120.0" onAction="#handleButtonAction5" prefHeight="38.0" prefWidth="48.0" text="5" />
-      <Button fx:id="button6" layoutX="120.0" layoutY="120.0" onAction="#handleButtonAction6" prefHeight="38.0" prefWidth="48.0" text="6" />
-      <Button fx:id="buttonMulti" layoutX="180.0" layoutY="120.0" onAction="#handleButtonActionM" prefHeight="38.0" prefWidth="48.0" text="*" />
-      <Button id="button" fx:id="button1" layoutX="2.0" layoutY="170.0" onAction="#handleButtonAction1" prefHeight="38.0" prefWidth="48.0" text="1" />
-      <Button id="button" fx:id="button2" layoutX="60.0" layoutY="170.0" onAction="#handleButtonAction2" prefHeight="38.0" prefWidth="48.0" text="2" />
-      <Button fx:id="buttonMin" layoutX="180.0" layoutY="170.0" onAction="#handleButtonActionN" prefHeight="38.0" prefWidth="48.0" text="-" />
-      <Button fx:id="buttonC" layoutX="2.0" layoutY="220.0" onAction="#handleButtonActionC" prefHeight="38.0" prefWidth="48.0" text="C" />
-      <Button fx:id="button0" layoutX="60.0" layoutY="220.0" onAction="#handleButtonAction0" prefHeight="38.0" prefWidth="48.0" text="0" />
-      <Button fx:id="buttonPlus" layoutX="180.0" layoutY="220.0" onAction="#handleButtonActionP" prefHeight="38.0" prefWidth="48.0" text="+" />
-      <TextArea fx:id="TA" editable="false" mouseTransparent="true" nodeOrientation="LEFT_TO_RIGHT" prefHeight="60.0" prefWidth="238.0" promptText="0" style="-fx-background-color: Silver; -fx-border-color: Blue;">
-         <font>
-            <Font name="Calibri Bold" size="16.0" />
-         </font>
-         <effect>
-            <Blend />
-         </effect>
-      </TextArea>
-      <Button fx:id="buttonDot" layoutX="120.0" layoutY="220.0" onAction="#handleButtonActionDot" prefHeight="38.0" prefWidth="48.0" text="." />
-      <Button fx:id="buttonEq" defaultButton="true" layoutX="48.0" layoutY="276.0" onAction="#handleButtonActionEqu" prefHeight="48.0" prefWidth="131.0" text="=" />
-      <Button fx:id="button3" layoutX="120.0" layoutY="170.0" onAction="#handleButtonAction3" prefHeight="38.0" prefWidth="48.0" text="3" />
-      <Line endX="231.5" endY="60.0" startX="6.2928924560546875" startY="59.99998474121094" stroke="#2222b5" strokeWidth="2.0" />
+      <AnchorPane id="AnchorPane" fx:id="ScientificPane" layoutY="-1.0" onKeyPressed="#handleButton" onMouseClicked="#ScientificPaneClicked" prefHeight="550.0" prefWidth="350.0">
+         <children>
+            <Button fx:id="button7" layoutX="77.0" layoutY="328.0" onAction="#handleButtonAction7" prefHeight="48.0" prefWidth="62.0" text="7" />
+            <Button fx:id="button8" layoutX="144.0" layoutY="328.0" onAction="#handleButtonAction8" prefHeight="48.0" prefWidth="62.0" text="8" />
+            <Button fx:id="button9" layoutX="213.0" layoutY="328.0" onAction="#handleButtonAction9" prefHeight="48.0" prefWidth="62.0" text="9" />
+            <Button fx:id="buttonDiv" layoutX="281.0" layoutY="273.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="÷" />
+            <Button fx:id="button4" layoutX="77.0" layoutY="383.0" onAction="#handleButtonAction4" prefHeight="48.0" prefWidth="62.0" text="4" />
+            <Button fx:id="button5" layoutX="145.0" layoutY="383.0" onAction="#handleButtonAction5" prefHeight="48.0" prefWidth="62.0" text="5" />
+            <Button fx:id="button6" layoutX="213.0" layoutY="383.0" onAction="#handleButtonAction6" prefHeight="48.0" prefWidth="62.0" text="6" />
+            <Button fx:id="buttonMulti" layoutX="281.0" layoutY="328.0" onAction="#handleButtonActionM" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="×" />
+            <Button id="button" fx:id="button1" layoutX="77.0" layoutY="438.0" onAction="#handleButtonAction1" prefHeight="48.0" prefWidth="62.0" text="1" />
+            <Button id="button" fx:id="button2" layoutX="145.0" layoutY="438.0" onAction="#handleButtonAction2" prefHeight="48.0" prefWidth="62.0" text="2" />
+            <Button fx:id="buttonMin" layoutX="281.0" layoutY="383.0" onAction="#handleButtonActionN" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="-" />
+            <Button fx:id="buttonC" layoutX="213.0" layoutY="163.0" onAction="#handleButtonActionC" prefHeight="48.0" prefWidth="62.0" styleClass="clear-button" text="C" />
+            <Button fx:id="button0" layoutX="145.0" layoutY="493.0" onAction="#handleButtonAction0" prefHeight="48.0" prefWidth="62.0" text="0" />
+            <Button fx:id="buttonPlus" layoutX="281.0" layoutY="438.0" onAction="#handleButtonActionP" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="+" />
+            <TextArea fx:id="TA" editable="false" mouseTransparent="true" nodeOrientation="RIGHT_TO_LEFT" prefHeight="125.0" prefWidth="350.0" promptText="0" styleClass="text-field">
+               <effect>
+                  <Blend />
+               </effect>
+            </TextArea>
+            <Button fx:id="buttonDot" layoutX="213.0" layoutY="493.0" onAction="#handleButtonActionDot" prefHeight="48.0" prefWidth="62.0" text="." />
+            <Button id="equals" fx:id="equals" defaultButton="true" layoutX="281.0" layoutY="493.0" onAction="#handleButtonActionEqu" prefHeight="48.0" prefWidth="62.0" styleClass="equals-button" text="=" />
+            <Button fx:id="button3" layoutX="213.0" layoutY="438.0" onAction="#handleButtonAction3" prefHeight="48.0" prefWidth="62.0" text="3" />
+            <Button fx:id="buttonMod" layoutX="281.0" layoutY="218.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="mod" />
+            <Button fx:id="buttonBks" layoutX="281.0" layoutY="163.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="bksp-button" text="⌫ " />
+            <Button fx:id="buttonExp" layoutX="213.0" layoutY="218.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="exp" />
+            <Button fx:id="buttonFact" layoutX="213.0" layoutY="273.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="n!" />
+            <Button fx:id="buttonEuler" layoutX="145.0" layoutY="163.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="e" />
+            <Button fx:id="buttonAbs" layoutX="145.0" layoutY="218.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="|x|" />
+            <Button fx:id="buttonCBraces" layoutX="144.0" layoutY="273.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text=")" />
+            <Button fx:id="buttonPI" layoutX="77.0" layoutY="163.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="π" />
+            <Button fx:id="buttonDivX" layoutX="77.0" layoutY="218.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="1/x" />
+            <Button fx:id="buttonOBraces" layoutX="77.0" layoutY="273.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="(" />
+            <Button id="button" fx:id="buttonPM" layoutX="77.0" layoutY="493.0" onAction="#handleButtonAction1" prefHeight="48.0" prefWidth="62.0" text="+/-" />
+            <Button fx:id="button2nd" layoutX="9.0" layoutY="163.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="2nd" />
+            <Button fx:id="buttonPower2" layoutX="9.0" layoutY="218.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="x2" />
+            <Button fx:id="buttonSqrt" layoutX="9.0" layoutY="273.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="√x2" />
+            <Button fx:id="buttonXpY" layoutX="9.0" layoutY="328.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="x^y" />
+            <Button fx:id="button10PowerX" layoutX="9.0" layoutY="383.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="10^x" />
+            <Button fx:id="buttonLog" layoutX="9.0" layoutY="438.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="log" />
+            <Button fx:id="buttonLn" layoutX="9.0" layoutY="493.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="ln" />
+            <ToggleButton fx:id="TogButton" layoutX="9.0" layoutY="125.0" mnemonicParsing="false" onAction="#Trigonometry" prefHeight="32.0" prefWidth="159.0" styleClass="Toggleop-button" text="Trigonometry ˅" />
+            <VBox fx:id="Vbox" layoutX="9.0" layoutY="164.0" prefHeight="105.0" prefWidth="250.0" spacing="4.0" styleClass="root">
+               <children>
+                  <HBox prefHeight="49.0" prefWidth="35.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="2nd" />
+                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="sin" />
+                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="cos" />
+                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="tan" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="49.0" prefWidth="35.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="hyp" />
+                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="sec" />
+                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="csc" />
+                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="cot" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Button layoutX="3.0" layoutY="5.0" mnemonicParsing="false" onAction="#MenuHandling" prefHeight="32.0" prefWidth="34.0" styleClass="op-button">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@3329671.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <VBox fx:id="MenuBox" prefHeight="542.0" prefWidth="208.0" styleClass="root">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#MenuHandling" prefHeight="32.0" prefWidth="34.0" styleClass="op-button">
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@3329671.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Calculator" />
+                  <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
+                  <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
+                  <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
+                  <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>
