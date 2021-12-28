@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Programmer_Calculator.jnlp">
+  <information>
+    <title>Programmer_Calculator</title>
+    <vendor>NoteBook</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Programmer_Calculator.jar" size="4124" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Programmer_Calculator" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="programmer_calculator.Programmer_Calculator"  name="Programmer_Calculator" />
+  <update check="always"/>
+</jnlp>
