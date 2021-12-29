@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
@@ -10,6 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculatorv1.pkg0.FXMLDocumentController">
     <children>
@@ -48,14 +51,14 @@
             <Button fx:id="buttonDivX" layoutX="77.0" layoutY="218.0" onAction="#btnInv" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="1/x" />
             <Button fx:id="buttonOBraces" layoutX="77.0" layoutY="273.0" onAction="#btnRightBrace" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="(" />
             <Button id="button" fx:id="buttonPM" layoutX="77.0" layoutY="493.0" onAction="#btnToggleSign" prefHeight="48.0" prefWidth="62.0" text="+/-" />
-            <Button fx:id="button2nd" layoutX="9.0" layoutY="163.0" onAction="#btnE" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="2nd" />
+            <Button fx:id="button2nd" layoutX="9.0" layoutY="163.0" onAction="#scndbtn" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="2nd" />
             <Button fx:id="buttonPower2" layoutX="9.0" layoutY="218.0" onAction="#btnSqr" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="x²" />
             <Button fx:id="buttonSqrt" layoutX="9.0" layoutY="273.0" onAction="#btnSqrt" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="²√x" />
-            <Button fx:id="buttonXpY" layoutX="9.0" layoutY="328.0" onAction="#btnXpowY" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="x^y" />
-            <Button fx:id="button10PowerX" layoutX="9.0" layoutY="383.0" onAction="#btnTenpowX" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="10^x" />
+            <Button fx:id="buttonXpY" layoutX="9.0" layoutY="328.0" onAction="#btnXpowY" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="xʸ" />
+            <Button fx:id="button10PowerX" layoutX="9.0" layoutY="383.0" onAction="#btnTenpowX" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="10ˣ" />
             <Button fx:id="buttonLog" layoutX="9.0" layoutY="438.0" onAction="#btnLog" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="log" />
             <Button fx:id="buttonLn" layoutX="9.0" layoutY="493.0" onAction="#btnLn" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="ln" />
-            <ToggleButton fx:id="TogButton" layoutX="9.0" layoutY="125.0" mnemonicParsing="false" onAction="#Trigonometry" prefHeight="32.0" prefWidth="159.0" styleClass="Toggleop-button" text="Trigonometry ˅" />
+            <ToggleButton fx:id="TogButton" layoutX="9.0" layoutY="125.0" mnemonicParsing="false" onAction="#Trigonometry" prefHeight="32.0" prefWidth="159.0" styleClass="Toggleop-button" text="Trigonometry" />
             <ToggleButton fx:id="TogButton1" layoutX="180.0" layoutY="125.0" mnemonicParsing="false" onAction="#FunctionBtn" prefHeight="32.0" prefWidth="159.0" styleClass="Toggleop-button" text="Function" />
             <VBox fx:id="Vbox" layoutX="9.0" layoutY="164.0" prefHeight="105.0" prefWidth="250.0" spacing="4.0" styleClass="root" visible="false">
                <children>
@@ -98,10 +101,12 @@
                      </graphic>
                   </Button>
                   <Label prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Calculator" />
-                  <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
+                  <Button mnemonicParsing="false" onAction="#ScientificButton" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
                   <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
                   <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
                   <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
+                  <Label prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
+                  <Button mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
                </children>
             </VBox>
             <VBox fx:id="FunctionsMenu" layoutX="116.0" layoutY="163.0" prefHeight="49.0" prefWidth="228.0" spacing="4.0" styleClass="root" visible="false">
@@ -116,6 +121,112 @@
                   </HBox>
                </children>
             </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="AnchorPane" fx:id="LengthPane" onKeyPressed="#Change" onMouseClicked="#ScientificPaneClicked" prefHeight="552.0" prefWidth="351.0" visible="false">
+         <children>
+            <Button fx:id="zero" layoutX="151.0" layoutY="460.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="0">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="one" layoutX="94.0" layoutY="321.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="1" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="two" layoutX="151.0" layoutY="321.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="2">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="three" layoutX="206.0" layoutY="321.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="3">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="four" layoutX="94.0" layoutY="369.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="4">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="five" layoutX="151.0" layoutY="368.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="5">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="six" layoutX="206.0" layoutY="368.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="6">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="seven" layoutX="94.0" layoutY="417.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="7">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="eight" layoutX="151.0" layoutY="416.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="8">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="nine" layoutX="206.0" layoutY="417.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="9">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="dot" layoutX="94.0" layoutY="460.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text=".">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="clear" layoutX="206.0" layoutY="460.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" styleClass="clear-button" text="CL">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <TextField fx:id="TA1" alignment="CENTER" editable="false" layoutY="52.0" onKeyPressed="#Change" prefHeight="76.0" prefWidth="350.0" promptText="0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="TA2" alignment="CENTER" editable="false" layoutY="177.0" prefHeight="76.0" prefWidth="350.0" promptText="0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <ComboBox fx:id="box2" layoutY="265.0" onAction="#Converter" prefHeight="25.0" prefWidth="122.0" />
+            <ComboBox fx:id="box1" layoutY="139.0" onAction="#Converter" prefHeight="25.0" prefWidth="122.0" />
+            <Button layoutY="8.0" mnemonicParsing="false" onAction="#MenuHandling" prefHeight="32.0" prefWidth="34.0" styleClass="op-button">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@3329671.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <VBox fx:id="MenuBox1" prefHeight="542.0" prefWidth="208.0" styleClass="root" visible="false">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#MenuHandling" prefHeight="32.0" prefWidth="34.0" styleClass="op-button">
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@3329671.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Calculator" />
+                  <Button mnemonicParsing="false" onAction="#ScientificButton" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
+                  <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
+                  <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
+                  <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
+                  <Label prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
+                  <Button mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
+               </children>
+            </VBox>
+            <Label layoutX="47.0" layoutY="-6.0" prefHeight="58.0" prefWidth="219.0" styleClass="Converter-Label" text="Length" textAlignment="CENTER" />
          </children>
       </AnchorPane>
     </children>

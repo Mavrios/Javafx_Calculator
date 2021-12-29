@@ -2,7 +2,7 @@
 	-fx-background-color: #2E303E;
 	-fx-background-radius: 3;
 	-fx-background-insets: 0;
-	-fx-font-size: 1em;
+	-fx-font-size: 1.3em;
 	-fx-text-fill: #d7dae0;
     -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
 }
@@ -17,10 +17,30 @@
     -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
 }
 
+#selected-button {
+    -fx-background-color: #25B0BC;
+    -fx-background-radius: 3;
+    -fx-background-insets: 0;
+    -fx-font-size: 1.3em;
+    -fx-text-fill: #d7dae0;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+#selected-button:hover {
+	-fx-background-color: #6C6F93;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+#selected-button:pressed {
+    -fx-background-color: #2E303E; 
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+
 .Menu-button {
 	-fx-background-color: #2E303E;
 	-fx-background-insets: 0;
-	-fx-font-size: 1em;
+	-fx-font-size: 1.3em;
 	-fx-text-fill: #d7dae0;
 }
 
@@ -90,7 +110,7 @@
     -fx-background-color: #b0b5d6;
     -fx-background-radius: 3;
     -fx-background-insets: 0;
-    -fx-font-size: 1em;
+    -fx-font-size: 1.3em;
     -fx-text-fill: #1C1E26;
     -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
 }

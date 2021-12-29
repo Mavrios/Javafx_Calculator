@@ -8,11 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Calculator_Converter.jar" size="8431" download="eager" />
+    <jar href="Calculator_Converter.jar" size="8438" download="eager" />
   </resources>
-  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Calculator_Converter" >
-    <param name="requiredFXVersion" value="8.0+"/>
-  </applet-desc>
   <jfx:javafx-desc  width="800" height="600" main-class="calculator_converter.Calculator_Converter"  name="Calculator_Converter" />
   <update check="always"/>
 </jnlp>

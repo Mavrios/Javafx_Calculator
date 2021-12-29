@@ -6,6 +6,15 @@
 	-fx-text-fill: #d7dae0;
 }
 
+.Converter-Label {
+	-fx-background-color:  transparent;
+	-fx-background-radius: 3;
+	-fx-background-insets: 0;
+	-fx-font-size: 16pt;
+	-fx-text-fill: #d7dae0;
+}
+
+
 .text-field {
     -fx-font-family: Consolas;
     -fx-background-color:  #2E303E;
