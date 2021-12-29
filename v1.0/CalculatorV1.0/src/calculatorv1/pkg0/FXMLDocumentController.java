@@ -7,13 +7,17 @@ package calculatorv1.pkg0;
 
 import java.awt.event.KeyEvent;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -23,6 +27,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
@@ -33,6 +38,9 @@ import javax.script.ScriptException;
  */
 public class FXMLDocumentController implements Initializable {
 
+    int d1, d2, m1, m2, y1, y2;
+    long daysCounter, monthsCounter, yearsCounter;
+    LocalDate startDate, endDate;
     public Button button1;
     ObservableList list = FXCollections.observableArrayList();
     @FXML
@@ -162,13 +170,37 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField TA2;
     @FXML
-    private ComboBox<?> box2;
+    private ComboBox<String> box2;
     @FXML
-    private ComboBox<?> box1;
+    private ComboBox<String> box1;
     @FXML
     private VBox MenuBox1;
     @FXML
     private AnchorPane LengthPane;
+    @FXML
+    private ComboBox<Integer> StartDay;
+    @FXML
+    private ComboBox<String> StartMonth;
+    @FXML
+    private ComboBox<Integer> StartYear;
+    @FXML
+    private ComboBox<Integer> EndDay;
+    @FXML
+    private ComboBox<String> EndMonth;
+    @FXML
+    private ComboBox<Integer> EndYear;
+    @FXML
+    private CheckBox EndDateCheckBox;
+    @FXML
+    private Button calculateButton;
+    @FXML
+    private Label StartDataLabel;
+    @FXML
+    private Label resultLabel;
+    @FXML
+    private VBox MenuBox2;
+    @FXML
+    private AnchorPane DateCalcPane;
     
     @FXML
     private void btnRightBrace(ActionEvent event) {
@@ -663,6 +695,35 @@ public class FXMLDocumentController implements Initializable {
         loaddata();
         this.ScientificPane.setVisible(true);
         this.LengthPane.setVisible(false);
+        this.DateCalcPane.setVisible(false);
+
+                String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",                    //array of months
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+
+        Integer[] days = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, //array of days
+            11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
+
+        int currentYear = LocalDate.now().getYear();
+        Integer[] years = new Integer[currentYear];
+
+        for (int i = 0; i < currentYear; i++) {
+            years[currentYear - i - 1] = i + 1;
+        }
+
+        StartDay.setItems(FXCollections.observableArrayList(days));
+        StartDay.getSelectionModel().select(0);
+        StartMonth.setItems(FXCollections.observableArrayList(months));
+        StartMonth.getSelectionModel().select(0);
+        StartYear.setItems(FXCollections.observableArrayList(years));
+        StartYear.getSelectionModel().select(0);
+        EndDay.setItems(FXCollections.observableArrayList(days));
+        EndDay.getSelectionModel().select(0);
+        EndMonth.setItems(FXCollections.observableArrayList(months));
+        EndMonth.getSelectionModel().select(0);
+        EndYear.setItems(FXCollections.observableArrayList(years));
+        EndYear.getSelectionModel().select(0);
+        ToggleEndDate();
 
     }
 
@@ -720,12 +781,14 @@ public class FXMLDocumentController implements Initializable {
     private void MenuHandling(ActionEvent event) {
         Vbox.setVisible(false);
         MenuBox.setVisible(false);
+        MenuBox2.setVisible(false);
         FunctionsMenu.setVisible(false);
         Vbox_Flag = false;
         Function_Flag = false;
         Menu_Flag = !Menu_Flag;
         MenuBox.setVisible(Menu_Flag);
         MenuBox1.setVisible(Menu_Flag);
+        MenuBox2.setVisible(Menu_Flag);
     }
 
     @FXML
@@ -743,6 +806,7 @@ public class FXMLDocumentController implements Initializable {
         Vbox.setVisible(false);
         MenuBox.setVisible(false);
         MenuBox1.setVisible(false);
+        MenuBox2.setVisible(false);
         FunctionsMenu.setVisible(false);
         Menu_Flag = false;
         Vbox_Flag = false;
@@ -788,23 +852,42 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void ScientificButton(ActionEvent event) {
-        TA.clear();
         TA1.clear();
         TA2.clear();
+        resultLabel.setText("");
+        EndDateCheckBox.setSelected(false);
+        this.DateCalcPane.setVisible(false);
         this.ScientificPane.setVisible(true);
         this.LengthPane.setVisible(false);
         MenuVisibility();
+        
+        StartDay.getSelectionModel().select(0);
+        StartMonth.getSelectionModel().select(0);
+        StartYear.getSelectionModel().select(0);
+        EndDay.getSelectionModel().select(0);
+        EndMonth.getSelectionModel().select(0);
+        EndYear.getSelectionModel().select(0);
+        ToggleEndDate();
 
     }
 
     @FXML
     private void LengthButton(ActionEvent event) {
         TA.clear();
-        TA1.clear();
-        TA2.clear();
+        resultLabel.setText("");
+        EndDateCheckBox.setSelected(false);
+        
+        this.DateCalcPane.setVisible(false);
         this.ScientificPane.setVisible(false);
         this.LengthPane.setVisible(true);
         MenuVisibility();
+        StartDay.getSelectionModel().select(0);
+        StartMonth.getSelectionModel().select(0);
+        StartYear.getSelectionModel().select(0);
+        EndDay.getSelectionModel().select(0);
+        EndMonth.getSelectionModel().select(0);
+        EndYear.getSelectionModel().select(0);
+        ToggleEndDate();
     }
     
     
@@ -1595,5 +1678,122 @@ public class FXMLDocumentController implements Initializable {
         box2.getItems().addAll(list);
         box2.getSelectionModel().selectFirst();
     }
+
+    @FXML
+    private void DateCalulationBtn(ActionEvent event) {
+        TA.clear();
+        TA1.clear();
+        TA2.clear();
+        resultLabel.setText("");
+        this.ScientificPane.setVisible(false);
+        this.LengthPane.setVisible(false);
+        this.DateCalcPane.setVisible(true);
+        MenuVisibility();
+    }
+
+    @FXML
+    private void EndDateCheckBox(MouseEvent event) {
+        ToggleEndDate();
+    }
+
+    @FXML
+    private void calculateButton(MouseEvent event) {
+        Display();
+    }
+
+    
+    /*************************************Abdelghany Part***************************************************************/
+        public void ToggleEndDate() {                           //switch between two ways of gettin the end date
+
+        if (EndDateCheckBox.isSelected()) {
+            EndDay.setDisable(false);
+            EndMonth.setDisable(false);
+            EndYear.setDisable(false);
+        } else {
+            EndDay.setDisable(true);
+            EndMonth.setDisable(true);
+            EndYear.setDisable(true);
+        }
+
+    }
+
+    /*-----------------------------------------------------------------------------------------------------------*/
+
+    public void Display() {
+
+        String text = "";
+
+        y1 = Integer.parseInt(StartYear.getSelectionModel().getSelectedItem().toString());                  //get start values 
+        m1 = StartMonth.getSelectionModel().getSelectedIndex() + 1;
+        d1 = Integer.parseInt(StartDay.getSelectionModel().getSelectedItem().toString());
+
+        if (EndDateCheckBox.isSelected()) {                                                                 //get end values 
+            y2 = Integer.parseInt(EndYear.getSelectionModel().getSelectedItem().toString());
+            m2 = EndMonth.getSelectionModel().getSelectedIndex() + 1;
+            d2 = Integer.parseInt(EndDay.getSelectionModel().getSelectedItem().toString());
+        } else {
+            y2 = LocalDate.now().getYear();
+            m2 = LocalDate.now().getMonthValue();
+            d2 = LocalDate.now().getDayOfMonth();
+        }
+        /*-----------------------------------------------------------------------------------------------------------*/
+        startDate = LocalDate.of(y1, m1, d1);
+        endDate = LocalDate.of(y2, m2, d2);
+
+        yearsCounter = Period.between(startDate, endDate).getYears();
+        monthsCounter = Period.between(startDate, endDate).getMonths();
+        daysCounter = Period.between(startDate, endDate).getDays();
+
+        if (yearsCounter == 0 && monthsCounter == 0 && daysCounter == 0) {               //same date
+            resultLabel.setTextFill(Color.RED);
+            resultLabel.setText("Cannot compare same date!");
+        } else if (!Period.between(startDate, endDate).isNegative()) {                  //years handling
+            if (yearsCounter == 1) {
+                text += yearsCounter + " year ";
+            } else if (yearsCounter > 1) {
+                text += yearsCounter + " years ";
+            }
+            if (monthsCounter == 1) {                                                   //one month handling
+                if (yearsCounter > 0 && daysCounter > 0) {
+                    text += ", " + monthsCounter + " month ";
+                } else if (yearsCounter > 0 && daysCounter == 0) {
+                    text += "and " + monthsCounter + " month ";
+                } else {
+                    text += monthsCounter + " month ";
+                }
+            }
+            if (monthsCounter > 1) {                                                    //more than one month handling
+                if (yearsCounter > 0 && daysCounter > 0) {
+                    text += ", " + monthsCounter + " months ";
+                } else if (yearsCounter > 0 && daysCounter == 0) {
+                    text += "and " + monthsCounter + " months ";
+                } else {
+                    text += monthsCounter + " months ";
+                }
+            }
+            if (daysCounter == 1) {                                                     //one day handling
+                if (yearsCounter == 0 && monthsCounter == 0) {
+                    text += daysCounter + " day";
+                } else {
+                    text += "and " + daysCounter + " day";
+                }
+            }
+            if (daysCounter > 1) {                                                       //more than one day handling
+                if (yearsCounter == 0 && monthsCounter == 0) {
+                    text += daysCounter + " days";
+                } else {
+                    text += "and " + daysCounter + " days";
+                }
+            }                                                                           //Display result
+            resultLabel.setAlignment(Pos.CENTER);
+            resultLabel.setTextFill(Color.WHITE);
+            resultLabel.setText(text);
+        } else {
+            resultLabel.setAlignment(Pos.CENTER);
+            resultLabel.setTextFill(Color.RED);                                         //Display Wrong result
+            resultLabel.setText("Logic order of Dates is wrong!");
+        }
+    }
+
 
 }
