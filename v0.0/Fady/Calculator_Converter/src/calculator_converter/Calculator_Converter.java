@@ -25,6 +25,8 @@ public class Calculator_Converter extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        stage.setMinWidth(340);
+        stage.setMinHeight(530);
         stage.show();
     }
 
