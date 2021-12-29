@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Calculator_v1.1.jnlp">
+  <information>
+    <title>Calculator_v1.1</title>
+    <vendor>Conan</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Calculator_v1.1.jar" size="8002" download="eager" />
+    <jar href="lib\jssc-2.8.0-arduino4.jar" size="163122" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Calculator_v1.1" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="calculator_v1.pkg1.Calculator_v11"  name="Calculator_v1.1" />
+  <update check="always"/>
+</jnlp>
