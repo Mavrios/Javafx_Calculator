@@ -1,0 +1,125 @@
+.button {
+	-fx-background-color: #2E303E;
+	-fx-background-radius: 3;
+	-fx-background-insets: 0;
+	-fx-font-size: 1.345em;
+	-fx-text-fill: #d7dae0;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.button:hover {
+	-fx-background-color: #6C6F93;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.button:pressed {
+    -fx-background-color: #25B0BC;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.equals-button {
+    -fx-background-color: #3FDAA4;
+    -fx-background-radius: 3;
+    -fx-background-insets: 0;
+    -fx-text-fill: #1C1E26;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.equals-button:hover {
+    -fx-background-color: #29D398;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.equals-button:pressed {
+    -fx-background-color: #25B0BC;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.bksp-button {
+    -fx-background-color: #FAC29A;
+    -fx-background-radius: 3;
+    -fx-background-insets: 0;
+    -fx-text-fill: #1C1E26;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.bksp-button:hover {
+    -fx-background-color: #F09483;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.bksp-button:pressed {
+    -fx-background-color: #FAB38E;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.op-button {
+    -fx-background-color: #71758f;
+    -fx-background-radius: 3;
+    -fx-background-insets: 0;
+    -fx-text-fill: #1C1E26;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.op-button:hover {
+    -fx-background-color: #8b91d6;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.op-button:pressed {
+    -fx-background-color: #25B0BC;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.Toggleop-button {
+    -fx-background-color: #b0b5d6;
+    -fx-background-radius: 3;
+    -fx-background-insets: 0;
+    -fx-font-size: 1.345em;
+    -fx-text-fill: #1C1E26;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.Toggleop-button:hover {
+    -fx-background-color: #8b91d6;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.Toggleop-button:pressed {
+    -fx-background-color: #25B0BC;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+
+.clear-button {
+    -fx-background-color: #EC6A88;
+    -fx-background-radius: 3;
+    -fx-background-insets: 0;
+    -fx-text-fill: #d7dae0;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.clear-button:hover {
+    -fx-background-color: #E95678;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.clear-button:pressed {
+    -fx-background-color: #F43E5C;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.toggle-button-left {
+    -fx-border-radius: 3 0 0 3, 3 0 0 3, 2 0 0 2, 1 0 0 1;
+    -fx-background-radius: 3 0 0 3, 3 0 0 3, 2 0 0 2, 1 0 0 1;
+}
+
+.toggle-button-middle {
+    -fx-border-radius: 0, 0, 0, 0;
+    -fx-background-radius: 0, 0, 0, 0;
+}
+
+.toggle-button-right {
+    -fx-border-radius: 0 3 3 0, 0 3 3 0, 0 2 2 0, 0 1 1 0;
+    -fx-background-radius: 0 3 3 0, 0 3 3 0, 0 2 2 0, 0 1 1 0;
+}
