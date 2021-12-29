@@ -40,7 +40,7 @@
             <Button fx:id="buttonMod" layoutX="281.0" layoutY="218.0" onAction="#btnMod" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="mod" />
             <Button fx:id="buttonBks" layoutX="281.0" layoutY="163.0" onAction="#btnBksp" prefHeight="48.0" prefWidth="62.0" styleClass="bksp-button" text="⌫ " />
             <Button fx:id="buttonExp" layoutX="213.0" layoutY="218.0" onAction="#btnExp" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="exp" />
-            <Button fx:id="buttonFact" layoutX="213.0" layoutY="273.0" onAction="#handleButtonActionD" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="n!" />
+            <Button fx:id="buttonFact" layoutX="213.0" layoutY="273.0" onAction="#btnFact" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="n!" />
             <Button fx:id="buttonEuler" layoutX="145.0" layoutY="163.0" onAction="#btnE" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="e" />
             <Button fx:id="buttonAbs" layoutX="145.0" layoutY="218.0" onAction="#btnAbs" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="|x|" />
             <Button fx:id="buttonCBraces" layoutX="144.0" layoutY="273.0" onAction="#btnLeftBrace" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text=")" />

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="CalculatorV1.jnlp">
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="CalculatorV1.0.jnlp">
   <information>
-    <title>CalculatorV1</title>
+    <title>CalculatorV1.0</title>
     <vendor>lenovo2</vendor>
     <description>null</description>
     <offline-allowed/>
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="CalculatorV1.jar" size="11060" download="eager" />
+    <jar href="CalculatorV1.0.jar" size="11547" download="eager" />
   </resources>
-  <jfx:javafx-desc  width="800" height="600" main-class="calculatorv1.CalculatorV1"  name="CalculatorV1" />
+  <jfx:javafx-desc  width="800" height="600" main-class="calculatorv1.pkg0.CalculatorV10"  name="CalculatorV1.0" />
   <update check="always"/>
 </jnlp>

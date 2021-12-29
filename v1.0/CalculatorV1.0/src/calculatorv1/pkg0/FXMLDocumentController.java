@@ -31,13 +31,16 @@ public class FXMLDocumentController implements Initializable {
     public Button button1;
     @FXML
     private TextArea TA;
+    Integer factorial;
     boolean flag = true;
     boolean I_flag = true;
     boolean R_flag = false;
     boolean toggleSign = false;
     boolean powFlag = false;
     boolean sqrFlag = false;
+    boolean FactFlag = false;
     String xpow2Val = "";
+    String factVal = "";
     @FXML
     private VBox Vbox;
     boolean Vbox_Flag = false;
@@ -471,20 +474,17 @@ public class FXMLDocumentController implements Initializable {
         R_flag = false;
         TA.appendText("abs(");
     }
- 
-@FXML
+
+    @FXML
     private void btnFact(ActionEvent event) {
         if (R_flag == true) {
             TA.clear();
         }
-
+        FactFlag = true;
         flag = true;
         R_flag = false;
         TA.appendText("fact(");
-//        int i ;
-//        for(i=1;i<=number;i++){    
-//              fact=fact*i;    
-//          }   
+
     }
 //-----------------------------------------
 
@@ -548,6 +548,18 @@ public class FXMLDocumentController implements Initializable {
         R_flag = true;
         powFlag = false;
         String tmp;
+        if (FactFlag) {
+
+            factorial = Integer.parseInt(TA.getText(TA.getLength() - 2, TA.getLength() - 1));
+            TA.clear();
+            int i;
+            Integer sum = 1;
+            for (i = 1; i <= factorial; i++) {
+                sum = sum * i;
+            }
+            TA.appendText(sum.toString());
+        }
+
         if (toggleSign) { //needs adjustments
             TA.appendText("*-1");
             toggleSign = false;
