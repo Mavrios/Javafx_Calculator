@@ -2,7 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML2.java to edit this template
  */
-package javafxapplication2;
+package calculatorv1.pkg0;
+
 
 import java.awt.event.KeyEvent;
 import java.net.URL;
@@ -39,6 +40,7 @@ public class FXMLDocumentController implements Initializable {
     boolean powFlag = false;
     boolean sqrFlag = false;
     boolean FactFlag = false;
+    boolean Function_Flag = false;
     String xpow2Val = "";
     String factVal = "";
     @FXML
@@ -121,7 +123,9 @@ public class FXMLDocumentController implements Initializable {
     private ToggleButton TogButton;
     @FXML
     private VBox MenuBox;
-
+    @FXML
+    private VBox FunctionsMenu;
+    
     @FXML
     private void btnRightBrace(ActionEvent event) {
         if (R_flag == true) {
@@ -139,7 +143,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText(")");
@@ -152,7 +156,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("1");
@@ -172,7 +176,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("2");
@@ -191,7 +195,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-
+        MenuVisibility();
         flag = true;
         R_flag = false;
         if (sqrFlag) {
@@ -214,6 +218,7 @@ public class FXMLDocumentController implements Initializable {
             xpow2Val = xpow2Val + '4';
 
         }
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("4");
@@ -232,6 +237,7 @@ public class FXMLDocumentController implements Initializable {
             xpow2Val = xpow2Val + '5';
 
         }
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("5");
@@ -250,6 +256,7 @@ public class FXMLDocumentController implements Initializable {
             xpow2Val = xpow2Val + '6';
 
         }
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("6");
@@ -268,6 +275,7 @@ public class FXMLDocumentController implements Initializable {
             xpow2Val = xpow2Val + '7';
 
         }
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("7");
@@ -286,6 +294,7 @@ public class FXMLDocumentController implements Initializable {
             xpow2Val = xpow2Val + '8';
 
         }
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("8");
@@ -304,6 +313,7 @@ public class FXMLDocumentController implements Initializable {
             xpow2Val = xpow2Val + '9';
 
         }
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("9");
@@ -322,6 +332,7 @@ public class FXMLDocumentController implements Initializable {
             xpow2Val = xpow2Val + '0';
 
         }
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("0");
@@ -337,7 +348,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("%");
@@ -349,7 +360,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("π");
@@ -360,7 +371,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("e");
@@ -371,7 +382,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("exp(");
@@ -382,7 +393,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("1/(");
@@ -393,6 +404,7 @@ public class FXMLDocumentController implements Initializable {
         if (!TA.getText().equals('0')) {
             toggleSign = true;
         }
+        MenuVisibility();
     }
 
     @FXML
@@ -400,7 +412,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("pow(");
@@ -412,7 +424,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("10^(");
@@ -423,7 +435,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("log(");
@@ -434,7 +446,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("ln(");
@@ -445,7 +457,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-
+        MenuVisibility();
         flag = true;
         R_flag = false;
 
@@ -458,7 +470,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("sqrt(");
@@ -469,7 +481,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-
+        MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("abs(");
@@ -480,6 +492,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
+        MenuVisibility();
         FactFlag = true;
         flag = true;
         R_flag = false;
@@ -493,6 +506,7 @@ public class FXMLDocumentController implements Initializable {
         if (flag == false) {
             TA.deleteText(TA.getLength() - 1, TA.getLength());
         }
+        MenuVisibility();
         R_flag = false;
         flag = false;
         TA.appendText("+");
@@ -503,6 +517,7 @@ public class FXMLDocumentController implements Initializable {
         if (flag == false) {
             TA.deleteText(TA.getLength() - 1, TA.getLength());
         }
+        MenuVisibility();
         R_flag = false;
         flag = false;
         TA.appendText("-");
@@ -513,6 +528,7 @@ public class FXMLDocumentController implements Initializable {
         if (flag == false) {
             TA.deleteText(TA.getLength() - 1, TA.getLength());
         }
+        MenuVisibility();
         R_flag = false;
         flag = false;
         TA.appendText("*");
@@ -523,6 +539,7 @@ public class FXMLDocumentController implements Initializable {
         if (flag == false) {
             TA.deleteText(TA.getLength() - 1, TA.getLength());
         }
+        MenuVisibility();
         R_flag = false;
         flag = false;
         TA.appendText("/");
@@ -531,6 +548,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonActionDot(ActionEvent event) {
         TA.appendText(".");
+        MenuVisibility();
         R_flag = false;
         flag = true;
     }
@@ -539,12 +557,14 @@ public class FXMLDocumentController implements Initializable {
     private void handleButtonActionC(ActionEvent event) {
         flag = true;
         R_flag = false;
+        MenuVisibility();
         TA.clear();
     }
 
     @FXML
     private void handleButtonActionEqu(ActionEvent event) {
         flag = true;
+        MenuVisibility();
         R_flag = true;
         powFlag = false;
         String tmp;
@@ -595,9 +615,7 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Vbox.setVisible(false);
-        MenuBox.setVisible(false);
-
+        MenuVisibility();
     }
 
     @FXML
@@ -632,26 +650,53 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
+
     @FXML
     private void Trigonometry(ActionEvent event) {
+        Vbox.setVisible(false);
+        MenuBox.setVisible(false);
+        FunctionsMenu.setVisible(false);
+        Menu_Flag = false;
+        Function_Flag = false;
         Vbox_Flag = !Vbox_Flag;
         Vbox.setVisible(Vbox_Flag);
-
+        
     }
 
     @FXML
     private void ScientificPaneClicked(MouseEvent event) {
-        Vbox.setVisible(false);
-        MenuBox.setVisible(false);
-        Menu_Flag = false;
-        Vbox_Flag = false;
-
+        MenuVisibility();
     }
 
     @FXML
     private void MenuHandling(ActionEvent event) {
+        Vbox.setVisible(false);
+        MenuBox.setVisible(false);
+        FunctionsMenu.setVisible(false);
+        Vbox_Flag = false;
+        Function_Flag = false;
         Menu_Flag = !Menu_Flag;
         MenuBox.setVisible(Menu_Flag);
+    }
+
+    @FXML
+    private void FunctionBtn(ActionEvent event) {
+        Vbox.setVisible(false);
+        MenuBox.setVisible(false);
+        FunctionsMenu.setVisible(false);
+        Menu_Flag = false;
+        Vbox_Flag = false;
+        Function_Flag = !Function_Flag;
+        FunctionsMenu.setVisible(Function_Flag);
+    }
+
+    private void MenuVisibility(){
+        Vbox.setVisible(false);
+        MenuBox.setVisible(false);
+        FunctionsMenu.setVisible(false);
+        Menu_Flag = false;
+        Vbox_Flag = false;
+        Function_Flag = false;
     }
 
     @FXML
