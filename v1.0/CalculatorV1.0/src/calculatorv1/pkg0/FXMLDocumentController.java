@@ -4,7 +4,6 @@
  */
 package calculatorv1.pkg0;
 
-
 import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.time.LocalDate;
@@ -46,7 +45,10 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextArea TA;
     Integer factorial;
+    String Y = "";
+    String X = "";
     boolean scnd_flag = false;
+    boolean Sci_scnd_flag = false;
     boolean flag = true;
     boolean I_flag = true;
     boolean R_flag = false;
@@ -55,7 +57,11 @@ public class FXMLDocumentController implements Initializable {
     boolean sqrFlag = false;
     boolean FactFlag = false;
     boolean Function_Flag = false;
-    String xpow2Val = "";
+    boolean logbase = false;
+    boolean trioFlag = false;
+    boolean hypFlag = false;
+    boolean twoInputFlag = false;
+    String TA_Value = "";
     String factVal = "";
     @FXML
     private VBox Vbox;
@@ -130,7 +136,22 @@ public class FXMLDocumentController implements Initializable {
     private Button button10PowerX;
     @FXML
     private Button buttonLog;
-
+    @FXML
+    private Button buttonSin;
+    @FXML
+    private Button buttonCos;
+    @FXML
+    private Button buttonTan;
+    @FXML
+    private Button buttonSec;
+    @FXML
+    private Button buttonCsc;
+    @FXML
+    private Button buttonCot;
+    @FXML
+    private Button buttonTrio2nd;
+    @FXML
+    private Button buttonHyp;
     @FXML
     private Button buttonLn;
     @FXML
@@ -201,7 +222,7 @@ public class FXMLDocumentController implements Initializable {
     private VBox MenuBox2;
     @FXML
     private AnchorPane DateCalcPane;
-    
+
     @FXML
     private void btnRightBrace(ActionEvent event) {
         if (R_flag == true) {
@@ -211,7 +232,6 @@ public class FXMLDocumentController implements Initializable {
         flag = true;
         R_flag = false;
         TA.appendText("(");
-        powFlag = true;
     }
 
     @FXML
@@ -224,7 +244,7 @@ public class FXMLDocumentController implements Initializable {
         R_flag = false;
         TA.appendText(")");
         sqrFlag = false;
-        powFlag = false;
+
     }
 
     @FXML
@@ -236,14 +256,15 @@ public class FXMLDocumentController implements Initializable {
         flag = true;
         R_flag = false;
         TA.appendText("1");
-        if (sqrFlag) {
-            xpow2Val = xpow2Val + '1';
-
+        if (sqrFlag || trioFlag) {
+            TA_Value = TA_Value + '1';
         }
 
-        if (powFlag == true) {
-            TA.appendText(", ");
-            powFlag = false;
+        if (twoInputFlag) {
+            Y = Y + "1";
+
+        } else {
+            X = X + "1";
         }
     }
 
@@ -256,13 +277,17 @@ public class FXMLDocumentController implements Initializable {
         flag = true;
         R_flag = false;
         TA.appendText("2");
-        if (sqrFlag) {
-            xpow2Val = xpow2Val + '2';
+
+        if (sqrFlag || trioFlag) {
+            TA_Value = TA_Value + '2';
 
         }
-        if (powFlag == true) {
-            TA.appendText(", ");
-            powFlag = false;
+
+        if (twoInputFlag) {
+            Y = Y + "2";
+
+        } else {
+            X = X + "2";
         }
     }
 
@@ -274,14 +299,18 @@ public class FXMLDocumentController implements Initializable {
         MenuVisibility();
         flag = true;
         R_flag = false;
-        if (sqrFlag) {
-            xpow2Val = xpow2Val + '3';
+        if (sqrFlag || trioFlag) {
+            TA_Value = TA_Value + '3';
 
         }
+
         TA.appendText("3");
-        if (powFlag == true) {
-            TA.appendText(", ");
-            powFlag = false;
+
+        if (twoInputFlag) {
+            Y = Y + "3";
+
+        } else {
+            X = X + "3";
         }
     }
 
@@ -290,17 +319,21 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-        if (sqrFlag) {
-            xpow2Val = xpow2Val + '4';
+        if (sqrFlag || trioFlag) {
+            TA_Value = TA_Value + '4';
 
         }
+
         MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("4");
-        if (powFlag == true) {
-            TA.appendText(", ");
-            powFlag = false;
+
+        if (twoInputFlag) {
+            Y = Y + "4";
+
+        } else {
+            X = X + "4";
         }
     }
 
@@ -309,17 +342,21 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-        if (sqrFlag) {
-            xpow2Val = xpow2Val + '5';
+        if (sqrFlag || trioFlag) {
+            TA_Value = TA_Value + '5';
 
         }
+
         MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("5");
-        if (powFlag == true) {
-            TA.appendText(", ");
-            powFlag = false;
+
+        if (twoInputFlag) {
+            Y = Y + "5";
+
+        } else {
+            X = X + "5";
         }
     }
 
@@ -328,17 +365,20 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-        if (sqrFlag) {
-            xpow2Val = xpow2Val + '6';
-
+        if (sqrFlag || trioFlag) {
+            TA_Value = TA_Value + '6';
         }
+
         MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("6");
-        if (powFlag == true) {
-            TA.appendText(", ");
-            powFlag = false;
+
+        if (twoInputFlag) {
+            Y = Y + "6";
+
+        } else {
+            X = X + "6";
         }
     }
 
@@ -347,17 +387,21 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-        if (sqrFlag) {
-            xpow2Val = xpow2Val + '7';
+        if (sqrFlag || trioFlag) {
+            TA_Value = TA_Value + '7';
 
         }
+
         MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("7");
-        if (powFlag == true) {
-            TA.appendText(", ");
-            powFlag = false;
+
+        if (twoInputFlag) {
+            Y = Y + "7";
+
+        } else {
+            X = X + "7";
         }
     }
 
@@ -366,17 +410,21 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-        if (sqrFlag) {
-            xpow2Val = xpow2Val + '8';
+        if (sqrFlag || trioFlag) {
+            TA_Value = TA_Value + '8';
 
         }
+
         MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("8");
-        if (powFlag == true) {
-            TA.appendText(", ");
-            powFlag = false;
+
+        if (twoInputFlag) {
+            Y = Y + "8";
+
+        } else {
+            X = X + "8";
         }
     }
 
@@ -385,17 +433,21 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-        if (sqrFlag) {
-            xpow2Val = xpow2Val + '9';
+        if (sqrFlag || trioFlag) {
+            TA_Value = TA_Value + '9';
 
         }
+
         MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("9");
-        if (powFlag == true) {
-            TA.appendText(", ");
-            powFlag = false;
+
+        if (twoInputFlag) {
+            Y = Y + "9";
+
+        } else {
+            X = X + "9";
         }
     }
 
@@ -404,17 +456,21 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-        if (sqrFlag) {
-            xpow2Val = xpow2Val + '0';
+        if (sqrFlag || trioFlag) {
+            TA_Value = TA_Value + '0';
 
         }
+
         MenuVisibility();
         flag = true;
         R_flag = false;
         TA.appendText("0");
-        if (powFlag == true) {
-            TA.appendText(", ");
-            powFlag = false;
+
+        if (twoInputFlag) {
+            Y = Y + "0";
+
+        } else {
+            X = X + "0";
         }
     }
 //----------------------------------------
@@ -450,7 +506,7 @@ public class FXMLDocumentController implements Initializable {
         MenuVisibility();
         flag = true;
         R_flag = false;
-        TA.appendText("e");
+        TA.appendText("ë");
     }
 
     @FXML
@@ -461,7 +517,7 @@ public class FXMLDocumentController implements Initializable {
         MenuVisibility();
         flag = true;
         R_flag = false;
-        TA.appendText("exp(");
+        TA.appendText(".e+0");
     }
 
     @FXML
@@ -485,14 +541,22 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void btnXpowY(ActionEvent event) {
+        twoInputFlag = true;
+        equals.setText(",");
         if (R_flag == true) {
             TA.clear();
         }
         MenuVisibility();
+
         flag = true;
         R_flag = false;
-        TA.appendText("pow(");
-        powFlag = true;
+        if (!Sci_scnd_flag) {
+            TA.appendText("pow(");
+        } else {
+            TA.appendText("pow(");
+            powFlag = true;
+        }
+
     }
 
     @FXML
@@ -503,7 +567,11 @@ public class FXMLDocumentController implements Initializable {
         MenuVisibility();
         flag = true;
         R_flag = false;
-        TA.appendText("10^(");
+        if (!Sci_scnd_flag) {
+            TA.appendText("10^(");
+        } else {
+            TA.appendText("pow(2,");
+        }
     }
 
     @FXML
@@ -511,10 +579,20 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
+        equals.setText(",");
         MenuVisibility();
         flag = true;
+        Y = "";
+        X = "";
         R_flag = false;
-        TA.appendText("log(");
+        if (Sci_scnd_flag) {
+            TA.appendText("logyX(");
+            twoInputFlag = true;
+            logbase = true;
+        } else {
+            TA.appendText("log(");
+        }
+
     }
 
     @FXML
@@ -525,7 +603,11 @@ public class FXMLDocumentController implements Initializable {
         MenuVisibility();
         flag = true;
         R_flag = false;
-        TA.appendText("ln(");
+        if (!Sci_scnd_flag) {
+            TA.appendText("ln(");
+        } else {
+            TA.appendText("exp(");
+        }
     }
 
     @FXML
@@ -536,20 +618,29 @@ public class FXMLDocumentController implements Initializable {
         MenuVisibility();
         flag = true;
         R_flag = false;
-
-        TA.appendText("sqr(");
+        TA_Value = "";
+        if (!Sci_scnd_flag) {
+            TA.appendText("sqr(");
+        } else {
+            TA.appendText("cube(");
+        }
         sqrFlag = true;
     }
 
     @FXML
     private void btnSqrt(ActionEvent event) {
+
         if (R_flag == true) {
             TA.clear();
         }
         MenuVisibility();
         flag = true;
         R_flag = false;
-        TA.appendText("sqrt(");
+        if (!Sci_scnd_flag) {
+            TA.appendText("sqrt(");
+        } else {
+            TA.appendText("cbrt(");
+        }
     }
 
     @FXML
@@ -573,6 +664,177 @@ public class FXMLDocumentController implements Initializable {
         flag = true;
         R_flag = false;
         TA.appendText("fact(");
+
+    }
+
+    @FXML
+    private void btnSin(ActionEvent event) {
+        if (R_flag == true) {
+            TA.clear();
+        }
+        MenuVisibility();
+
+        flag = true;
+        R_flag = false;
+        if (!scnd_flag && !hypFlag) {
+            TA.appendText("sin(");
+        } else if (scnd_flag && !hypFlag) {
+            TA.appendText("sin-1(");
+        } else if (!scnd_flag && hypFlag) {
+            TA.appendText("sinh(");
+        } else {
+            TA.appendText("sinh-1(");
+            trioFlag = true;
+        }
+
+    }
+
+    @FXML
+    private void btnCos(ActionEvent event) {
+        if (R_flag == true) {
+            TA.clear();
+        }
+        MenuVisibility();
+
+        flag = true;
+        R_flag = false;
+        if (!scnd_flag && !hypFlag) {
+            TA.appendText("cos(");
+        } else if (scnd_flag && !hypFlag) {
+            TA.appendText("cos-1(");
+        } else if (!scnd_flag && hypFlag) {
+            TA.appendText("cosh(");
+        } else {
+            TA.appendText("cosh-1(");
+            trioFlag = true;
+        }
+
+    }
+
+    @FXML
+    private void btnTan(ActionEvent event) {
+        if (R_flag == true) {
+            TA.clear();
+        }
+        MenuVisibility();
+
+        flag = true;
+        R_flag = false;
+        if (!scnd_flag && !hypFlag) {
+            TA.appendText("tan(");
+        } else if (scnd_flag && !hypFlag) {
+            TA.appendText("tan-1(");
+        } else if (!scnd_flag && hypFlag) {
+            TA.appendText("tanh(");
+        } else {
+            TA.appendText("tanh-1(");
+            trioFlag = true;
+        }
+
+    }
+
+    @FXML
+    private void btnSec(ActionEvent event) {
+        if (R_flag == true) {
+            TA.clear();
+        }
+        MenuVisibility();
+
+        flag = true;
+        R_flag = false;
+        if (!scnd_flag && !hypFlag) {
+            TA.appendText("sec(");
+        } else if (scnd_flag && !hypFlag) {
+            TA.appendText("sec-1(");
+        } else if (!scnd_flag && hypFlag) {
+            TA.appendText("sech(");
+        } else {
+            TA.appendText("sech-1(");
+            trioFlag = true;
+        }
+
+    }
+
+    @FXML
+    private void btnCsc(ActionEvent event) {
+        if (R_flag == true) {
+            TA.clear();
+        }
+        MenuVisibility();
+
+        flag = true;
+        R_flag = false;
+        if (!scnd_flag && !hypFlag) {
+            TA.appendText("csc(");
+        } else if (scnd_flag && !hypFlag) {
+            TA.appendText("csc-1(");
+        } else if (!scnd_flag && hypFlag) {
+            TA.appendText("csch(");
+        } else {
+            TA.appendText("csch-1(");
+            trioFlag = true;
+        }
+
+    }
+
+    @FXML
+    private void btnCot(ActionEvent event) {
+        if (R_flag == true) {
+            TA.clear();
+        }
+        MenuVisibility();
+
+        flag = true;
+        R_flag = false;
+        if (!scnd_flag && !hypFlag) {
+            TA.appendText("cot(");
+        } else if (scnd_flag && !hypFlag) {
+            TA.appendText("cot-1(");
+        } else if (!scnd_flag && hypFlag) {
+            TA.appendText("coth(");
+        } else {
+            TA.appendText("coth-1(");
+            trioFlag = true;
+        }
+
+    }
+
+    @FXML
+    private void btnFloor(ActionEvent event) {
+        if (R_flag == true) {
+            TA.clear();
+        }
+        MenuVisibility();
+
+        flag = true;
+        R_flag = false;
+        TA.appendText("floor(");
+
+    }
+
+    @FXML
+    private void btnCeil(ActionEvent event) {
+        if (R_flag == true) {
+            TA.clear();
+        }
+        MenuVisibility();
+
+        flag = true;
+        R_flag = false;
+        TA.appendText("ceil(");
+
+    }
+
+    @FXML
+    private void btnRand(ActionEvent event) {
+        if (R_flag == true) {
+            TA.clear();
+        }
+        MenuVisibility();
+
+        flag = true;
+        R_flag = false;
+        TA.appendText("rand");
 
     }
 //-----------------------------------------
@@ -624,6 +886,10 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonActionDot(ActionEvent event) {
         TA.appendText(".");
+        if (sqrFlag || trioFlag) {
+            TA_Value = TA_Value + '.';
+
+        }
         MenuVisibility();
         R_flag = false;
         flag = true;
@@ -634,58 +900,112 @@ public class FXMLDocumentController implements Initializable {
         flag = true;
         R_flag = false;
         MenuVisibility();
+        TA_Value = "";
+        Y = "";
+        X = "";
+
         TA.clear();
     }
 
     @FXML
     private void handleButtonActionEqu(ActionEvent event) {
-        flag = true;
-        MenuVisibility();
-        R_flag = true;
-        powFlag = false;
-        String tmp;
-        if (FactFlag) {
 
-            factorial = Integer.parseInt(TA.getText(TA.getLength() - 2, TA.getLength() - 1));
-            TA.clear();
-            int i;
-            Integer sum = 1;
-            for (i = 1; i <= factorial; i++) {
-                sum = sum * i;
+        if (twoInputFlag) {
+            TA.appendText(",");
+            if (powFlag) {
+                TA.appendText("1/");
             }
-            TA.appendText(sum.toString());
-        }
+            twoInputFlag = false;
+            equals.setText("=");
+        } else {
 
-        if (toggleSign) { //needs adjustments
-            TA.appendText("*-1");
-            toggleSign = false;
-        }
-        tmp = TA.getText();
+            flag = true;
+            MenuVisibility();
+            R_flag = true;
+            powFlag = false;
 
-        tmp = tmp.replace("sin", "Math.sin").
-                replace("cos", "Math.cos").
-                replace("tan", "Math.tan").
-                replace("sqrt", "Math.sqrt").
-                replace("pow", "Math.pow").
-                replace("log", "Math.log10").
-                replace("ln", "Math.log").
-                replace("π", "Math.PI").
-                replace("e", "Math.E").
-                replace("Math.Exp", "Math.exp").
-                replace("abs", "Math.abs").
-                replace("10^(", "Math.pow(10,").
-                replace("sqr(", ('(' + xpow2Val + '*'));
-        xpow2Val = "";
-        System.out.println(tmp);
+            String tmp;
+            if (FactFlag) {
 
-        ScriptEngineManager mgr = new ScriptEngineManager();
-        ScriptEngine engine = mgr.getEngineByName("JavaScript");
-        try {
-            if (!TA.getText().isEmpty()) {
-                TA.setText(engine.eval(tmp).toString());
+                factorial = Integer.parseInt(TA.getText(TA.getLength() - 2, TA.getLength() - 1));
+                TA.clear();
+                int i;
+                Integer sum = 1;
+                for (i = 1; i <= factorial; i++) {
+                    sum = sum * i;
+                }
+                TA.appendText(sum.toString());
             }
-        } catch (ScriptException e) {
-            TA.setText("Undefined!!");
+
+            if (toggleSign) { //needs adjustments
+                TA.appendText("*-1");
+                toggleSign = false;
+
+            }
+
+            System.out.println(TA.getText());
+            tmp = TA.getText();
+            if (tmp.equals("sec(90)")) {
+                tmp = "1/0";
+            }
+            if (logbase) {
+                tmp = tmp.replace("(" + Y + "," + X + ")", "");
+                logbase = false;
+            }
+            tmp = tmp.
+                    replace("ë", "Math.E").
+                    replace("sqrt", "Math.sqrt").
+                    replace("cbrt", "java.lang.Math.cbrt").
+                    replace("pow", "Math.pow").
+                    replace("log", "java.lang.Math.log10").
+                    replace("java.lang.Math.log10yX", "java.lang.Math.log10(" + Y + ")/java.lang.Math.log10(" + X + ")").
+                    replace("ln", "Math.log").
+                    replace("π", "Math.PI").
+                    replace("cube(", ('(' + TA_Value + '*' + TA_Value + '*')).
+                    replace("Math.Exp", "Math.exp").
+                    replace("abs", "Math.abs").
+                    replace("10^(", "Math.pow(10,").
+                    replace(".Math.E", ".e").
+                    replace("floor", "Math.floor").
+                    replace("ceil", "Math.ceil").
+                    replace("rand", "Math.random()").
+                    replace("sech-1(", " Math.log((1/" + TA_Value + ") + Math.sqrt((1/(" + TA_Value + "*" + TA_Value + ")) - 1.0))*-1*((" + TA_Value + "-1)-").
+                    replace("csch-1(", "Math.log((1/(" + TA_Value + ")) + Math.sqrt((1/(" + TA_Value + "*" + TA_Value + ")) + 1.0))*-1*((" + TA_Value + "-1)-").
+                    replace("coth-1(", "0.5*(Math.log((1/(" + TA_Value + " ))+ 1.0) - Math.log(" + "1-(1/(" + TA_Value + " ))))*-1*((" + TA_Value + "-1)-").
+                    replace("sinh-1(", "Math.log(" + TA_Value + " + Math.sqrt(" + TA_Value + "*" + TA_Value + " + 1.0))*-1*((" + TA_Value + "-1)-").
+                    replace("cosh-1(", " Math.log(" + TA_Value + " + Math.sqrt(" + TA_Value + "*" + TA_Value + " - 1.0))*-1*((" + TA_Value + "-1)-").
+                    replace("tanh-1(", "0.5*(Math.log(" + TA_Value + " + 1.0) - Math.log(" + "1-" + TA_Value + " ))*-1*((" + TA_Value + "-1)-").
+                    replace("sech(", "1/Math.sinh( (Math.PI/180)*").
+                    replace("csch(", "1/Math.cosh( (Math.PI/180)*").
+                    replace("coth(", "1/Math.tanh( (Math.PI/180)*").
+                    replace("sinh(", "Math.sinh( (Math.PI/180)*").
+                    replace("cosh(", "Math.cosh( (Math.PI/180)*").
+                    replace("tanh(", "Math.tanh( (Math.PI/180)*").
+                    replace("sin-1(", "(180/Math.PI)*Math.asin(").
+                    replace("cos-1(", "(180/Math.PI)*Math.acos(").
+                    replace("tan-1(", "(180/Math.PI)*Math.atan(").
+                    replace("sec", "1/cos").
+                    replace("csc", "1/sin").
+                    replace("cot", "1/tan").
+                    replace("sin(", "Math.sin( (Math.PI/180)*").
+                    replace("cos(", "Math.cos( (Math.PI/180)*").
+                    replace("tan(", "Math.tan( (Math.PI/180)*").
+                    replace("cot", "1/tan").
+                    replace("sqr(", ('(' + TA_Value + '*'));
+            TA_Value = "";
+            trioFlag = false;
+            System.out.println(tmp);
+            ScriptEngineManager mgr = new ScriptEngineManager();
+            ScriptEngine engine = mgr.getEngineByName("JavaScript");
+
+            try {
+                if (!TA.getText().isEmpty()) {
+                    Double trial = Double.parseDouble(engine.eval(tmp).toString());
+                    TA.setText(String.format("%.8f", trial));
+                }
+            } catch (ScriptException e) {
+                TA.setText("Undefined!!");
+            }
         }
     }
 
@@ -697,7 +1017,7 @@ public class FXMLDocumentController implements Initializable {
         this.LengthPane.setVisible(false);
         this.DateCalcPane.setVisible(false);
 
-                String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",                    //array of months
+        String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", //array of months
             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
         Integer[] days = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, //array of days
@@ -759,7 +1079,6 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
-
     @FXML
     private void Trigonometry(ActionEvent event) {
         Vbox.setVisible(false);
@@ -769,7 +1088,7 @@ public class FXMLDocumentController implements Initializable {
         Function_Flag = false;
         Vbox_Flag = !Vbox_Flag;
         Vbox.setVisible(Vbox_Flag);
-        
+
     }
 
     @FXML
@@ -802,7 +1121,7 @@ public class FXMLDocumentController implements Initializable {
         FunctionsMenu.setVisible(Function_Flag);
     }
 
-    private void MenuVisibility(){
+    private void MenuVisibility() {
         Vbox.setVisible(false);
         MenuBox.setVisible(false);
         MenuBox1.setVisible(false);
@@ -818,13 +1137,64 @@ public class FXMLDocumentController implements Initializable {
         if (!TA.getText().isEmpty()) {
             TA.deleteText(TA.getLength() - 1, TA.getLength());
         }
+        if (!TA_Value.isEmpty()) {
+            TA_Value = TA_Value.substring(0, (TA_Value.length() - 1));
+        }
+        if (twoInputFlag && !Y.isEmpty()) {
+            Y = Y.substring(0, (Y.length() - 1));
+
+        } else if (!X.isEmpty()) {
+            X = X.substring(0, (X.length() - 1));
+        }
+    }
+
+    @FXML
+    private void btnHyp(ActionEvent event) {
+        hypFlag = !hypFlag;
+        if (hypFlag == true && scnd_flag == false) {
+            buttonHyp.setId("selected-button-hyp");
+            buttonSin.setText("sinh");
+            buttonCos.setText("cosh");
+            buttonTan.setText("tanh");
+            buttonSec.setText("sech");
+            buttonCsc.setText("csch");
+            buttonCot.setText("coth");
+
+        } else if (scnd_flag == true && hypFlag == false) {
+
+            buttonHyp.setId("");
+            buttonSin.setText("sin-1");
+            buttonCos.setText("cos-1");
+            buttonTan.setText("tan-1");
+            buttonSec.setText("sec-1");
+            buttonCsc.setText("csc-1");
+            buttonCot.setText("cot-1");
+        } else if (scnd_flag == false && hypFlag == false) {
+            buttonHyp.setId("");
+            buttonSin.setText("sin");
+            buttonCos.setText("cos");
+            buttonTan.setText("tan");
+            buttonSec.setText("sec");
+            buttonCsc.setText("csc");
+            buttonCot.setText("cot");
+
+        } else if (scnd_flag == true && hypFlag == true) {
+
+            buttonHyp.setId("selected-button-hyp");
+            buttonSin.setText("sinh-1");
+            buttonCos.setText("cosh-1");
+            buttonTan.setText("tanh-1");
+            buttonSec.setText("sech-1");
+            buttonCsc.setText("csch-1");
+            buttonCot.setText("coth-1");
+        }
 
     }
 
     @FXML
     private void scndbtn(ActionEvent event) {
-        scnd_flag = !scnd_flag;
-        if(scnd_flag == true){
+        Sci_scnd_flag = !Sci_scnd_flag;
+        if (Sci_scnd_flag == true) {
             button2nd.setId("selected-button");
             buttonPower2.setText("x³");
             buttonSqrt.setText("³√x");
@@ -832,8 +1202,7 @@ public class FXMLDocumentController implements Initializable {
             button10PowerX.setText("2ˣ");
             buttonLog.setText("logᵧ x");
             buttonLn.setText("eˣ");
-        }
-        else{
+        } else {
             button2nd.setId("");
             buttonPower2.setText("x²");
             buttonSqrt.setText("²√x");
@@ -842,13 +1211,50 @@ public class FXMLDocumentController implements Initializable {
             buttonLog.setText("log");
             buttonLn.setText("ln");
 
-
-            
-
         }
     }
 
+    @FXML
+    private void btnTrioScnd(ActionEvent event) {
+        scnd_flag = !scnd_flag;
+        if (scnd_flag == true && hypFlag == false) {
 
+            buttonTrio2nd.setId("selected-button-new");
+            buttonSin.setText("sin-1");
+            buttonCos.setText("cos-1");
+            buttonTan.setText("tan-1");
+            buttonSec.setText("sec-1");
+            buttonCsc.setText("csc-1");
+            buttonCot.setText("cot-1");
+        } else if (scnd_flag == false && hypFlag == false) {
+            buttonTrio2nd.setId("");
+            buttonSin.setText("sin");
+            buttonCos.setText("cos");
+            buttonTan.setText("tan");
+            buttonSec.setText("sec");
+            buttonCsc.setText("csc");
+            buttonCot.setText("cot");
+
+        } else if (scnd_flag == true && hypFlag == true) {
+            buttonTrio2nd.setId("selected-button-new");
+            buttonSin.setText("sinh-1");
+            buttonCos.setText("cosh-1");
+            buttonTan.setText("tanh-1");
+            buttonSec.setText("sech-1");
+            buttonCsc.setText("csch-1");
+            buttonCot.setText("coth-1");
+        } else if (hypFlag == true && scnd_flag == false) {
+            buttonTrio2nd.setId("");
+            buttonSin.setText("sinh");
+            buttonCos.setText("cosh");
+            buttonTan.setText("tanh");
+            buttonSec.setText("sech");
+            buttonCsc.setText("csch");
+            buttonCot.setText("coth");
+
+        }
+
+    }
 
     @FXML
     private void ScientificButton(ActionEvent event) {
@@ -860,7 +1266,7 @@ public class FXMLDocumentController implements Initializable {
         this.ScientificPane.setVisible(true);
         this.LengthPane.setVisible(false);
         MenuVisibility();
-        
+
         StartDay.getSelectionModel().select(0);
         StartMonth.getSelectionModel().select(0);
         StartYear.getSelectionModel().select(0);
@@ -876,7 +1282,7 @@ public class FXMLDocumentController implements Initializable {
         TA.clear();
         resultLabel.setText("");
         EndDateCheckBox.setSelected(false);
-        
+
         this.DateCalcPane.setVisible(false);
         this.ScientificPane.setVisible(false);
         this.LengthPane.setVisible(true);
@@ -889,781 +1295,515 @@ public class FXMLDocumentController implements Initializable {
         EndYear.getSelectionModel().select(0);
         ToggleEndDate();
     }
-    
-    
-    
-    
-    
-    /************************************************FADY PART****************************************************/
-    
-    
+
+    /**
+     * **********************************************FADY
+     * PART***************************************************
+     */
     /*Fady Part*/
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        if(event.getSource()== one)
-        {
+        if (event.getSource() == one) {
             TA1.appendText("1");
-        }
-        else if(event.getSource()== two)
-        {
+        } else if (event.getSource() == two) {
             TA1.appendText("2");
-        }
-        else if(event.getSource()== three)
-        {
+        } else if (event.getSource() == three) {
             TA1.appendText("3");
-        }
-        else if(event.getSource()== four)
-        {
+        } else if (event.getSource() == four) {
             TA1.appendText("4");
-        }
-        else if(event.getSource()== five)
-        {
+        } else if (event.getSource() == five) {
             TA1.appendText("5");
-        }
-        else if(event.getSource()== six)
-        {
+        } else if (event.getSource() == six) {
             TA1.appendText("6");
-        }
-        else if(event.getSource()== seven)
-        {
+        } else if (event.getSource() == seven) {
             TA1.appendText("7");
-        }
-        else if(event.getSource()== eight)
-        {
+        } else if (event.getSource() == eight) {
             TA1.appendText("8");
-        }
-        else if(event.getSource()== nine)
-        {
+        } else if (event.getSource() == nine) {
             TA1.appendText("9");
-        }
-        else if(event.getSource()== zero)
-        {
+        } else if (event.getSource() == zero) {
             TA1.appendText("0");
-        }
-        else if(event.getSource()== clear)
-        {
+        } else if (event.getSource() == clear) {
             TA1.clear();
-        }
-        else if(event.getSource()== dot)
-        {
+        } else if (event.getSource() == dot) {
             TA1.appendText(".");
         }
         Converter();
     }
 
-    
-    /*Fady Part*/ 
+    /*Fady Part*/
     @FXML
     private void Converter() {
         double res;
         double data;
         /*---------MilliMeters--------*/
-        if(box1.getValue()=="Millimeters")
-        {
-            if(box2.getValue()=="Millimeters")  //MilliMeters
+        if (box1.getValue() == "Millimeters") {
+            if (box2.getValue() == "Millimeters") //MilliMeters
             {
                 TA2.setText(TA1.getText());
-            }
-            else if(box2.getValue()=="CentiMeters") //Centimeter
+            } else if (box2.getValue() == "CentiMeters") //Centimeter
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/10.0;
+                    res = data / 10.0;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            else if(box2.getValue()=="Meters") //Meter
+            } else if (box2.getValue() == "Meters") //Meter
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/1000.0;
+                    res = data / 1000.0;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="KiloMeters") //KiloMeters
+            } else if (box2.getValue() == "KiloMeters") //KiloMeters
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/1000000;
+                    res = data / 1000000;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Inches") //Inches
+            } else if (box2.getValue() == "Inches") //Inches
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/25.4;
+                    res = data / 25.4;
                     TA2.setText(String.format("%.4f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Feets") //feets
+            } else if (box2.getValue() == "Feets") //feets
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/304.8;
+                    res = data / 304.8;
                     TA2.setText(String.format("%.4f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Miles") //Miles
+            } else if (box2.getValue() == "Miles") //Miles
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/1000000;
-                    res = res/1.609;
+                    res = data / 1000000;
+                    res = res / 1.609;
                     TA2.setText(String.format("%.4f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
             }
-        }
-        
-        /*-------------Centimeters------------*/
-        else if(box1.getValue()=="CentiMeters")
-        {
-            if(box2.getValue()=="Millimeters")  //MilliMeters
+        } /*-------------Centimeters------------*/ else if (box1.getValue() == "CentiMeters") {
+            if (box2.getValue() == "Millimeters") //MilliMeters
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*10;
+                    res = data * 10;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            else if(box2.getValue()=="CentiMeters") //Centimeter
+            } else if (box2.getValue() == "CentiMeters") //Centimeter
             {
                 TA2.setText(TA1.getText());
-            }
-            else if(box2.getValue()=="Meters") //Meter
+            } else if (box2.getValue() == "Meters") //Meter
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/100;
+                    res = data / 100;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="KiloMeters") //KiloMeters
+            } else if (box2.getValue() == "KiloMeters") //KiloMeters
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/100000;
+                    res = data / 100000;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Inches") //Inches
+            } else if (box2.getValue() == "Inches") //Inches
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/2.54;
+                    res = data / 2.54;
                     TA2.setText(String.format("%.4f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Feets") //feets
+            } else if (box2.getValue() == "Feets") //feets
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/30.48;
+                    res = data / 30.48;
                     TA2.setText(String.format("%.4f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Miles") //Miles
+            } else if (box2.getValue() == "Miles") //Miles
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/100000;
-                    res = res/1.609;
+                    res = data / 100000;
+                    res = res / 1.609;
                     TA2.setText(String.format("%.4f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
             }
-        }
-        
-        /*--------------------Meters----------------------*/
-        else if(box1.getValue()=="Meters")
-        {
-            if(box2.getValue()=="Millimeters")  //MilliMeters
+        } /*--------------------Meters----------------------*/ else if (box1.getValue() == "Meters") {
+            if (box2.getValue() == "Millimeters") //MilliMeters
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*1000;
+                    res = data * 1000;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            else if(box2.getValue()=="CentiMeters") //Centimeter
+            } else if (box2.getValue() == "CentiMeters") //Centimeter
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*100;
+                    res = data * 100;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            else if(box2.getValue()=="Meters") //Meter
+            } else if (box2.getValue() == "Meters") //Meter
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
                     res = data;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="KiloMeters") //KiloMeters
+            } else if (box2.getValue() == "KiloMeters") //KiloMeters
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/1000;
+                    res = data / 1000;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Inches") //Inches
+            } else if (box2.getValue() == "Inches") //Inches
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*39.37;
+                    res = data * 39.37;
                     TA2.setText(String.format("%.4f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Feets") //feets
+            } else if (box2.getValue() == "Feets") //feets
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*3.281;
+                    res = data * 3.281;
                     TA2.setText(String.format("%.4f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Miles") //Miles
+            } else if (box2.getValue() == "Miles") //Miles
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/1609;
+                    res = data / 1609;
                     TA2.setText(String.format("%.4f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
             }
-        }
-        
-        /*----------------KiloMeters-----------------*/
-        else if(box1.getValue()=="KiloMeters")
-        {
-            if(box2.getValue()=="Millimeters")  //MilliMeters
+        } /*----------------KiloMeters-----------------*/ else if (box1.getValue() == "KiloMeters") {
+            if (box2.getValue() == "Millimeters") //MilliMeters
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*1000000;
+                    res = data * 1000000;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            else if(box2.getValue()=="CentiMeters") //Centimeter
+            } else if (box2.getValue() == "CentiMeters") //Centimeter
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*100000;
+                    res = data * 100000;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            else if(box2.getValue()=="Meters") //Meter
+            } else if (box2.getValue() == "Meters") //Meter
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*1000;
+                    res = data * 1000;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="KiloMeters") //KiloMeters
+            } else if (box2.getValue() == "KiloMeters") //KiloMeters
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
                     res = data;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Inches") //Inches
+            } else if (box2.getValue() == "Inches") //Inches
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*39370;
+                    res = data * 39370;
                     TA2.setText(String.format("%.4f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Feets") //feets
+            } else if (box2.getValue() == "Feets") //feets
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*3281;
+                    res = data * 3281;
                     TA2.setText(String.format("%.4f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Miles") //Miles
+            } else if (box2.getValue() == "Miles") //Miles
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/1.609;
+                    res = data / 1.609;
                     TA2.setText(String.format("%.4f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
             }
-        }
-        
-        /*----------------Inches----------------*/
-        else if(box1.getValue()=="Inches")
-        {
-            if(box2.getValue()=="Millimeters")  //MilliMeters
+        } /*----------------Inches----------------*/ else if (box1.getValue() == "Inches") {
+            if (box2.getValue() == "Millimeters") //MilliMeters
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*25.4;
+                    res = data * 25.4;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            else if(box2.getValue()=="CentiMeters") //Centimeter
+            } else if (box2.getValue() == "CentiMeters") //Centimeter
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*2.54;
+                    res = data * 2.54;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            else if(box2.getValue()=="Meters") //Meter
+            } else if (box2.getValue() == "Meters") //Meter
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/39.37;
+                    res = data / 39.37;
                     TA2.setText(String.format("%.3f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="KiloMeters") //KiloMeters
+            } else if (box2.getValue() == "KiloMeters") //KiloMeters
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/39370;
+                    res = data / 39370;
                     TA2.setText(String.format("%.3f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Inches") //Inches
+            } else if (box2.getValue() == "Inches") //Inches
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
                     res = data;
                     TA2.setText(String.format("%.3f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Feets") //feets
+            } else if (box2.getValue() == "Feets") //feets
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/12;
+                    res = data / 12;
                     TA2.setText(String.format("%.3f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Miles") //Miles
+            } else if (box2.getValue() == "Miles") //Miles
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/63360;
+                    res = data / 63360;
                     TA2.setText(String.format("%.3f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
             }
-        }
-        
-        /*----------------Feets---------------*/
-        else if(box1.getValue()=="Feets")
-        {
-            if(box2.getValue()=="Millimeters")  //MilliMeters
+        } /*----------------Feets---------------*/ else if (box1.getValue() == "Feets") {
+            if (box2.getValue() == "Millimeters") //MilliMeters
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*304.8;
+                    res = data * 304.8;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            else if(box2.getValue()=="CentiMeters") //Centimeter
+            } else if (box2.getValue() == "CentiMeters") //Centimeter
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*30.48;
+                    res = data * 30.48;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            else if(box2.getValue()=="Meters") //Meter
+            } else if (box2.getValue() == "Meters") //Meter
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/3.281;
+                    res = data / 3.281;
                     TA2.setText(String.format("%.3f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="KiloMeters") //KiloMeters
+            } else if (box2.getValue() == "KiloMeters") //KiloMeters
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/3281;
+                    res = data / 3281;
                     TA2.setText(String.format("%.3f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Inches") //Inches
+            } else if (box2.getValue() == "Inches") //Inches
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*12;
+                    res = data * 12;
                     TA2.setText(String.format("%.3f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Feets") //feets
+            } else if (box2.getValue() == "Feets") //feets
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
                     res = data;
                     TA2.setText(String.format("%.3f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Miles") //Miles
+            } else if (box2.getValue() == "Miles") //Miles
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data/5280;
+                    res = data / 5280;
                     TA2.setText(String.format("%.3f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
             }
-        }
-        
-        /*----------------Miles--------------------*/
-        else if(box1.getValue()=="Miles")
-        {
-            if(box2.getValue()=="Millimeters")  //MilliMeters
+        } /*----------------Miles--------------------*/ else if (box1.getValue() == "Miles") {
+            if (box2.getValue() == "Millimeters") //MilliMeters
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*1000000;
-                    res = res*1.609;
+                    res = data * 1000000;
+                    res = res * 1.609;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            else if(box2.getValue()=="CentiMeters") //Centimeter
+            } else if (box2.getValue() == "CentiMeters") //Centimeter
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*160934;
+                    res = data * 160934;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            else if(box2.getValue()=="Meters") //Meter
+            } else if (box2.getValue() == "Meters") //Meter
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*1609;
+                    res = data * 1609;
                     TA2.setText(Double.toString(res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="KiloMeters") //KiloMeters
+            } else if (box2.getValue() == "KiloMeters") //KiloMeters
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*1.609;
+                    res = data * 1.609;
                     TA2.setText(String.format("%.3f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Inches") //Inches
+            } else if (box2.getValue() == "Inches") //Inches
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*63360;
+                    res = data * 63360;
                     TA2.setText(String.format("%.3f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Feets") //feets
+            } else if (box2.getValue() == "Feets") //feets
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
-                    res = data*5280;
+                    res = data * 5280;
                     TA2.setText(String.format("%.3f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
-            }
-            
-            else if(box2.getValue()=="Miles") //Miles
+            } else if (box2.getValue() == "Miles") //Miles
             {
-                if(!TA1.getText().isEmpty())
-                {
+                if (!TA1.getText().isEmpty()) {
                     data = Double.parseDouble(TA1.getText());
                     res = data;
                     TA2.setText(String.format("%.3f", res));
-                }
-                else
-                {
+                } else {
                     TA2.clear();
                 }
             }
         }
     }
 
-    /*Fady Part*/ 
+    /*Fady Part*/
     @FXML
     private void Change(javafx.scene.input.KeyEvent event) {
-            if(!event.getText().isEmpty()){
-            if(event.getText().matches("[0-9.]"))
-            {
+        if (!event.getText().isEmpty()) {
+            if (event.getText().matches("[0-9.]")) {
                 TA1.appendText(event.getText());
             }
+        } else if (event.getCode() == KeyCode.BACK_SPACE) {
+            if (!TA1.getText().isEmpty()) {
+                TA1.deleteText(TA1.getLength() - 1, TA1.getLength());
+            }
         }
-        else if(event.getCode()==KeyCode.BACK_SPACE)
-        {
-            if(!TA1.getText().isEmpty())
-                TA1.deleteText(TA1.getLength() -1 , TA1.getLength());
-        }
-    
+
         Converter();
     }
-    
-    /*Fady Part*/ 
-    public void loaddata()
-    {
+
+    /*Fady Part*/
+    public void loaddata() {
         list.removeAll(list);
         String milli = "Millimeters";
         String centi = "CentiMeters";
@@ -1672,7 +1812,7 @@ public class FXMLDocumentController implements Initializable {
         String inches = "Inches";
         String feet = "Feets";
         String miles = "Miles";
-        list.addAll(milli,centi,meter,kilo,inches,feet,miles);
+        list.addAll(milli, centi, meter, kilo, inches, feet, miles);
         box1.getItems().addAll(list);
         box1.getSelectionModel().selectFirst();
         box2.getItems().addAll(list);
@@ -1701,9 +1841,11 @@ public class FXMLDocumentController implements Initializable {
         Display();
     }
 
-    
-    /*************************************Abdelghany Part***************************************************************/
-        public void ToggleEndDate() {                           //switch between two ways of gettin the end date
+    /**
+     * ***********************************Abdelghany
+     * Part**************************************************************
+     */
+    public void ToggleEndDate() {                           //switch between two ways of gettin the end date
 
         if (EndDateCheckBox.isSelected()) {
             EndDay.setDisable(false);
@@ -1718,7 +1860,6 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /*-----------------------------------------------------------------------------------------------------------*/
-
     public void Display() {
 
         String text = "";
@@ -1794,6 +1935,5 @@ public class FXMLDocumentController implements Initializable {
             resultLabel.setText("Logic order of Dates is wrong!");
         }
     }
-
 
 }

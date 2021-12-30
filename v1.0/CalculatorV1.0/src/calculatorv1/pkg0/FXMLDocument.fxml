@@ -17,7 +17,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculatorv1.pkg0.FXMLDocumentController">
     <children>
-      <AnchorPane id="AnchorPane" fx:id="ScientificPane" layoutY="-1.0" onKeyPressed="#handleButton" onMouseClicked="#ScientificPaneClicked" prefHeight="550.0" prefWidth="350.0" visible="false">
+      <AnchorPane id="AnchorPane" fx:id="ScientificPane" layoutY="-1.0" onKeyPressed="#handleButton" onMouseClicked="#ScientificPaneClicked" prefHeight="550.0" prefWidth="350.0">
          <children>
             <Button fx:id="button7" layoutX="77.0" layoutY="328.0" onAction="#handleButtonAction7" prefHeight="48.0" prefWidth="62.0" text="7" />
             <Button fx:id="button8" layoutX="144.0" layoutY="328.0" onAction="#handleButtonAction8" prefHeight="48.0" prefWidth="62.0" text="8" />
@@ -61,22 +61,22 @@
             <Button fx:id="buttonLn" layoutX="9.0" layoutY="493.0" onAction="#btnLn" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="ln" />
             <ToggleButton fx:id="TogButton" layoutX="9.0" layoutY="125.0" mnemonicParsing="false" onAction="#Trigonometry" prefHeight="32.0" prefWidth="159.0" styleClass="Toggleop-button" text="Trigonometry" />
             <ToggleButton fx:id="TogButton1" layoutX="180.0" layoutY="125.0" mnemonicParsing="false" onAction="#FunctionBtn" prefHeight="32.0" prefWidth="159.0" styleClass="Toggleop-button" text="Function" />
-            <VBox fx:id="Vbox" layoutX="9.0" layoutY="164.0" prefHeight="105.0" prefWidth="250.0" spacing="4.0" styleClass="root" visible="false">
+            <VBox fx:id="Vbox" layoutX="9.0" layoutY="164.0" prefHeight="105.0" prefWidth="250.0" spacing="4.0" styleClass="root">
                <children>
                   <HBox prefHeight="49.0" prefWidth="35.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="2nd" />
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="sin" />
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="cos" />
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="tan" />
+                        <Button fx:id="buttonTrio2nd" mnemonicParsing="false" onAction="#btnTrioScnd" prefHeight="48.0" prefWidth="62.0" text="2nd" />
+                        <Button fx:id="buttonSin" mnemonicParsing="false" onAction="#btnSin" prefHeight="48.0" prefWidth="62.0" text="sin" />
+                        <Button fx:id="buttonCos" mnemonicParsing="false" onAction="#btnCos" prefHeight="48.0" prefWidth="62.0" text="cos" />
+                        <Button fx:id="buttonTan" mnemonicParsing="false" onAction="#btnTan" prefHeight="48.0" prefWidth="62.0" text="tan" />
                      </children>
                   </HBox>
                   <HBox prefHeight="49.0" prefWidth="35.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="hyp" />
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="sec" />
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="csc" />
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="cot" />
+                        <Button fx:id="buttonHyp" mnemonicParsing="false" onAction="#btnHyp" prefHeight="48.0" prefWidth="62.0" text="hyp" />
+                        <Button fx:id="buttonSec" mnemonicParsing="false" onAction="#btnSec" prefHeight="48.0" prefWidth="62.0" text="sec" />
+                        <Button fx:id="buttonCsc" mnemonicParsing="false" onAction="#btnCsc" prefHeight="48.0" prefWidth="62.0" text="csc" />
+                        <Button fx:id="buttonCot" mnemonicParsing="false" onAction="#btnCot" prefHeight="48.0" prefWidth="62.0" text="cot" />
                      </children>
                   </HBox>
                </children>
@@ -114,10 +114,10 @@
                <children>
                   <HBox prefHeight="49.0" prefWidth="35.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="|x|" />
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="⌊x⌋" />
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="⌈x⌉" />
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="62.0" text="rand" />
+                        <Button mnemonicParsing="false" onAction="#btnAbs" prefHeight="48.0" prefWidth="62.0" text="|x|" />
+                        <Button mnemonicParsing="false" onAction="#btnFloor" prefHeight="48.0" prefWidth="62.0" text="⌊x⌋" />
+                        <Button mnemonicParsing="false" onAction="#btnCeil" prefHeight="48.0" prefWidth="62.0" text="⌈x⌉" />
+                        <Button mnemonicParsing="false" onAction="#btnRand" prefHeight="48.0" prefWidth="62.0" text="rand" />
                      </children>
                   </HBox>
                </children>
@@ -230,7 +230,7 @@
             <Label layoutX="47.0" layoutY="-6.0" prefHeight="58.0" prefWidth="219.0" styleClass="Converter-Label" text="Length" textAlignment="CENTER" />
          </children>
       </AnchorPane>
-      <AnchorPane id="AnchorPane" fx:id="DateCalcPane" layoutY="2.0" onKeyPressed="#handleButton" onMousePressed="#ScientificPaneClicked" prefHeight="550.0" prefWidth="350.0">
+      <AnchorPane id="AnchorPane" fx:id="DateCalcPane" layoutY="2.0" onKeyPressed="#handleButton" onMousePressed="#ScientificPaneClicked" prefHeight="550.0" prefWidth="350.0" visible="false">
          <children>
             <ComboBox fx:id="StartDay" layoutX="36.0" layoutY="116.0" prefHeight="25.0" prefWidth="75.0" promptText="Day" />
             <ComboBox fx:id="StartMonth" layoutX="129.0" layoutY="116.0" prefHeight="25.0" prefWidth="82.0" promptText="Month" />
