@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLDocumentController">
+   <children>
+      <ImageView fitHeight="669.0" fitWidth="783.0" layoutX="255.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="8.0">
+         <image>
+            <Image url="@../Standard.jpg" />
+         </image>
+         <effect>
+            <Glow />
+         </effect>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="446.0" layoutX="291.0" layoutY="221.0" opacity="0.82" stroke="BLACK" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.0" width="409.0">
+         <fill>
+            <LinearGradient endX="0.3252427184466019" endY="1.0">
+               <stops>
+                  <Stop color="#b8bcbf" />
+                  <Stop color="#615a5a" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <effect>
+            <Glow />
+         </effect>
+      </Rectangle>
+      <Button layoutX="399.0" layoutY="516.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="0" textFill="#1b1919">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="399.0" layoutY="445.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="2" textFill="#1b1919">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="303.0" layoutY="445.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="1" textFill="#1b1919">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="495.0" layoutY="445.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="3" textFill="#1b1919">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="399.0" layoutY="373.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="5" textFill="#1b1919">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="303.0" layoutY="373.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="4" textFill="#1b1919">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="495.0" layoutY="373.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="6" textFill="#1b1919">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="399.0" layoutY="300.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="8" textFill="#1b1919">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="303.0" layoutY="300.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="7" textFill="#1b1919">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="495.0" layoutY="300.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="9" textFill="#1b1919">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="303.0" layoutY="516.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="." textFill="#1b1919">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="496.0" layoutY="516.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="&lt;" textFill="#1b1919">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button graphicTextGap="10.0" layoutX="592.0" layoutY="445.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="*" textFill="#18d30b">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="592.0" layoutY="373.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="-" textFill="#ee0f0f">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="592.0" layoutY="300.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="+" textFill="#e02114">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="593.0" layoutY="516.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="/" textFill="#15eb80">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="303.0" layoutY="589.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="185.0" text="=" textFill="#ff8000">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="497.0" layoutY="589.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="185.0" text="C" textFill="#eb7f04">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="398.0" layoutY="231.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="\%" textFill="#149bde">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="302.0" layoutY="231.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" textFill="#1a8fc6">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="494.0" layoutY="231.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="x^2" textFill="#149bde">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Button layoutX="591.0" layoutY="231.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="1/x" textFill="#149bde">
+         <font>
+            <Font name="Arial Narrow Bold Italic" size="33.0" />
+         </font>
+      </Button>
+      <Line endX="-81.0" endY="-29.0" fill="#20b3d0" layoutX="429.0" layoutY="281.0" startX="-100.0" stroke="#06699a" strokeWidth="3.0" />
+      <Line endX="-110.70712280273438" endY="-9.29290771484375" fill="#20b3d0" layoutX="439.0" layoutY="291.0" startX="-117.0" startY="-27.0" stroke="#06699a" strokeWidth="3.0" />
+      <Line endX="-111.0" endY="-17.70709228515625" fill="#20b3d0" layoutX="482.0" layoutY="269.0" startX="-133.29290771484375" startY="-17.70709228515625" stroke="#06699a" strokeWidth="3.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a1c9d0" height="293.0" layoutX="766.0" layoutY="362.0" opacity="0.64" stroke="BLACK" strokeLineCap="ROUND" strokeWidth="0.0" width="147.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a1c9d0" height="275.0" layoutX="766.0" layoutY="44.0" opacity="0.64" stroke="BLACK" strokeLineCap="ROUND" strokeWidth="0.0" width="147.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="121.0" layoutX="295.0" layoutY="61.0" opacity="0.82" stroke="BLACK" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.0" width="409.0">
+         <fill>
+            <LinearGradient endX="0.3252427184466019" endY="1.0">
+               <stops>
+                  <Stop color="#b8bcbf" />
+                  <Stop color="#615a5a" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <effect>
+            <Glow />
+         </effect>
+      </Rectangle>
+      <TextField layoutX="302.0" layoutY="75.0" prefHeight="96.0" prefWidth="393.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8cca6" height="647.0" layoutX="30.0" layoutY="18.0" strokeType="INSIDE" width="200.0">
+         <stroke>
+            <LinearGradient endX="1.0" endY="0.058252427184465994">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Rectangle>
+      <ChoiceBox fx:id="Choice_Box" accessibleRole="CONTEXT_MENU" layoutX="41.0" layoutY="91.0" prefHeight="50.0" prefWidth="167.0" />
+      <Label fx:id="Choice_Label" layoutX="47.0" layoutY="46.0" text="STANDARD" textAlignment="CENTER" textFill="#cd1107">
+         <font>
+            <Font name="Bell MT Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
