@@ -228,7 +228,6 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-
         flag = true;
         R_flag = false;
         TA.appendText("(");
@@ -244,7 +243,6 @@ public class FXMLDocumentController implements Initializable {
         R_flag = false;
         TA.appendText(")");
         sqrFlag = false;
-
     }
 
     @FXML
@@ -259,10 +257,8 @@ public class FXMLDocumentController implements Initializable {
         if (sqrFlag || trioFlag) {
             TA_Value = TA_Value + '1';
         }
-
         if (twoInputFlag) {
             Y = Y + "1";
-
         } else {
             X = X + "1";
         }
@@ -579,13 +575,14 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-        equals.setText(",");
+
         MenuVisibility();
         flag = true;
         Y = "";
         X = "";
         R_flag = false;
         if (Sci_scnd_flag) {
+            equals.setText(",");
             TA.appendText("logyX(");
             twoInputFlag = true;
             logbase = true;
