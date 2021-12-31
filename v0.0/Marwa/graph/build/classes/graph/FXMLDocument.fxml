@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graph.FXMLDocumentController">
+    <children>
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <LineChart fx:id="lineChart" layoutX="9.0" layoutY="2.0" prefHeight="329.0" prefWidth="352.0" title="Graphing">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <Button fx:id="PlotBtn" layoutX="140.0" layoutY="482.0" mnemonicParsing="false" onAction="#Plot" prefHeight="33.0" prefWidth="110.0" text="Plot" />
+      <TextArea fx:id="plotEqn" layoutX="92.0" layoutY="418.0" prefHeight="18.0" prefWidth="220.0" />
+      <Label layoutX="62.0" layoutY="418.0" prefHeight="18.0" prefWidth="29.0" text="y=" textAlignment="RIGHT">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="48.0" layoutY="344.0" />
+      <Label layoutX="164.0" layoutY="362.0" text="X Axis">
+         <font>
+            <Font name="Book Antiqua" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="388.0" text="Start Point =" />
+      <TextField fx:id="startTF" layoutX="126.0" layoutY="384.0" prefHeight="26.0" prefWidth="54.0" />
+      <Slider layoutX="14.0" layoutY="109.0" orientation="VERTICAL" />
+      <Slider layoutX="126.0" layoutY="317.0" />
+      <Label layoutX="204.0" layoutY="388.0" text="End Point = " />
+      <TextField fx:id="endTF" layoutX="270.0" layoutY="384.0" prefHeight="26.0" prefWidth="54.0" />
+    </children>
+</AnchorPane>
