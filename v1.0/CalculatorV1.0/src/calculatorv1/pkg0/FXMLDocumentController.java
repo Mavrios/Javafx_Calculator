@@ -47,6 +47,7 @@ public class FXMLDocumentController implements Initializable {
     Integer factorial;
     String Y = "";
     String X = "";
+    int x = 0, y = 0;
     boolean scnd_flag = false;
     boolean Sci_scnd_flag = false;
     boolean flag = true;
@@ -224,17 +225,18 @@ public class FXMLDocumentController implements Initializable {
     private AnchorPane DateCalcPane;
 
     @FXML
-    private void btnRightBrace(ActionEvent event) {
+    private void btnRightBrace() {
         if (R_flag == true) {
             TA.clear();
         }
+
         flag = true;
         R_flag = false;
         TA.appendText("(");
     }
 
     @FXML
-    private void btnLeftBrace(ActionEvent event) {
+    private void btnLeftBrace() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -243,10 +245,11 @@ public class FXMLDocumentController implements Initializable {
         R_flag = false;
         TA.appendText(")");
         sqrFlag = false;
+
     }
 
     @FXML
-    private void handleButtonAction1(ActionEvent event) {
+    private void handleButtonAction1() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -257,15 +260,17 @@ public class FXMLDocumentController implements Initializable {
         if (sqrFlag || trioFlag) {
             TA_Value = TA_Value + '1';
         }
+
         if (twoInputFlag) {
             Y = Y + "1";
+
         } else {
             X = X + "1";
         }
     }
 
     @FXML
-    private void handleButtonAction2(ActionEvent event) {
+    private void handleButtonAction2() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -288,7 +293,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleButtonAction3(ActionEvent event) {
+    private void handleButtonAction3() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -311,7 +316,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleButtonAction4(ActionEvent event) {
+    private void handleButtonAction4() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -334,7 +339,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleButtonAction5(ActionEvent event) {
+    private void handleButtonAction5() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -357,7 +362,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleButtonAction6(ActionEvent event) {
+    private void handleButtonAction6() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -379,7 +384,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleButtonAction7(ActionEvent event) {
+    private void handleButtonAction7() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -402,7 +407,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleButtonAction8(ActionEvent event) {
+    private void handleButtonAction8() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -425,7 +430,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleButtonAction9(ActionEvent event) {
+    private void handleButtonAction9() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -448,7 +453,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleButtonAction0(ActionEvent event) {
+    private void handleButtonAction0() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -472,7 +477,7 @@ public class FXMLDocumentController implements Initializable {
 //----------------------------------------
 
     @FXML
-    private void btnMod(ActionEvent event) {
+    private void btnMod() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -484,7 +489,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnPI(ActionEvent event) {
+    private void btnPI() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -495,7 +500,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnE(ActionEvent event) {
+    private void btnE() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -506,7 +511,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnExp(ActionEvent event) {
+    private void btnExp() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -517,7 +522,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnInv(ActionEvent event) {
+    private void btnInv() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -528,7 +533,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnToggleSign(ActionEvent event) {
+    private void btnToggleSign() {
         if (!TA.getText().equals('0')) {
             toggleSign = true;
         }
@@ -536,7 +541,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnXpowY(ActionEvent event) {
+    private void btnXpowY() {
         twoInputFlag = true;
         equals.setText(",");
         if (R_flag == true) {
@@ -556,7 +561,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnTenpowX(ActionEvent event) {
+    private void btnTenpowX() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -571,19 +576,18 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnLog(ActionEvent event) {
+    private void btnLog() {
         if (R_flag == true) {
             TA.clear();
         }
-
         MenuVisibility();
         flag = true;
         Y = "";
         X = "";
         R_flag = false;
         if (Sci_scnd_flag) {
-            equals.setText(",");
             TA.appendText("logyX(");
+            equals.setText(",");
             twoInputFlag = true;
             logbase = true;
         } else {
@@ -593,7 +597,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnLn(ActionEvent event) {
+    private void btnLn() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -608,7 +612,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnSqr(ActionEvent event) {
+    private void btnSqr() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -625,7 +629,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnSqrt(ActionEvent event) {
+    private void btnSqrt() {
 
         if (R_flag == true) {
             TA.clear();
@@ -641,7 +645,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnAbs(ActionEvent event) {
+    private void btnAbs() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -652,7 +656,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnFact(ActionEvent event) {
+    private void btnFact() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -665,7 +669,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnSin(ActionEvent event) {
+    private void btnSin() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -687,7 +691,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnCos(ActionEvent event) {
+    private void btnCos() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -709,7 +713,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnTan(ActionEvent event) {
+    private void btnTan() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -731,7 +735,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnSec(ActionEvent event) {
+    private void btnSec() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -753,7 +757,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnCsc(ActionEvent event) {
+    private void btnCsc() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -775,7 +779,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnCot(ActionEvent event) {
+    private void btnCot() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -797,7 +801,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnFloor(ActionEvent event) {
+    private void btnFloor() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -810,7 +814,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnCeil(ActionEvent event) {
+    private void btnCeil() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -823,7 +827,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnRand(ActionEvent event) {
+    private void btnRand() {
         if (R_flag == true) {
             TA.clear();
         }
@@ -837,7 +841,7 @@ public class FXMLDocumentController implements Initializable {
 //-----------------------------------------
 
     @FXML
-    private void handleButtonActionP(ActionEvent event) {
+    private void handleButtonActionP() {
         if (flag == false) {
             TA.deleteText(TA.getLength() - 1, TA.getLength());
         }
@@ -848,7 +852,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleButtonActionN(ActionEvent event) {
+    private void handleButtonActionN() {
         if (flag == false) {
             TA.deleteText(TA.getLength() - 1, TA.getLength());
         }
@@ -859,7 +863,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleButtonActionM(ActionEvent event) {
+    private void handleButtonActionM() {
         if (flag == false) {
             TA.deleteText(TA.getLength() - 1, TA.getLength());
         }
@@ -870,7 +874,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleButtonActionD(ActionEvent event) {
+    private void handleButtonActionD() {
         if (flag == false) {
             TA.deleteText(TA.getLength() - 1, TA.getLength());
         }
@@ -881,7 +885,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleButtonActionDot(ActionEvent event) {
+    private void handleButtonActionDot() {
         TA.appendText(".");
         if (sqrFlag || trioFlag) {
             TA_Value = TA_Value + '.';
@@ -893,7 +897,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleButtonActionC(ActionEvent event) {
+    private void handleButtonActionC() {
         flag = true;
         R_flag = false;
         MenuVisibility();
@@ -905,7 +909,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleButtonActionEqu(ActionEvent event) {
+    private void handleButtonActionEqu() {
 
         if (twoInputFlag) {
             TA.appendText(",");
@@ -1046,7 +1050,6 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButton(javafx.scene.input.KeyEvent event) {
-
         if (!event.getText().isEmpty()) {
             if ((event.getText().charAt(0) >= '0' && event.getText().charAt(0) <= '9')) {
                 if (R_flag == true) {
@@ -1073,11 +1076,469 @@ public class FXMLDocumentController implements Initializable {
                     TA.deleteText(TA.getLength() - 1, TA.getLength());
                 }
             }
+            if (event.getCode() == KeyCode.UP) {
+                y++;
+                if (y > 7) {
+                    y = 7;
+                }
+                ResetButtonIDs();
+                ArrowIndexHandle();
+                System.out.println(y);
+            }
+            if (event.getCode() == KeyCode.DOWN) {
+                y--;
+                if (y < 0) {
+                    y = 0;
+                }
+                ResetButtonIDs();
+                ArrowIndexHandle();
+                System.out.println(y);
+            }
+            if (event.getCode() == KeyCode.LEFT) {
+                x--;
+                if (x < 0) {
+                    x = 0;
+                }
+                if (y == 7) {
+                    x = 1;
+                }
+                ResetButtonIDs();
+                ArrowIndexHandle();
+                System.out.println(x);
+            }
+            if (event.getCode() == KeyCode.RIGHT) {
+                x++;
+                if (x > 4) {
+                    x = 4;
+                }
+                if (y == 7) {
+                    x = 3;
+                }
+                ResetButtonIDs();
+                ArrowIndexHandle();
+                System.out.println(x);
+            }
+        }
+        if (event.getCode() == KeyCode.ENTER) {
+            System.out.println("SA");
+            EnterIndexHandle();
+        }
+
+    }
+
+    private void EnterIndexHandle() {
+        switch (x) {
+            case 0:
+                switch (y) {
+                    case 0:
+                        btnLn();
+                        break;
+
+                    case 1:
+                        btnLog();
+                        break;
+
+                    case 2:
+                        btnTenpowX();
+                        break;
+
+                    case 3:
+                        btnXpowY();
+                        break;
+
+                    case 4:
+                        btnSqrt();
+                        break;
+
+                    case 5:
+                        btnSqr();
+                        break;
+
+                    case 6:
+                        scndbtn();
+                        break;
+
+                    case 7:
+                        Trigonometry();
+                        break;
+
+                }
+                break;
+
+            case 1:
+                switch (y) {
+                    case 0:
+                        btnToggleSign();
+                        break;
+
+                    case 1:
+                        handleButtonAction1();
+                        break;
+
+                    case 2:
+                        handleButtonAction4();
+                        break;
+
+                    case 3:
+                        handleButtonAction7();
+                        break;
+
+                    case 4:
+                        btnRightBrace();
+                        break;
+
+                    case 5:
+                        btnInv();
+                        break;
+
+                    case 6:
+                        btnPI();
+                        break;
+
+                    case 7:
+                        Trigonometry();
+                        break;
+                }
+                break;
+
+            case 2:
+                switch (y) {
+                    case 0:
+                        handleButtonAction0();
+                        break;
+
+                    case 1:
+                        handleButtonAction2();
+                        break;
+
+                    case 2:
+                        handleButtonAction5();
+                        break;
+
+                    case 3:
+                        handleButtonAction8();
+                        break;
+
+                    case 4:
+                        btnLeftBrace();
+                        break;
+
+                    case 5:
+                        btnAbs();
+                        break;
+
+                    case 6:
+                        btnE();
+                        break;
+
+                    case 7:
+                        Trigonometry();
+                        break;
+                }
+
+                break;
+
+            case 3:
+                switch (y) {
+                    case 0:
+                        handleButtonActionDot();
+                        break;
+
+                    case 1:
+                        handleButtonAction3();
+                        break;
+
+                    case 2:
+                        handleButtonAction6();
+                        break;
+
+                    case 3:
+                        handleButtonAction9();
+                        break;
+
+                    case 4:
+                        btnFact();
+                        break;
+
+                    case 5:
+                        btnExp();
+                        break;
+
+                    case 6:
+                        handleButtonActionC();
+                        break;
+
+                    case 7:
+                        FunctionBtn();
+                        break;
+                }
+                break;
+
+            case 4:
+                switch (y) {
+                    case 0:
+                        handleButtonActionEqu();
+                        break;
+
+                    case 1:
+                        handleButtonActionP();
+                        break;
+
+                    case 2:
+                        handleButtonActionN();
+                        break;
+
+                    case 3:
+                        handleButtonActionM();
+                        break;
+
+                    case 4:
+                        handleButtonActionD();
+                        break;
+
+                    case 5:
+                        btnMod();
+                        break;
+
+                    case 6:
+                        btnBksp();
+                        break;
+
+                    case 7:
+                        FunctionBtn();
+                        break;
+                }
+                break;
         }
     }
 
+    private void ArrowIndexHandle() {
+        switch (x) {
+            case 0:
+                switch (y) {
+                    case 0:
+                        buttonLn.setId("selected-button");
+                        break;
+
+                    case 1:
+                        buttonLog.setId("selected-button");
+                        break;
+
+                    case 2:
+                        button10PowerX.setId("selected-button");
+                        break;
+
+                    case 3:
+                        buttonXpY.setId("selected-button");
+                        break;
+
+                    case 4:
+                        buttonSqrt.setId("selected-button");
+                        break;
+
+                    case 5:
+                        buttonPower2.setId("selected-button");
+                        break;
+
+                    case 6:
+                        button2nd.setId("selected-button");
+                        break;
+
+                    case 7:
+                        TogButton.setId("selected-button");
+                        break;
+
+                }
+                break;
+
+            case 1:
+                switch (y) {
+                    case 0:
+                        buttonPM.setId("selected-button");
+                        break;
+
+                    case 1:
+                        button1.setId("selected-button");
+                        break;
+
+                    case 2:
+                        button4.setId("selected-button");
+                        break;
+
+                    case 3:
+                        button7.setId("selected-button");
+                        break;
+
+                    case 4:
+                        buttonOBraces.setId("selected-button");
+                        break;
+
+                    case 5:
+                        buttonDivX.setId("selected-button");
+                        break;
+
+                    case 6:
+                        buttonPI.setId("selected-button");
+                        break;
+
+                    case 7:
+                        TogButton.setId("selected-button");
+                        break;
+                }
+                break;
+
+            case 2:
+                switch (y) {
+                    case 0:
+                        button0.setId("selected-button");
+                        break;
+
+                    case 1:
+                        button2.setId("selected-button");
+                        break;
+
+                    case 2:
+                        button5.setId("selected-button");
+                        break;
+
+                    case 3:
+                        button8.setId("selected-button");
+                        break;
+
+                    case 4:
+                        buttonCBraces.setId("selected-button");
+                        break;
+
+                    case 5:
+                        buttonAbs.setId("selected-button");
+                        break;
+
+                    case 6:
+                        buttonEuler.setId("selected-button");
+                        break;
+
+                    case 7:
+                        TogButton.setId("selected-button");
+                        break;
+                }
+
+                break;
+
+            case 3:
+                switch (y) {
+                    case 0:
+                        buttonDot.setId("selected-button");
+                        break;
+
+                    case 1:
+                        button3.setId("selected-button");
+                        break;
+
+                    case 2:
+                        button6.setId("selected-button");
+                        break;
+
+                    case 3:
+                        button9.setId("selected-button");
+                        break;
+
+                    case 4:
+                        buttonFact.setId("selected-button");
+                        break;
+
+                    case 5:
+                        buttonExp.setId("selected-button");
+                        break;
+
+                    case 6:
+                        buttonC.setId("selected-button");
+                        break;
+
+                    case 7:
+                        TogButton1.setId("selected-button");
+                        break;
+                }
+                break;
+
+            case 4:
+                switch (y) {
+                    case 0:
+                        equals.setId("selected-button");
+                        break;
+
+                    case 1:
+                        buttonPlus.setId("selected-button");
+                        break;
+
+                    case 2:
+                        buttonMin.setId("selected-button");
+                        break;
+
+                    case 3:
+                        buttonMulti.setId("selected-button");
+                        break;
+
+                    case 4:
+                        buttonDiv.setId("selected-button");
+                        break;
+
+                    case 5:
+                        buttonMod.setId("selected-button");
+                        break;
+
+                    case 6:
+                        buttonBks.setId("selected-button");
+                        break;
+
+                    case 7:
+                        TogButton1.setId("selected-button");
+                        break;
+                }
+                break;
+        }
+    }
+
+    private void ResetButtonIDs() {
+        buttonLn.setId("");
+        buttonPM.setId("");
+        button0.setId("");
+        buttonDot.setId("");
+        equals.setId("");
+        buttonLog.setId("");
+        button1.setId("");
+        button2.setId("");
+        button3.setId("");
+        buttonPlus.setId("");
+        button10PowerX.setId("");
+        button4.setId("");
+        button5.setId("");
+        button6.setId("");
+        buttonMin.setId("");
+        buttonXpY.setId("");
+        button7.setId("");
+        button8.setId("");
+        button9.setId("");
+        buttonMulti.setId("");
+        buttonSqrt.setId("");
+        buttonOBraces.setId("");
+        buttonCBraces.setId("");
+        buttonFact.setId("");
+        buttonDiv.setId("");
+        buttonPower2.setId("");
+        buttonDivX.setId("");
+        buttonAbs.setId("");
+        buttonExp.setId("");
+        buttonMod.setId("");
+        buttonPI.setId("");
+        buttonEuler.setId("");
+        buttonC.setId("");
+        buttonBks.setId("");
+        TogButton.setId("");
+        TogButton1.setId("");
+    }
+
     @FXML
-    private void Trigonometry(ActionEvent event) {
+    private void Trigonometry() {
         Vbox.setVisible(false);
         MenuBox.setVisible(false);
         FunctionsMenu.setVisible(false);
@@ -1094,7 +1555,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void MenuHandling(ActionEvent event) {
+    private void MenuHandling() {
         Vbox.setVisible(false);
         MenuBox.setVisible(false);
         MenuBox2.setVisible(false);
@@ -1108,7 +1569,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void FunctionBtn(ActionEvent event) {
+    private void FunctionBtn() {
         Vbox.setVisible(false);
         MenuBox.setVisible(false);
         FunctionsMenu.setVisible(false);
@@ -1130,7 +1591,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnBksp(ActionEvent event) {
+    private void btnBksp() {
         if (!TA.getText().isEmpty()) {
             TA.deleteText(TA.getLength() - 1, TA.getLength());
         }
@@ -1146,7 +1607,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnHyp(ActionEvent event) {
+    private void btnHyp() {
         hypFlag = !hypFlag;
         if (hypFlag == true && scnd_flag == false) {
             buttonHyp.setId("selected-button-hyp");
@@ -1189,7 +1650,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void scndbtn(ActionEvent event) {
+    private void scndbtn() {
         Sci_scnd_flag = !Sci_scnd_flag;
         if (Sci_scnd_flag == true) {
             button2nd.setId("selected-button");
@@ -1254,7 +1715,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void ScientificButton(ActionEvent event) {
+    private void ScientificButton() {
         TA1.clear();
         TA2.clear();
         resultLabel.setText("");
@@ -1275,7 +1736,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void LengthButton(ActionEvent event) {
+    private void LengthButton() {
         TA.clear();
         resultLabel.setText("");
         EndDateCheckBox.setSelected(false);
