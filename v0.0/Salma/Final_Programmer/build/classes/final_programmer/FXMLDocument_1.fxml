@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane id="btn_0" blendMode="DARKEN" cache="true" depthTest="DISABLE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="final_programmer.FXMLDocumentController">
+   <children>
+      <Button fx:id="btn_0" contentDisplay="CENTER" layoutX="500.0" layoutY="408.0" mnemonicParsing="false" onAction="#Button_0" prefHeight="53.0" prefWidth="65.0" text="0" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="34.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button id="btn_1" fx:id="btn_1" contentDisplay="CENTER" layoutX="422.0" layoutY="338.0" mnemonicParsing="false" onAction="#Button_1" prefHeight="53.0" prefWidth="65.0" text="1" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="34.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_2" contentDisplay="CENTER" layoutX="498.0" layoutY="338.0" mnemonicParsing="false" onAction="#Button_2" prefHeight="53.0" prefWidth="65.0" text="2" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="34.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="btn_3" contentDisplay="CENTER" layoutX="575.0" layoutY="338.0" mnemonicParsing="false" onAction="#Button_3" prefHeight="53.0" prefWidth="65.0" text="3" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="34.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="btn_4" contentDisplay="CENTER" layoutX="422.0" layoutY="264.0" mnemonicParsing="false" onAction="#Button_4" prefHeight="53.0" prefWidth="65.0" text="4" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="34.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_5" contentDisplay="CENTER" layoutX="498.0" layoutY="264.0" mnemonicParsing="false" onAction="#Button_5" prefHeight="53.0" prefWidth="65.0" text="5" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="34.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_6" contentDisplay="CENTER" layoutX="575.0" layoutY="264.0" mnemonicParsing="false" onAction="#Button_6" prefHeight="53.0" prefWidth="65.0" text="6" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="34.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_7" contentDisplay="CENTER" layoutX="422.0" layoutY="194.0" mnemonicParsing="false" onAction="#Button_7" prefHeight="53.0" prefWidth="65.0" text="7" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="34.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_8" contentDisplay="CENTER" layoutX="498.0" layoutY="194.0" mnemonicParsing="false" onAction="#Button_8" prefHeight="53.0" prefWidth="65.0" text="8" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="34.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_9" contentDisplay="CENTER" layoutX="575.0" layoutY="194.0" mnemonicParsing="false" onAction="#Button_9" prefHeight="53.0" prefWidth="65.0" text="9" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="34.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <TextField fx:id="label_OCT" layoutX="101.0" layoutY="289.0" onAction="#Label_OCT" prefHeight="35.0" prefWidth="119.0" />
+      <TextField fx:id="label_DEC" layoutX="101.0" layoutY="222.0" onAction="#Label_DEC" prefHeight="35.0" prefWidth="119.0" />
+      <TextField fx:id="label_HEX" layoutX="101.0" layoutY="147.0" onAction="#Label_HEX" prefHeight="35.0" prefWidth="119.0" />
+      <TextField fx:id="label_BIN" layoutX="101.0" layoutY="84.0" onAction="#Label_BIN" prefHeight="35.0" prefWidth="119.0" />
+      <Button fx:id="btn_BIN" contentDisplay="CENTER" layoutX="14.0" layoutY="68.0" mnemonicParsing="false" onAction="#Button_BIN" prefHeight="53.0" prefWidth="65.0" text="BIN" textFill="#d30f0f" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Berlin Sans FB" size="16.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_OCT" contentDisplay="CENTER" layoutX="14.0" layoutY="283.0" mnemonicParsing="false" onAction="#Button_OCT" prefHeight="53.0" prefWidth="65.0" text="OCT" textFill="#d00808" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Algerian" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_HEX" contentDisplay="CENTER" layoutX="14.0" layoutY="141.0" mnemonicParsing="false" onAction="#Button_HEX" prefHeight="53.0" prefWidth="65.0" text="HEX" textFill="#e40f0f" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Aldhabi" size="19.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_DEC" contentDisplay="CENTER" layoutX="14.0" layoutY="212.0" mnemonicParsing="false" onAction="#Buuton_DEC" prefHeight="53.0" prefWidth="65.0" text="DEC" textFill="#eb1111" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="AMGDT" size="15.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <TextArea fx:id="text_Area" layoutX="391.0" layoutY="10.0" prefHeight="43.0" prefWidth="242.0" promptText="0" />
+      <Button fx:id="btn_C" contentDisplay="CENTER" layoutX="575.0" layoutY="408.0" mnemonicParsing="false" onAction="#Button_Clear" prefHeight="61.0" prefWidth="65.0" text="C" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="28.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_02" contentDisplay="CENTER" layoutX="422.0" layoutY="408.0" mnemonicParsing="false" onAction="#Button_0" prefHeight="53.0" prefWidth="65.0" text="." textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="34.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_NOT" contentDisplay="CENTER" layoutX="496.0" layoutY="130.0" mnemonicParsing="false" onAction="#Button_NOT" prefHeight="53.0" prefWidth="65.0" text="NOT" textFill="#e42121" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="13.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_XOR" contentDisplay="CENTER" layoutX="572.0" layoutY="130.0" mnemonicParsing="false" onAction="#Button_XOR" prefHeight="53.0" prefWidth="65.0" text="XOR" textFill="#e42121" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="16.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_AND" contentDisplay="CENTER" layoutX="349.0" layoutY="131.0" mnemonicParsing="false" onAction="#Button_AND" prefHeight="53.0" prefWidth="65.0" text="AND" textFill="#e42121" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="12.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_OR" contentDisplay="CENTER" layoutX="423.0" layoutY="130.0" mnemonicParsing="false" onAction="#Button_OR" prefHeight="53.0" prefWidth="65.0" text="OR" textFill="#e42121" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="12.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button id="btn_1" fx:id="btn_F" contentDisplay="CENTER" layoutX="349.0" layoutY="338.0" mnemonicParsing="false" onAction="#Button_F" prefHeight="53.0" prefWidth="65.0" text="F" textAlignment="CENTER" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="34.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_E" contentDisplay="CENTER" layoutX="349.0" layoutY="264.0" mnemonicParsing="false" onAction="#Button_E" prefHeight="53.0" prefWidth="65.0" text="E" textAlignment="CENTER" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="34.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_D" contentDisplay="CENTER" layoutX="349.0" layoutY="194.0" mnemonicParsing="false" onAction="#Button_D" prefHeight="53.0" prefWidth="65.0" text="D" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="34.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button id="btn_1" fx:id="btn_C" contentDisplay="CENTER" layoutX="274.0" layoutY="338.0" mnemonicParsing="false" onAction="#Button_C" prefHeight="53.0" prefWidth="65.0" text="C" textAlignment="CENTER" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="34.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_B" contentDisplay="CENTER" layoutX="274.0" layoutY="264.0" mnemonicParsing="false" onAction="#Button_B" prefHeight="53.0" prefWidth="65.0" text="B" textAlignment="CENTER" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="34.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_A" contentDisplay="CENTER" layoutX="274.0" layoutY="194.0" mnemonicParsing="false" onAction="#Button_A" prefHeight="53.0" prefWidth="65.0" text="A" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="34.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="btn_equal" contentDisplay="CENTER" layoutX="32.0" layoutY="347.0" mnemonicParsing="false" onAction="#Button_Equal" prefHeight="61.0" prefWidth="139.0" text="Estimate" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="19.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <TextArea fx:id="text_Area2" layoutX="392.0" layoutY="78.0" prefHeight="43.0" prefWidth="242.0" promptText="0" />
+      <Label fx:id="operation" layoutX="510.0" layoutY="55.0" prefHeight="21.0" prefWidth="43.0" textFill="#a10591" />
+      <Button fx:id="btn_equal1" contentDisplay="CENTER" layoutX="272.0" layoutY="408.0" mnemonicParsing="false" onAction="#Button_Equal1" prefHeight="61.0" prefWidth="139.0" text="=" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Arial Italic" size="30.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Label fx:id="operation1" layoutX="682.0" layoutY="35.0" prefHeight="21.0" prefWidth="92.0" text="HISTORY" textAlignment="CENTER" textFill="#a10591">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_History" layoutX="663.0" layoutY="72.0" prefHeight="86.0" prefWidth="129.0" textFill="#410771">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="text_History" layoutX="657.0" layoutY="72.0" prefHeight="171.0" prefWidth="129.0" />
+   </children>
+</Pane>
