@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -80,6 +81,8 @@ public class FXMLDocumentController implements Initializable {
     private VBox Vbox;
     boolean Vbox_Flag = false;
     boolean Menu_Flag = false;
+    ScriptEngineManager EqnManager;
+    ScriptEngine engine;
     @FXML
     private AnchorPane ScientificPane;
     @FXML
@@ -942,6 +945,58 @@ public class FXMLDocumentController implements Initializable {
         TA.clear();
     }
 
+    public String Calculate_Eqn(String tmp) {
+
+        if (tmp.equals("sec(90)")) {
+            tmp = "1/0";
+        }
+        if (logbase) {
+            tmp = tmp.replace("(" + Y + "," + X + ")", "");
+            logbase = false;
+        }
+        tmp = tmp.
+                replace("ë", "Math.E").
+                replace("sqrt", "Math.sqrt").
+                replace("cbrt", "java.lang.Math.cbrt").
+                replace("pow", "Math.pow").
+                replace("log", "java.lang.Math.log10").
+                replace("java.lang.Math.log10yX", "java.lang.Math.log10(" + Y + ")/java.lang.Math.log10(" + X + ")").
+                replace("ln", "Math.log").
+                replace("π", "Math.PI").
+                replace("cube(", ('(' + TA_Value + '*' + TA_Value + '*')).
+                replace("Math.Exp", "Math.exp").
+                replace("abs", "Math.abs").
+                replace("10^(", "Math.pow(10,").
+                replace(".Math.E", ".e").
+                replace("floor", "Math.floor").
+                replace("ceil", "Math.ceil").
+                replace("rand", "Math.random()").
+                replace("sech-1(", " Math.log((1/" + TA_Value + ") + Math.sqrt((1/(" + TA_Value + "*" + TA_Value + ")) - 1.0))*-1*((" + TA_Value + "-1)-").
+                replace("csch-1(", "Math.log((1/(" + TA_Value + ")) + Math.sqrt((1/(" + TA_Value + "*" + TA_Value + ")) + 1.0))*-1*((" + TA_Value + "-1)-").
+                replace("coth-1(", "0.5*(Math.log((1/(" + TA_Value + " ))+ 1.0) - Math.log(" + "1-(1/(" + TA_Value + " ))))*-1*((" + TA_Value + "-1)-").
+                replace("sinh-1(", "Math.log(" + TA_Value + " + Math.sqrt(" + TA_Value + "*" + TA_Value + " + 1.0))*-1*((" + TA_Value + "-1)-").
+                replace("cosh-1(", " Math.log(" + TA_Value + " + Math.sqrt(" + TA_Value + "*" + TA_Value + " - 1.0))*-1*((" + TA_Value + "-1)-").
+                replace("tanh-1(", "0.5*(Math.log(" + TA_Value + " + 1.0) - Math.log(" + "1-" + TA_Value + " ))*-1*((" + TA_Value + "-1)-").
+                replace("sech(", "1/Math.sinh( (Math.PI/180)*").
+                replace("csch(", "1/Math.cosh( (Math.PI/180)*").
+                replace("coth(", "1/Math.tanh( (Math.PI/180)*").
+                replace("sinh(", "Math.sinh( (Math.PI/180)*").
+                replace("cosh(", "Math.cosh( (Math.PI/180)*").
+                replace("tanh(", "Math.tanh( (Math.PI/180)*").
+                replace("sin-1(", "(180/Math.PI)*Math.asin(").
+                replace("cos-1(", "(180/Math.PI)*Math.acos(").
+                replace("tan-1(", "(180/Math.PI)*Math.atan(").
+                replace("sec", "1/cos").
+                replace("csc", "1/sin").
+                replace("cot", "1/tan").
+                replace("sin(", "Math.sin( (Math.PI/180)*").
+                replace("cos(", "Math.cos( (Math.PI/180)*").
+                replace("tan(", "Math.tan( (Math.PI/180)*").
+                replace("cot", "1/tan").
+                replace("sqr(", ('(' + TA_Value + '*'));
+        return tmp;
+    }
+
     @FXML
     private void handleButtonActionEqu() {
 
@@ -959,7 +1014,6 @@ public class FXMLDocumentController implements Initializable {
             R_flag = true;
             powFlag = false;
 
-            String tmp;
             if (FactFlag) {
 
                 factorial = Integer.parseInt(TA.getText(TA.getLength() - 2, TA.getLength() - 1));
@@ -975,63 +1029,13 @@ public class FXMLDocumentController implements Initializable {
             if (toggleSign) { //needs adjustments
                 TA.appendText("*-1");
                 toggleSign = false;
-
             }
-
             System.out.println(TA.getText());
-            tmp = TA.getText();
-            if (tmp.equals("sec(90)")) {
-                tmp = "1/0";
-            }
-            if (logbase) {
-                tmp = tmp.replace("(" + Y + "," + X + ")", "");
-                logbase = false;
-            }
-            tmp = tmp.
-                    replace("ë", "Math.E").
-                    replace("sqrt", "Math.sqrt").
-                    replace("cbrt", "java.lang.Math.cbrt").
-                    replace("pow", "Math.pow").
-                    replace("log", "java.lang.Math.log10").
-                    replace("java.lang.Math.log10yX", "java.lang.Math.log10(" + Y + ")/java.lang.Math.log10(" + X + ")").
-                    replace("ln", "Math.log").
-                    replace("π", "Math.PI").
-                    replace("cube(", ('(' + TA_Value + '*' + TA_Value + '*')).
-                    replace("Math.Exp", "Math.exp").
-                    replace("abs", "Math.abs").
-                    replace("10^(", "Math.pow(10,").
-                    replace(".Math.E", ".e").
-                    replace("floor", "Math.floor").
-                    replace("ceil", "Math.ceil").
-                    replace("rand", "Math.random()").
-                    replace("sech-1(", " Math.log((1/" + TA_Value + ") + Math.sqrt((1/(" + TA_Value + "*" + TA_Value + ")) - 1.0))*-1*((" + TA_Value + "-1)-").
-                    replace("csch-1(", "Math.log((1/(" + TA_Value + ")) + Math.sqrt((1/(" + TA_Value + "*" + TA_Value + ")) + 1.0))*-1*((" + TA_Value + "-1)-").
-                    replace("coth-1(", "0.5*(Math.log((1/(" + TA_Value + " ))+ 1.0) - Math.log(" + "1-(1/(" + TA_Value + " ))))*-1*((" + TA_Value + "-1)-").
-                    replace("sinh-1(", "Math.log(" + TA_Value + " + Math.sqrt(" + TA_Value + "*" + TA_Value + " + 1.0))*-1*((" + TA_Value + "-1)-").
-                    replace("cosh-1(", " Math.log(" + TA_Value + " + Math.sqrt(" + TA_Value + "*" + TA_Value + " - 1.0))*-1*((" + TA_Value + "-1)-").
-                    replace("tanh-1(", "0.5*(Math.log(" + TA_Value + " + 1.0) - Math.log(" + "1-" + TA_Value + " ))*-1*((" + TA_Value + "-1)-").
-                    replace("sech(", "1/Math.sinh( (Math.PI/180)*").
-                    replace("csch(", "1/Math.cosh( (Math.PI/180)*").
-                    replace("coth(", "1/Math.tanh( (Math.PI/180)*").
-                    replace("sinh(", "Math.sinh( (Math.PI/180)*").
-                    replace("cosh(", "Math.cosh( (Math.PI/180)*").
-                    replace("tanh(", "Math.tanh( (Math.PI/180)*").
-                    replace("sin-1(", "(180/Math.PI)*Math.asin(").
-                    replace("cos-1(", "(180/Math.PI)*Math.acos(").
-                    replace("tan-1(", "(180/Math.PI)*Math.atan(").
-                    replace("sec", "1/cos").
-                    replace("csc", "1/sin").
-                    replace("cot", "1/tan").
-                    replace("sin(", "Math.sin( (Math.PI/180)*").
-                    replace("cos(", "Math.cos( (Math.PI/180)*").
-                    replace("tan(", "Math.tan( (Math.PI/180)*").
-                    replace("cot", "1/tan").
-                    replace("sqr(", ('(' + TA_Value + '*'));
+
+            String tmp = Calculate_Eqn(TA.getText());
             TA_Value = "";
             trioFlag = false;
             System.out.println(tmp);
-            ScriptEngineManager mgr = new ScriptEngineManager();
-            ScriptEngine engine = mgr.getEngineByName("JavaScript");
 
             try {
                 if (!TA.getText().isEmpty()) {
@@ -1052,6 +1056,8 @@ public class FXMLDocumentController implements Initializable {
         this.LengthPane.setVisible(false);
         this.DateCalcPane.setVisible(false);
         this.GarphingPane.setVisible(false);
+        EqnManager = new ScriptEngineManager();
+        engine = EqnManager.getEngineByName("JavaScript");
 
         String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", //array of months
             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
@@ -2445,6 +2451,9 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
+    /**
+     * * Plotting Function to handle X,Y data provided for te eqn to plot it **
+     */
     @FXML
     private void Plot(ActionEvent event) {
         eqn = plotEqn.getText();
@@ -2454,9 +2463,6 @@ public class FXMLDocumentController implements Initializable {
         System.out.println(eqn);
         XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
         int i;
-
-        ScriptEngineManager mgr = new ScriptEngineManager();
-        ScriptEngine engine = mgr.getEngineByName("JavaScript");
         if (!startTF.getText().isEmpty()) {
             Xaxis = startTF.getText();
         } else {
@@ -2466,25 +2472,31 @@ public class FXMLDocumentController implements Initializable {
             endPt = endTF.getText();
             range = Math.abs(Integer.parseInt(Xaxis) - Integer.parseInt(endPt));
         }
-
         for (i = 1; i <= range; i++) {
-            Xaxis = Xaxis + "+1"; // + "(" + String.format("%d", rand.nextInt(5)) + ")";
-
+            Xaxis = Xaxis + "+1";
             try {
                 Xaxis = String.format("%.2f", Double.parseDouble(engine.eval(Xaxis).toString()));
                 eqn = eqn.replace("x", Xaxis);
                 if (!plotEqn.getText().isEmpty()) {
-                    Graphing_Y = Double.parseDouble(engine.eval(eqn).toString());
+                    Graphing_Y = Double.parseDouble(engine.eval(Calculate_Eqn(eqn)).toString());
                 }
             } catch (ScriptException e) {
                 plotEqn.setText("Undefined!!");
 
                 lineChart.getData().clear();
             }
-            System.out.println(Xaxis + " " + Graphing_Y);
 
-            series.getData().add(new XYChart.Data<String, Number>(Xaxis, Graphing_Y));
-            eqn = eqnTmp;
+            System.out.println(Xaxis + " " + Graphing_Y);
+            if (Graphing_Y.isNaN()) {
+                lineChart.getData().clear();
+                plotEqn.setText("ERROR! Check Your Formula or Range");
+            
+            } else {
+
+                series.getData().add(new XYChart.Data<String, Number>(Xaxis, Graphing_Y));
+                eqn = eqnTmp;
+            }
+
         }
 
         Xaxis = "0";
