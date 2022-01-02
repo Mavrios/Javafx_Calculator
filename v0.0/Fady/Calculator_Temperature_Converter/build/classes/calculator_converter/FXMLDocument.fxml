@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" onKeyPressed="#Change2" prefHeight="530.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculator_converter.FXMLDocumentController">
+    <children>
+      <Button fx:id="zero" layoutX="151.0" layoutY="466.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="0">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="one" layoutX="94.0" layoutY="327.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" stylesheets="@Button.css" text="1" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="two" layoutX="151.0" layoutY="327.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="2">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="three" layoutX="206.0" layoutY="327.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="3">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="four" layoutX="94.0" layoutY="375.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="4">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="five" layoutX="151.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="5">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="six" layoutX="206.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="6">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="seven" layoutX="94.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="7">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="eight" layoutX="151.0" layoutY="422.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="8">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="nine" layoutX="206.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="9">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="dot" layoutX="94.0" layoutY="466.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text=".">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="clear" layoutX="206.0" layoutY="466.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" styleClass="clear-button" text="CL">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Button>
+      <TextField fx:id="TA1" alignment="CENTER" editable="false" layoutY="68.0" prefHeight="68.0" prefWidth="340.0" promptText="0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="TA2" alignment="CENTER" editable="false" layoutY="187.0" prefHeight="68.0" prefWidth="340.0" promptText="0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <ComboBox fx:id="box2" layoutX="14.0" layoutY="264.0" onAction="#Converter2" prefHeight="25.0" prefWidth="122.0" />
+      <ComboBox fx:id="box1" layoutX="14.0" layoutY="148.0" onAction="#Converter2" prefHeight="25.0" prefWidth="122.0" />
+    </children>
+   <stylesheets>
+      <URL value="@Base.css" />
+      <URL value="@Text.css" />
+      <URL value="@Button.css" />
+   </stylesheets>
+</AnchorPane>
