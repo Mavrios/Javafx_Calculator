@@ -10,13 +10,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 /**
  *
  * @author lenovo2
  */
 public class CalculatorV10 extends Application {
-    
-      
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
@@ -24,6 +24,7 @@ public class CalculatorV10 extends Application {
         scene.getStylesheets().add("calculatorv1/pkg0/Button.css");
         scene.getStylesheets().add("calculatorv1/pkg0/Base.css");
         scene.getStylesheets().add("calculatorv1/pkg0/Text.css");
+        scene.getStylesheets().add("calculatorv1/pkg0/chart_style.css");
         stage.setResizable(false);
         stage.setMinWidth(340);
         stage.setMinHeight(530);
@@ -40,6 +41,5 @@ public class CalculatorV10 extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
-    
+
 }

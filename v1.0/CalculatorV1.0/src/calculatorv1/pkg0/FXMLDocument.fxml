@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -103,7 +106,7 @@
                   </Button>
                   <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Calculator" />
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#ScientificButton" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
-                  <Button focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
+                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#GraphingButton" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
                   <Button focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
                   <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
@@ -220,7 +223,7 @@
                   </Button>
                   <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Calculator" />
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#ScientificButton" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
-                  <Button focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
+                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#GraphingButton" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
                   <Button focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
                   <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
@@ -268,7 +271,7 @@
                   </Button>
                   <Label prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Calculator" />
                   <Button mnemonicParsing="false" onAction="#ScientificButton" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
-                  <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
+                  <Button mnemonicParsing="false" onAction="#GraphingButton" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
                   <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
                   <Button mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
                   <Label prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
@@ -276,6 +279,65 @@
                </children>
             </VBox>
             <Label layoutX="46.0" layoutY="1.0" styleClass="Converter-Label" text="Date Calculation" />
+         </children>
+      </AnchorPane>
+      <AnchorPane id="AnchorPane" fx:id="GarphingPane" layoutX="4.0" layoutY="10.0" onMouseClicked="#ScientificPaneClicked" prefHeight="530.0" prefWidth="340.0" visible="false">
+         <children>
+            <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+            <LineChart fx:id="lineChart" layoutX="-13.0" layoutY="2.0" prefHeight="329.0" prefWidth="352.0" title="Graphing">
+               <xAxis>
+                  <CategoryAxis animated="false" fx:id="x_Axis" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis fx:id="Axis" side="LEFT" />
+               </yAxis>
+            </LineChart>
+            <Button fx:id="PlotBtn" layoutX="140.0" layoutY="482.0" mnemonicParsing="false" onAction="#Plot" prefHeight="33.0" prefWidth="110.0" text="Plot" />
+            <TextArea fx:id="plotEqn" layoutX="92.0" layoutY="418.0" prefHeight="18.0" prefWidth="220.0" />
+            <Label layoutX="62.0" layoutY="418.0" prefHeight="18.0" prefWidth="29.0" text="y=" textAlignment="RIGHT">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="48.0" layoutY="344.0" />
+            <Label layoutX="162.0" layoutY="334.0" text="X Axis">
+               <font>
+                  <Font name="Book Antiqua" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="37.0" layoutY="379.0" text="Start Point =" />
+            <TextField fx:id="startTF" layoutX="113.0" layoutY="368.0" prefHeight="26.0" prefWidth="54.0" />
+            <Label layoutX="204.0" layoutY="381.0" text="End Point = " />
+            <TextField fx:id="endTF" layoutX="281.0" layoutY="368.0" prefHeight="26.0" prefWidth="54.0" />
+            <Button mnemonicParsing="false" onAction="#MenuHandling" prefHeight="32.0" prefWidth="34.0" styleClass="op-button">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@3329671.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <VBox fx:id="GraphingMenuBox" prefHeight="542.0" prefWidth="208.0" styleClass="root" visible="false">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#MenuHandling" prefHeight="32.0" prefWidth="34.0" styleClass="op-button">
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@3329671.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Graphing" />
+                  <Button mnemonicParsing="false" onAction="#ScientificButton" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
+                  <Button fx:id="GraphingBtn" mnemonicParsing="false" onAction="#GraphingButton" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
+                  <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
+                  <Button mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
+                  <Label prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
+                  <Button mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
     </children>

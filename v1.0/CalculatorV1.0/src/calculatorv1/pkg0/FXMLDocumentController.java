@@ -15,6 +15,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -40,6 +44,14 @@ public class FXMLDocumentController implements Initializable {
     int d1, d2, m1, m2, y1, y2;
     long daysCounter, monthsCounter, yearsCounter;
     LocalDate startDate, endDate;
+    String Yaxis = "";
+    String Xaxis = "";
+    String endPt = "50";
+    int range = 50;
+    String eqn = "";
+    String eqnTmp = "";
+    Double Graphing_Y = 0.0;
+
     public Button button1;
     ObservableList list = FXCollections.observableArrayList();
     @FXML
@@ -223,6 +235,28 @@ public class FXMLDocumentController implements Initializable {
     private VBox MenuBox2;
     @FXML
     private AnchorPane DateCalcPane;
+    @FXML
+    private AnchorPane GarphingPane;
+    @FXML
+    private Label label;
+    @FXML
+    private LineChart<String, Number> lineChart;
+    @FXML
+    private NumberAxis Axis;
+    @FXML
+    private CategoryAxis x_Axis;
+    @FXML
+    private Button PlotBtn;
+    @FXML
+    private TextArea plotEqn;
+    @FXML
+    private TextField startTF;
+    @FXML
+    private TextField endTF;
+    @FXML
+    private VBox GraphingMenuBox;
+    @FXML
+    private Button GraphingBtn;
 
     @FXML
     private void btnRightBrace() {
@@ -1017,6 +1051,7 @@ public class FXMLDocumentController implements Initializable {
         this.ScientificPane.setVisible(true);
         this.LengthPane.setVisible(false);
         this.DateCalcPane.setVisible(false);
+        this.GarphingPane.setVisible(false);
 
         String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", //array of months
             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
@@ -1535,6 +1570,9 @@ public class FXMLDocumentController implements Initializable {
         buttonBks.setId("");
         TogButton.setId("");
         TogButton1.setId("");
+        if (Sci_scnd_flag == false) {
+            button2nd.setId("");
+        }
     }
 
     @FXML
@@ -1566,6 +1604,7 @@ public class FXMLDocumentController implements Initializable {
         MenuBox.setVisible(Menu_Flag);
         MenuBox1.setVisible(Menu_Flag);
         MenuBox2.setVisible(Menu_Flag);
+        GraphingMenuBox.setVisible(Menu_Flag);
     }
 
     @FXML
@@ -1585,6 +1624,7 @@ public class FXMLDocumentController implements Initializable {
         MenuBox1.setVisible(false);
         MenuBox2.setVisible(false);
         FunctionsMenu.setVisible(false);
+        GraphingMenuBox.setVisible(false);
         Menu_Flag = false;
         Vbox_Flag = false;
         Function_Flag = false;
@@ -1718,11 +1758,16 @@ public class FXMLDocumentController implements Initializable {
     private void ScientificButton() {
         TA1.clear();
         TA2.clear();
+        plotEqn.clear();
+        startTF.clear();
+        endTF.clear();
+        lineChart.getData().clear();
         resultLabel.setText("");
         EndDateCheckBox.setSelected(false);
         this.DateCalcPane.setVisible(false);
         this.ScientificPane.setVisible(true);
         this.LengthPane.setVisible(false);
+        this.GarphingPane.setVisible(false);
         MenuVisibility();
 
         StartDay.getSelectionModel().select(0);
@@ -1739,8 +1784,12 @@ public class FXMLDocumentController implements Initializable {
     private void LengthButton() {
         TA.clear();
         resultLabel.setText("");
+        lineChart.getData().clear();
+        plotEqn.clear();
+        startTF.clear();
+        endTF.clear();
         EndDateCheckBox.setSelected(false);
-
+        this.GarphingPane.setVisible(false);
         this.DateCalcPane.setVisible(false);
         this.ScientificPane.setVisible(false);
         this.LengthPane.setVisible(true);
@@ -2282,9 +2331,11 @@ public class FXMLDocumentController implements Initializable {
         TA.clear();
         TA1.clear();
         TA2.clear();
+        lineChart.getData().clear();
         resultLabel.setText("");
         this.ScientificPane.setVisible(false);
         this.LengthPane.setVisible(false);
+        this.GarphingPane.setVisible(false);
         this.DateCalcPane.setVisible(true);
         MenuVisibility();
     }
@@ -2392,6 +2443,67 @@ public class FXMLDocumentController implements Initializable {
             resultLabel.setTextFill(Color.RED);                                         //Display Wrong result
             resultLabel.setText("Logic order of Dates is wrong!");
         }
+    }
+
+    @FXML
+    private void Plot(ActionEvent event) {
+        eqn = plotEqn.getText();
+        eqnTmp = plotEqn.getText();
+        lineChart.getData().clear();
+
+        System.out.println(eqn);
+        XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
+        int i;
+
+        ScriptEngineManager mgr = new ScriptEngineManager();
+        ScriptEngine engine = mgr.getEngineByName("JavaScript");
+        if (!startTF.getText().isEmpty()) {
+            Xaxis = startTF.getText();
+        } else {
+            Xaxis = "0";
+        }
+        if (!endTF.getText().isEmpty()) {
+            endPt = endTF.getText();
+            range = Math.abs(Integer.parseInt(Xaxis) - Integer.parseInt(endPt));
+        }
+
+        for (i = 1; i <= range; i++) {
+            Xaxis = Xaxis + "+1"; // + "(" + String.format("%d", rand.nextInt(5)) + ")";
+
+            try {
+                Xaxis = String.format("%.2f", Double.parseDouble(engine.eval(Xaxis).toString()));
+                eqn = eqn.replace("x", Xaxis);
+                if (!plotEqn.getText().isEmpty()) {
+                    Graphing_Y = Double.parseDouble(engine.eval(eqn).toString());
+                }
+            } catch (ScriptException e) {
+                plotEqn.setText("Undefined!!");
+
+                lineChart.getData().clear();
+            }
+            System.out.println(Xaxis + " " + Graphing_Y);
+
+            series.getData().add(new XYChart.Data<String, Number>(Xaxis, Graphing_Y));
+            eqn = eqnTmp;
+        }
+
+        Xaxis = "0";
+        Graphing_Y = 0.0;
+        lineChart.getData().add(series);
+
+    }
+
+    @FXML
+    private void GraphingButton(ActionEvent event) {
+        TA.clear();
+        TA1.clear();
+        TA2.clear();
+        resultLabel.setText("");
+        this.ScientificPane.setVisible(false);
+        this.LengthPane.setVisible(false);
+        this.GarphingPane.setVisible(true);
+        this.DateCalcPane.setVisible(false);
+        MenuVisibility();
     }
 
 }
