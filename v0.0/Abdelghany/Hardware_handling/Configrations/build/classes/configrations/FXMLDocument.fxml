@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane id="AnchorPane" onKeyPressed="#handleButton" prefHeight="530.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication2.FXMLDocumentController">
+   <children>
+      <TextField fx:id="TextField" editable="false" layoutX="25.0" layoutY="155.0" prefHeight="36.0" prefWidth="291.0" promptText="                          Output will be here" AnchorPane.bottomAnchor="339.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="155.0" />
+      <ComboBox fx:id="Port" layoutX="25.0" layoutY="33.0" prefHeight="29.0" prefWidth="144.0" promptText="Select Port" />
+      <Button fx:id="Disconnect" layoutX="197.0" layoutY="109.0" minHeight="20.0" mnemonicParsing="false" onMouseClicked="#Disconnect" prefHeight="29.0" prefWidth="119.0" text="Disconnect" textAlignment="CENTER" />
+      <Button fx:id="Connect" layoutX="197.0" layoutY="71.0" minHeight="20.0" mnemonicParsing="false" onMouseClicked="#Connect" prefHeight="29.0" prefWidth="119.0" text="        Connect" textAlignment="CENTER" />
+      <Circle fx:id="Led" fill="#4fff1fc1" layoutX="220.0" layoutY="86.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Button fx:id="Detect" layoutX="197.0" layoutY="33.0" minHeight="20.0" mnemonicParsing="false" onMouseClicked="#Detect" prefHeight="29.0" prefWidth="119.0" text="Redetect" textAlignment="CENTER" />
+      <Label fx:id="About" layoutX="25.0" layoutY="265.0" text="Developed by :" />
+      <Label fx:id="Conan" layoutX="25.0" layoutY="317.0" text="- Ahmed Mohamed Abd Elghay Ahmed" />
+      <Label fx:id="Kishk" layoutX="25.0" layoutY="345.0" text="- Ahmed Adel mahmoud Kishk" />
+      <Label fx:id="Marwa" layoutX="25.0" layoutY="373.0" text="- Marwa Abdallah Mohamed" />
+      <Label fx:id="Salma" layoutX="26.0" layoutY="429.0" text="- Salma Salah El Din Abdullah" />
+      <Label fx:id="Fady" layoutX="25.0" layoutY="401.0" text="- Fady Nashaat Sorial" />
+   </children>
+</AnchorPane>
