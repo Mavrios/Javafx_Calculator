@@ -260,6 +260,14 @@ public class FXMLDocumentController implements Initializable {
     private VBox GraphingMenuBox;
     @FXML
     private Button GraphingBtn;
+    @FXML
+    private Button AbsButton;
+    @FXML
+    private Button FloorButton;
+    @FXML
+    private Button CeilButton;
+    @FXML
+    private Button RandButton;
 
     @FXML
     private void btnRightBrace() {
@@ -1192,11 +1200,19 @@ public class FXMLDocumentController implements Initializable {
                         break;
 
                     case 5:
-                        btnSqr();
+                        if (Vbox_Flag) {
+                            btnHyp();
+                        } else {
+                            btnSqr();
+                        }
                         break;
 
                     case 6:
-                        scndbtn();
+                        if (Vbox_Flag) {
+                            btnTrioScnd();
+                        } else {
+                            scndbtn();
+                        }
                         break;
 
                     case 7:
@@ -1229,11 +1245,22 @@ public class FXMLDocumentController implements Initializable {
                         break;
 
                     case 5:
-                        btnInv();
+                        if (Vbox_Flag) {
+                            btnSec();
+                        } else {
+                            btnInv();
+                        }
+
                         break;
 
                     case 6:
-                        btnPI();
+                        if (Vbox_Flag) {
+                            btnSin();
+                        } else if (Function_Flag) {
+                            btnAbs();
+                        } else {
+                            btnPI();
+                        }
                         break;
 
                     case 7:
@@ -1265,11 +1292,22 @@ public class FXMLDocumentController implements Initializable {
                         break;
 
                     case 5:
-                        btnAbs();
+                        if (Vbox_Flag) {
+                            btnCsc();
+                        } else {
+                            btnAbs();
+                        }
                         break;
 
                     case 6:
-                        btnE();
+                        if (Vbox_Flag) {
+                            btnCos();
+                        } else if (Function_Flag) {
+                            btnFloor();
+                        } else {
+                            btnE();
+                        }
+
                         break;
 
                     case 7:
@@ -1302,11 +1340,21 @@ public class FXMLDocumentController implements Initializable {
                         break;
 
                     case 5:
-                        btnExp();
+                        if (Vbox_Flag) {
+                            btnCot();
+                        } else {
+                            btnExp();
+                        }
                         break;
 
                     case 6:
-                        handleButtonActionC();
+                        if (Vbox_Flag) {
+                            btnTan();
+                        } else if (Function_Flag) {
+                            btnCeil();
+                        } else {
+                            handleButtonActionC();
+                        }
                         break;
 
                     case 7:
@@ -1342,7 +1390,11 @@ public class FXMLDocumentController implements Initializable {
                         break;
 
                     case 6:
-                        btnBksp();
+                        if (Function_Flag) {
+                            btnRand();
+                        } else {
+                            btnBksp();
+                        }
                         break;
 
                     case 7:
@@ -1378,11 +1430,22 @@ public class FXMLDocumentController implements Initializable {
                         break;
 
                     case 5:
-                        buttonPower2.setId("selected-button");
+                        if (Vbox_Flag) {
+                            buttonHyp.setId("selected-button");
+                        } else {
+                            buttonPower2.setId("selected-button");
+                        }
                         break;
 
                     case 6:
-                        button2nd.setId("selected-button");
+                        if (Vbox_Flag) {
+                            buttonTrio2nd.setId("selected-button");
+                        } else if (Function_Flag) {
+                            x = 1;
+                            AbsButton.setId("selected-button");
+                        } else {
+                            button2nd.setId("selected-button");
+                        }
                         break;
 
                     case 7:
@@ -1415,11 +1478,21 @@ public class FXMLDocumentController implements Initializable {
                         break;
 
                     case 5:
-                        buttonDivX.setId("selected-button");
+                        if (Vbox_Flag) {
+                            buttonSec.setId("selected-button");
+                        } else {
+                            buttonDivX.setId("selected-button");
+                        }
                         break;
 
                     case 6:
-                        buttonPI.setId("selected-button");
+                        if (Vbox_Flag) {
+                            buttonSin.setId("selected-button");
+                        } else if (Function_Flag) {
+                            AbsButton.setId("selected-button");
+                        } else {
+                            buttonPI.setId("selected-button");
+                        }
                         break;
 
                     case 7:
@@ -1451,11 +1524,21 @@ public class FXMLDocumentController implements Initializable {
                         break;
 
                     case 5:
-                        buttonAbs.setId("selected-button");
+                        if (Vbox_Flag) {
+                            buttonCsc.setId("selected-button");
+                        } else {
+                            buttonAbs.setId("selected-button");
+                        }
                         break;
 
                     case 6:
-                        buttonEuler.setId("selected-button");
+                        if (Vbox_Flag) {
+                            buttonCos.setId("selected-button");
+                        } else if (Function_Flag) {
+                            FloorButton.setId("selected-button");
+                        } else {
+                            buttonEuler.setId("selected-button");
+                        }
                         break;
 
                     case 7:
@@ -1488,11 +1571,21 @@ public class FXMLDocumentController implements Initializable {
                         break;
 
                     case 5:
-                        buttonExp.setId("selected-button");
+                        if (Vbox_Flag) {
+                            buttonCot.setId("selected-button");
+                        } else {
+                            buttonExp.setId("selected-button");
+                        }
                         break;
 
                     case 6:
-                        buttonC.setId("selected-button");
+                        if (Vbox_Flag) {
+                            buttonTan.setId("selected-button");
+                        } else if (Function_Flag) {
+                            CeilButton.setId("selected-button");
+                        } else {
+                            buttonC.setId("selected-button");
+                        }
                         break;
 
                     case 7:
@@ -1528,7 +1621,12 @@ public class FXMLDocumentController implements Initializable {
                         break;
 
                     case 6:
-                        buttonBks.setId("selected-button");
+                        if (Function_Flag) {
+                            RandButton.setId("selected-button");
+                        } else {
+                            buttonBks.setId("selected-button");
+
+                        }
                         break;
 
                     case 7:
@@ -1576,9 +1674,27 @@ public class FXMLDocumentController implements Initializable {
         buttonBks.setId("");
         TogButton.setId("");
         TogButton1.setId("");
+        buttonSin.setId("");
+        buttonCos.setId("");
+        buttonCsc.setId("");
+        buttonTan.setId("");
+        buttonCot.setId("");
+        buttonSec.setId("");
+        AbsButton.setId("");
+        FloorButton.setId("");
+        CeilButton.setId("");
+        RandButton.setId("");
         if (Sci_scnd_flag == false) {
             button2nd.setId("");
         }
+        if (scnd_flag == false) {
+            buttonTrio2nd.setId("");
+        }
+        if (hypFlag == false) {
+            buttonHyp.setId("");
+
+        }
+
     }
 
     @FXML
@@ -1719,7 +1835,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btnTrioScnd(ActionEvent event) {
+    private void btnTrioScnd() {
         scnd_flag = !scnd_flag;
         if (scnd_flag == true && hypFlag == false) {
 
@@ -2490,7 +2606,7 @@ public class FXMLDocumentController implements Initializable {
             if (Graphing_Y.isNaN()) {
                 lineChart.getData().clear();
                 plotEqn.setText("ERROR! Check Your Formula or Range");
-            
+
             } else {
 
                 series.getData().add(new XYChart.Data<String, Number>(Xaxis, Graphing_Y));

@@ -113,14 +113,14 @@
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
                </children>
             </VBox>
-            <VBox fx:id="FunctionsMenu" layoutX="116.0" layoutY="163.0" prefHeight="49.0" prefWidth="228.0" spacing="4.0" styleClass="root" visible="false">
+            <VBox fx:id="FunctionsMenu" layoutX="116.0" layoutY="163.0" prefHeight="49.0" prefWidth="228.0" spacing="4.0" styleClass="root">
                <children>
                   <HBox prefHeight="49.0" prefWidth="35.0">
                      <children>
-                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#btnAbs" prefHeight="48.0" prefWidth="62.0" text="|x|" />
-                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#btnFloor" prefHeight="48.0" prefWidth="62.0" text="⌊x⌋" />
-                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#btnCeil" prefHeight="48.0" prefWidth="62.0" text="⌈x⌉" />
-                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#btnRand" prefHeight="48.0" prefWidth="62.0" text="rand" />
+                        <Button fx:id="AbsButton" focusTraversable="false" mnemonicParsing="false" onAction="#btnAbs" prefHeight="48.0" prefWidth="62.0" text="|x|" />
+                        <Button fx:id="FloorButton" focusTraversable="false" mnemonicParsing="false" onAction="#btnFloor" prefHeight="48.0" prefWidth="62.0" text="⌊x⌋" />
+                        <Button fx:id="CeilButton" focusTraversable="false" mnemonicParsing="false" onAction="#btnCeil" prefHeight="48.0" prefWidth="62.0" text="⌈x⌉" />
+                        <Button fx:id="RandButton" focusTraversable="false" mnemonicParsing="false" onAction="#btnRand" prefHeight="48.0" prefWidth="62.0" text="rand" />
                      </children>
                   </HBox>
                </children>
