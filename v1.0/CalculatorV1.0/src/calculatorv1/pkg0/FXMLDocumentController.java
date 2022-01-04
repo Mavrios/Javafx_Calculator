@@ -10,6 +10,10 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,15 +36,28 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
+import jssc.SerialPort;
+import static jssc.SerialPort.MASK_RXCHAR;
+import jssc.SerialPortEvent;
+import jssc.SerialPortException;
+import jssc.SerialPortList;
 
 /**
  *
  * @author Kishk
  */
 public class FXMLDocumentController implements Initializable {
+
+    SerialPort arduinoPort = null;
+    ObservableList<String> portList, port_listener;
+    boolean detectPort_Flag = false;
+    String new_Value;
+    SerialPort serialPort;
 
     int d1, d2, m1, m2, y1, y2;
     long daysCounter, monthsCounter, yearsCounter;
@@ -268,6 +285,34 @@ public class FXMLDocumentController implements Initializable {
     private Button CeilButton;
     @FXML
     private Button RandButton;
+    @FXML
+    private AnchorPane ConfigurationPane;
+    @FXML
+    private TextField TextField;
+    @FXML
+    private ComboBox<String> Port;
+    @FXML
+    private Button Disconnect;
+    @FXML
+    private Button Connect;
+    @FXML
+    private Circle Led;
+    @FXML
+    private Button Detect;
+    @FXML
+    private Label About;
+    @FXML
+    private Label Conan;
+    @FXML
+    private Label Kishk;
+    @FXML
+    private Label Marwa;
+    @FXML
+    private Label Salma;
+    @FXML
+    private Label Fady;
+    @FXML
+    private VBox ConfigurationMenu;
 
     @FXML
     private void btnRightBrace() {
@@ -1064,6 +1109,7 @@ public class FXMLDocumentController implements Initializable {
         this.LengthPane.setVisible(false);
         this.DateCalcPane.setVisible(false);
         this.GarphingPane.setVisible(false);
+        this.ConfigurationPane.setVisible(false);
         EqnManager = new ScriptEngineManager();
         engine = EqnManager.getEngineByName("JavaScript");
 
@@ -1094,6 +1140,25 @@ public class FXMLDocumentController implements Initializable {
         EndYear.setItems(FXCollections.observableArrayList(years));
         EndYear.getSelectionModel().select(0);
         ToggleEndDate();
+
+        About.setFont(Font.font(20));
+        Conan.setFont(Font.font(16));
+        Kishk.setFont(Font.font(16));
+        Marwa.setFont(Font.font(16));
+        Salma.setFont(Font.font(16));
+        Fady.setFont(Font.font(16));
+        Led.setVisible(false);
+        Connect.setDisable(true);
+        Disconnect.setDisable(true);
+        detectPort();
+        Port.setItems(FXCollections.observableArrayList(portList));
+        Port.valueProperty()
+                .addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+                    System.out.println(newValue);
+                    Connect.setDisable(false);
+                    Disconnect.setDisable(false);
+                    new_Value = newValue;
+                });
 
     }
 
@@ -1727,6 +1792,7 @@ public class FXMLDocumentController implements Initializable {
         MenuBox1.setVisible(Menu_Flag);
         MenuBox2.setVisible(Menu_Flag);
         GraphingMenuBox.setVisible(Menu_Flag);
+        ConfigurationMenu.setVisible(Menu_Flag);
     }
 
     @FXML
@@ -1747,6 +1813,7 @@ public class FXMLDocumentController implements Initializable {
         MenuBox2.setVisible(false);
         FunctionsMenu.setVisible(false);
         GraphingMenuBox.setVisible(false);
+        ConfigurationMenu.setVisible(false);
         Menu_Flag = false;
         Vbox_Flag = false;
         Function_Flag = false;
@@ -1890,6 +1957,7 @@ public class FXMLDocumentController implements Initializable {
         this.ScientificPane.setVisible(true);
         this.LengthPane.setVisible(false);
         this.GarphingPane.setVisible(false);
+        this.ConfigurationPane.setVisible(false);
         MenuVisibility();
 
         StartDay.getSelectionModel().select(0);
@@ -1915,6 +1983,7 @@ public class FXMLDocumentController implements Initializable {
         this.DateCalcPane.setVisible(false);
         this.ScientificPane.setVisible(false);
         this.LengthPane.setVisible(true);
+        this.ConfigurationPane.setVisible(false);
         MenuVisibility();
         StartDay.getSelectionModel().select(0);
         StartMonth.getSelectionModel().select(0);
@@ -2458,6 +2527,7 @@ public class FXMLDocumentController implements Initializable {
         this.ScientificPane.setVisible(false);
         this.LengthPane.setVisible(false);
         this.GarphingPane.setVisible(false);
+        this.ConfigurationPane.setVisible(false);
         this.DateCalcPane.setVisible(true);
         MenuVisibility();
     }
@@ -2631,7 +2701,156 @@ public class FXMLDocumentController implements Initializable {
         this.LengthPane.setVisible(false);
         this.GarphingPane.setVisible(true);
         this.DateCalcPane.setVisible(false);
+        this.ConfigurationPane.setVisible(false);
         MenuVisibility();
+    }
+
+    @FXML
+    private void ConfigurationButton(ActionEvent event) {
+        TA.clear();
+        TA1.clear();
+        TA2.clear();
+        resultLabel.setText("");
+        lineChart.getData().clear();
+        plotEqn.clear();
+        startTF.clear();
+        endTF.clear();
+        EndDateCheckBox.setSelected(false);
+        this.GarphingPane.setVisible(false);
+        this.DateCalcPane.setVisible(false);
+        this.ScientificPane.setVisible(false);
+        this.LengthPane.setVisible(false);
+        this.ConfigurationPane.setVisible(true);
+        MenuVisibility();
+        StartDay.getSelectionModel().select(0);
+        StartMonth.getSelectionModel().select(0);
+        StartYear.getSelectionModel().select(0);
+        EndDay.getSelectionModel().select(0);
+        EndMonth.getSelectionModel().select(0);
+        EndYear.getSelectionModel().select(0);
+        ToggleEndDate();
+    }
+
+    @FXML
+    private void Disconnect(MouseEvent event) {
+        try {
+            disconnectArduino();
+        } catch (SerialPortException ex) {
+            //Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Disconnect.setDisable(true);
+        Connect.setDisable(false);
+    }
+
+    @FXML
+    private void Connect(MouseEvent event) {
+        connectArduino(new_Value);
+        Connect.setDisable(true);
+        Disconnect.setDisable(false);
+    }
+
+    @FXML
+    private void Detect(MouseEvent event) {
+        detectPort();
+        Port.setItems(FXCollections.observableArrayList(portList));
+        Port.valueProperty()
+                .addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+                    System.out.println(newValue);
+                    Connect.setDisable(false);
+                    Disconnect.setDisable(true);
+                    new_Value = newValue;
+                });
+    }
+
+    public void onstop() throws Exception {
+        disconnectArduino();
+        System.exit(10);
+    }
+
+    private void detectPort() {
+
+        if (portList != null) {
+            portList.clear();
+        }
+        portList = FXCollections.observableArrayList();
+        String[] serialPortNames = SerialPortList.getPortNames();
+
+        for (String name : serialPortNames) {
+            System.out.println(name);
+            portList.add(name);
+        }
+    }
+
+    public boolean connectArduino(String port) {
+
+        System.out.println("Arduino connected");
+        TextField.clear();
+        boolean success = false;
+        serialPort = new SerialPort(port);
+        if (!serialPort.isOpened()) {
+            try {
+                Led.setVisible(true);
+                TextField.appendText("Connected");
+                serialPort.openPort();
+                serialPort.setParams(
+                        SerialPort.BAUDRATE_9600,
+                        SerialPort.DATABITS_8,
+                        SerialPort.STOPBITS_1,
+                        SerialPort.PARITY_NONE);
+                if (SerialPortList.getPortNames() != null) {
+                    serialPort.setEventsMask(MASK_RXCHAR);
+                }
+                serialPort.addEventListener((SerialPortEvent serialPortEvent) -> {
+                    if (serialPortEvent.isRXCHAR()) {
+                        try {
+                            String st = serialPort.readString(serialPortEvent
+                                    .getEventValue());
+                            System.out.println(st);
+
+                            Platform.runLater(() -> {
+                                //TextField.appendText(st);                                     //TODO LATER
+                            });
+                        } catch (SerialPortException ex) {
+                            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                });
+
+                success = true;
+
+                return success;
+            } catch (SerialPortException ex) {
+                Led.setVisible(false);
+                TextField.clear();
+                TextField.appendText("Redetect Port");
+                portList.clear();
+                Port.setItems(FXCollections.observableArrayList(portList));
+                System.out.println("Serial -_-");
+            }
+        }
+        return success;
+    }
+
+    public void disconnectArduino() throws SerialPortException {
+        TextField.clear();
+        portList = FXCollections.observableArrayList();
+        System.out.println("Arduino disconnected");
+        Led.setVisible(false);
+        if (serialPort != null) {
+            try {
+                serialPort.removeEventListener();
+                if (serialPort.isOpened()) {
+                    serialPort.closePort();
+                }
+                TextField.appendText("Disconnected");
+            } catch (SerialPortException ex) {
+                System.out.println("Serial -_-");
+                TextField.appendText("Redetect Port");
+                portList.clear();
+                Port.setItems(FXCollections.observableArrayList(portList));
+            }
+
+        }
     }
 
 }

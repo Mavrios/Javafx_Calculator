@@ -7,6 +7,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
@@ -16,11 +17,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculatorv1.pkg0.FXMLDocumentController">
     <children>
-      <AnchorPane id="AnchorPane" fx:id="ScientificPane" focusTraversable="true" layoutY="-1.0" onKeyPressed="#handleButton" onMouseClicked="#ScientificPaneClicked" prefHeight="550.0" prefWidth="350.0">
+      <AnchorPane id="AnchorPane" fx:id="ScientificPane" focusTraversable="true" layoutY="-1.0" onKeyPressed="#handleButton" onMouseClicked="#ScientificPaneClicked" prefHeight="550.0" prefWidth="350.0" visible="false">
          <children>
             <Button fx:id="button7" focusTraversable="false" layoutX="77.0" layoutY="328.0" onAction="#handleButtonAction7" prefHeight="48.0" prefWidth="62.0" text="7" />
             <Button fx:id="button8" focusTraversable="false" layoutX="144.0" layoutY="328.0" onAction="#handleButtonAction8" prefHeight="48.0" prefWidth="62.0" text="8" />
@@ -111,9 +113,12 @@
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
                   <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
+                  <Separator prefWidth="200.0" />
+                  <Label focusTraversable="false" prefHeight="26.0" prefWidth="185.0" styleClass="Label" text="   Configurations" />
+                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#ConfigurationButton" prefHeight="42.0" prefWidth="208.0" text="Configurations" />
                </children>
             </VBox>
-            <VBox fx:id="FunctionsMenu" layoutX="116.0" layoutY="163.0" prefHeight="49.0" prefWidth="228.0" spacing="4.0" styleClass="root">
+            <VBox fx:id="FunctionsMenu" layoutX="116.0" layoutY="163.0" prefHeight="49.0" prefWidth="228.0" spacing="4.0" styleClass="root" visible="false">
                <children>
                   <HBox prefHeight="49.0" prefWidth="35.0">
                      <children>
@@ -228,6 +233,9 @@
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
                   <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
+                  <Separator prefWidth="200.0" />
+                  <Label focusTraversable="false" prefHeight="26.0" prefWidth="185.0" styleClass="Label" text="   Configurations" />
+                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#ConfigurationButton" prefHeight="42.0" prefWidth="208.0" text="Configurations" />
                </children>
             </VBox>
             <Label focusTraversable="false" layoutX="47.0" layoutY="-6.0" prefHeight="58.0" prefWidth="219.0" styleClass="Converter-Label" text="Length" textAlignment="CENTER" />
@@ -276,6 +284,9 @@
                   <Button mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
                   <Label prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
                   <Button mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
+                  <Separator prefWidth="200.0" />
+                  <Label focusTraversable="false" prefHeight="26.0" prefWidth="185.0" styleClass="Label" text="   Configurations" />
+                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#ConfigurationButton" prefHeight="42.0" prefWidth="208.0" text="Configurations" />
                </children>
             </VBox>
             <Label layoutX="46.0" layoutY="1.0" styleClass="Converter-Label" text="Date Calculation" />
@@ -336,8 +347,60 @@
                   <Button mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
                   <Label prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
                   <Button mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
+                  <Separator prefWidth="200.0" />
+                  <Label focusTraversable="false" prefHeight="26.0" prefWidth="185.0" styleClass="Label" text="   Configurations" />
+                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#ConfigurationButton" prefHeight="42.0" prefWidth="208.0" text="Configurations" />
                </children>
             </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="AnchorPane" fx:id="ConfigurationPane" layoutX="10.0" layoutY="10.0" onKeyPressed="#handleButton" onMousePressed="#ScientificPaneClicked" prefHeight="530.0" prefWidth="340.0">
+         <children>
+            <TextField fx:id="TextField" editable="false" layoutX="25.0" layoutY="171.0" prefHeight="36.0" prefWidth="291.0" promptText="                          Output will be here" AnchorPane.bottomAnchor="323.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="171.0" />
+            <ComboBox fx:id="Port" layoutX="25.0" layoutY="49.0" prefHeight="29.0" prefWidth="144.0" promptText="Select Port" />
+            <Button fx:id="Disconnect" layoutX="197.0" layoutY="125.0" minHeight="20.0" mnemonicParsing="false" onMouseClicked="#Disconnect" prefHeight="29.0" prefWidth="119.0" text="Disconnect" textAlignment="CENTER" />
+            <Button fx:id="Connect" layoutX="197.0" layoutY="87.0" minHeight="20.0" mnemonicParsing="false" onMouseClicked="#Connect" prefHeight="29.0" prefWidth="119.0" text="        Connect" textAlignment="CENTER" />
+            <Circle fx:id="Led" fill="#4fff1fc1" layoutX="220.0" layoutY="102.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+            <Button fx:id="Detect" layoutX="197.0" layoutY="49.0" minHeight="20.0" mnemonicParsing="false" onMouseClicked="#Detect" prefHeight="29.0" prefWidth="119.0" text="Redetect" textAlignment="CENTER" />
+            <Label fx:id="About" layoutX="25.0" layoutY="281.0" text="Developed by :" />
+            <Label fx:id="Conan" layoutX="25.0" layoutY="333.0" text="- Ahmed Mohamed Abd Elghay Ahmed" />
+            <Label fx:id="Kishk" layoutX="25.0" layoutY="361.0" text="- Ahmed Adel Mahmoud Kishk" />
+            <Label fx:id="Marwa" layoutX="25.0" layoutY="389.0" text="- Marwa Abdallah Mohamed" />
+            <Label fx:id="Salma" layoutX="26.0" layoutY="445.0" text="- Salma Salah El Din Abdullah" />
+            <Label fx:id="Fady" layoutX="25.0" layoutY="417.0" text="- Fady Nashaat Sorial" />
+            <Button focusTraversable="false" layoutX="4.0" layoutY="2.0" mnemonicParsing="false" onAction="#MenuHandling" prefHeight="32.0" prefWidth="34.0" styleClass="op-button">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@3329671.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <VBox fx:id="ConfigurationMenu" prefHeight="542.0" prefWidth="208.0" styleClass="root" visible="false">
+               <children>
+                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#MenuHandling" prefHeight="32.0" prefWidth="34.0" styleClass="op-button">
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@3329671.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Calculator" />
+                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#ScientificButton" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
+                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#GraphingButton" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
+                  <Button focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
+                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
+                  <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
+                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
+                  <Separator prefWidth="200.0" />
+                  <Label focusTraversable="false" prefHeight="26.0" prefWidth="185.0" styleClass="Label" text="   Configurations" />
+                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#ConfigurationButton" prefHeight="42.0" prefWidth="208.0" text="Configurations" />
+               </children>
+            </VBox>
+            <Label layoutX="46.0" styleClass="Converter-Label" text="Configurations" />
          </children>
       </AnchorPane>
     </children>

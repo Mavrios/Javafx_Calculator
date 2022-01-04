@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -28,7 +29,7 @@ public class CalculatorV10 extends Application {
         stage.setResizable(false);
         stage.setMinWidth(340);
         stage.setMinHeight(530);
-
+        stage.getIcons().add(new Image("calculatorv1/pkg0/icon.png"));
         stage.initStyle(StageStyle.DECORATED);
         stage.setScene(scene);
         stage.setTitle("Calculator v1.0");
