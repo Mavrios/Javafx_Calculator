@@ -5,6 +5,14 @@
 package calculatorv1.pkg0;
 
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.net.Socket;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Period;
@@ -73,7 +81,7 @@ public class FXMLDocumentController implements Initializable {
     public Button button1;
     ObservableList list = FXCollections.observableArrayList();
     @FXML
-    private TextArea TA;
+    private TextField TA;
     Integer factorial;
     String Y = "";
     String X = "";
@@ -92,6 +100,8 @@ public class FXMLDocumentController implements Initializable {
     boolean trioFlag = false;
     boolean hypFlag = false;
     boolean twoInputFlag = false;
+    boolean History_Flag = false;
+    boolean serverFound = false;
     String TA_Value = "";
     String factVal = "";
     @FXML
@@ -100,6 +110,11 @@ public class FXMLDocumentController implements Initializable {
     boolean Menu_Flag = false;
     ScriptEngineManager EqnManager;
     ScriptEngine engine;
+    Socket mySocket;
+    DataInputStream dis;
+    PrintStream ps;
+    BufferedReader br;
+    File file;
     @FXML
     private AnchorPane ScientificPane;
     @FXML
@@ -313,6 +328,10 @@ public class FXMLDocumentController implements Initializable {
     private Label Fady;
     @FXML
     private VBox ConfigurationMenu;
+    @FXML
+    private AnchorPane HistoryPane;
+    @FXML
+    private TextArea History_TA;
 
     @FXML
     private void btnRightBrace() {
@@ -347,7 +366,7 @@ public class FXMLDocumentController implements Initializable {
         flag = true;
         R_flag = false;
         TA.appendText("1");
-        if (sqrFlag || trioFlag) {
+        if (sqrFlag || trioFlag || FactFlag) {
             TA_Value = TA_Value + '1';
         }
 
@@ -369,7 +388,7 @@ public class FXMLDocumentController implements Initializable {
         R_flag = false;
         TA.appendText("2");
 
-        if (sqrFlag || trioFlag) {
+        if (sqrFlag || trioFlag || FactFlag) {
             TA_Value = TA_Value + '2';
 
         }
@@ -390,7 +409,7 @@ public class FXMLDocumentController implements Initializable {
         MenuVisibility();
         flag = true;
         R_flag = false;
-        if (sqrFlag || trioFlag) {
+        if (sqrFlag || trioFlag || FactFlag) {
             TA_Value = TA_Value + '3';
 
         }
@@ -410,7 +429,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-        if (sqrFlag || trioFlag) {
+        if (sqrFlag || trioFlag || FactFlag) {
             TA_Value = TA_Value + '4';
 
         }
@@ -433,7 +452,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-        if (sqrFlag || trioFlag) {
+        if (sqrFlag || trioFlag || FactFlag) {
             TA_Value = TA_Value + '5';
 
         }
@@ -456,7 +475,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-        if (sqrFlag || trioFlag) {
+        if (sqrFlag || trioFlag || FactFlag) {
             TA_Value = TA_Value + '6';
         }
 
@@ -478,7 +497,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-        if (sqrFlag || trioFlag) {
+        if (sqrFlag || trioFlag || FactFlag) {
             TA_Value = TA_Value + '7';
 
         }
@@ -501,7 +520,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-        if (sqrFlag || trioFlag) {
+        if (sqrFlag || trioFlag || FactFlag) {
             TA_Value = TA_Value + '8';
 
         }
@@ -524,7 +543,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-        if (sqrFlag || trioFlag) {
+        if (sqrFlag || trioFlag || FactFlag) {
             TA_Value = TA_Value + '9';
 
         }
@@ -547,7 +566,7 @@ public class FXMLDocumentController implements Initializable {
         if (R_flag == true) {
             TA.clear();
         }
-        if (sqrFlag || trioFlag) {
+        if (sqrFlag || trioFlag || FactFlag) {
             TA_Value = TA_Value + '0';
 
         }
@@ -1052,7 +1071,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonActionEqu() {
-
+        String factTA = "";
         if (twoInputFlag) {
             TA.appendText(",");
             if (powFlag) {
@@ -1068,15 +1087,18 @@ public class FXMLDocumentController implements Initializable {
             powFlag = false;
 
             if (FactFlag) {
-
-                factorial = Integer.parseInt(TA.getText(TA.getLength() - 2, TA.getLength() - 1));
+                String factTemp = TA.getText();
+                factTA = factTemp;
+                factorial = Integer.parseInt(TA_Value);
                 TA.clear();
                 int i;
                 Integer sum = 1;
                 for (i = 1; i <= factorial; i++) {
                     sum = sum * i;
                 }
-                TA.appendText(sum.toString());
+                factTemp = factTemp.replace("fact(" + TA_Value + ")", sum.toString());
+                TA.setText(factTemp);
+
             }
 
             if (toggleSign) { //needs adjustments
@@ -1093,16 +1115,36 @@ public class FXMLDocumentController implements Initializable {
             try {
                 if (!TA.getText().isEmpty()) {
                     Double trial = Double.parseDouble(engine.eval(tmp).toString());
+                    if (FactFlag) {
+                        TA.replaceText(0, TA.getLength(), factTA);
+                    }
+                    if (serverFound) {
+                        ps.println(TA.getText() + " = " + String.format("%.8f", trial));
+                    } else {
+                        History_TA.appendText(TA.getText() + " = " + String.format("%.8f", trial) + "\n");
+                    }
                     TA.setText(String.format("%.8f", trial));
+
                 }
             } catch (ScriptException e) {
                 TA.setText("Undefined!!");
             }
+            FactFlag = false;
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try {
+            mySocket = new Socket("127.0.0.1", 5005);
+            ps = new PrintStream(mySocket.getOutputStream());
+            dis = new DataInputStream(mySocket.getInputStream());
+            file = new File(dis.readLine());
+            serverFound = true;
+        } catch (IOException ex) {
+            serverFound = false;
+            System.out.println("No Server Found.");
+        }
         MenuVisibility();
         loaddata();
         this.ScientificPane.setVisible(true);
@@ -1814,6 +1856,8 @@ public class FXMLDocumentController implements Initializable {
         FunctionsMenu.setVisible(false);
         GraphingMenuBox.setVisible(false);
         ConfigurationMenu.setVisible(false);
+        HistoryPane.setVisible(false);
+        History_Flag = false;
         Menu_Flag = false;
         Vbox_Flag = false;
         Function_Flag = false;
@@ -2850,6 +2894,23 @@ public class FXMLDocumentController implements Initializable {
                 Port.setItems(FXCollections.observableArrayList(portList));
             }
 
+        }
+    }
+
+    @FXML
+    private void HistoryBtn(ActionEvent event) throws FileNotFoundException, IOException {
+        History_Flag = !History_Flag;
+        HistoryPane.setVisible(History_Flag);
+        if (serverFound) {
+/* You need here to change to the path of your files*/
+            br = new BufferedReader(new FileReader("C:\\Users\\lenovo2\\Documents\\NetBeansProjects\\HistoryServer\\" + file));
+            String st;
+            History_TA.clear();
+            History_TA.appendText("Scientific Calculator History\n");
+            while ((st = br.readLine()) != null) {
+                History_TA.appendText(st + "\n");
+                System.out.println(st);
+            }
         }
     }
 
