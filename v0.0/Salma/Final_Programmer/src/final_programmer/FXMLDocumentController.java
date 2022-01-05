@@ -1,9 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/****************************** Author  : Salma Salah            ******************************************************************************/
+/****************************** Project : Calculator (Programmer)******************************************************************************/
+/****************************** Date    : 3/1/2022               ******************************************************************************/
+/****************************** Version : 2                      ******************************************************************************/
+/**********************************************************************************************************************************************/
+
 package final_programmer;
+
+/***(1) Importing All Libraries which we will need ***/
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -13,13 +16,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.MouseEvent;
 
-/**
- *
- * @author NoteBook
- */
+/***(2) Creating Class which implements Initializable  ***/
+
 public class FXMLDocumentController implements Initializable {
     
+    /**** (2) - 1 Creating classes which Shown in the Scene and we will use it to deal with the user *****/
     private Label label;
     @FXML
     private Button btn_0;
@@ -73,22 +77,6 @@ public class FXMLDocumentController implements Initializable {
     private Button btn_A;
     @FXML
     private Button btn_equal;
-    
-    boolean BIN_FLAG = false;
-    boolean OCT_FLAG = false;
-    boolean HEX_FLAG = false;
-    boolean DEC_FLAG = true;
-    
-    boolean AND_FLAG = false;
-    boolean OR_FLAG  = false;
-    boolean XOR_FLAG = false;
-    
-    //(3) Flag for checking about which text Atrea(text_Area , text_Area2) will choose to append
-    boolean TEXT_2 = false;
-    
-    int EQ_FLAG = 0;
-    
-    int ans =0; //to store in it the old values 
     @FXML
     private Button btn_NOT;
     @FXML
@@ -110,11 +98,35 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextArea text_History;
     
+    /*** (2) - '2' Defining Some Global Variables which are used in handling the algorithm we want******/
+    boolean FLAGS;
+    boolean BIN_FLAG = false;
+    boolean OCT_FLAG = false;
+    boolean HEX_FLAG = false;
+    boolean DEC_FLAG = true;
+    
+    boolean AND_FLAG = false;
+    boolean OR_FLAG  = false;
+    boolean XOR_FLAG = false;
+    
+    boolean TEXT_2 = false; // Flag for checking about which text Atrea(text_Area , text_Area2) will choose to append
+
+    int EQ_FLAG = 0;
+    
+    long ans = 0; //to store in it the old values 
+    @FXML
+    private Label label_Equation;
+    
+    
+    /*** (3) - '1'
+     * @param url
+     * @param rb *******/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
 
+    /*** (4) Writing the code which will be done by pressing the buttons *******/
     @FXML
     private void Button_0(ActionEvent event)
     {
@@ -291,8 +303,10 @@ public class FXMLDocumentController implements Initializable {
         text_Area.appendText("A");
     }
 
+    
     @FXML
     private void Label_OCT(ActionEvent event) {
+       
     }
 
     @FXML
@@ -317,6 +331,22 @@ public class FXMLDocumentController implements Initializable {
        OCT_FLAG = false;
        HEX_FLAG = false;
         //Enable Zeros and Ones Button only
+       
+            btn_2.setDisable(true);
+            btn_3.setDisable(true);
+            btn_4.setDisable(true);
+            btn_5.setDisable(true);
+            btn_6.setDisable(true);
+            btn_7.setDisable(true);
+            btn_8.setDisable(true);
+            btn_9.setDisable(true);
+            btn_A.setDisable(true);
+            btn_B.setDisable(true);
+            btn_C.setDisable(true);
+            btn_D.setDisable(true);
+            btn_E.setDisable(true);
+            btn_F.setDisable(true);
+       
       
     }
     @FXML
@@ -328,6 +358,21 @@ public class FXMLDocumentController implements Initializable {
         DEC_FLAG = false;
         BIN_FLAG = false;
         HEX_FLAG = false;
+        
+        btn_2.setDisable(false);
+            btn_3.setDisable(false);
+            btn_4.setDisable(false);
+            btn_5.setDisable(false);
+            btn_6.setDisable(false);
+            btn_7.setDisable(false);
+            btn_8.setDisable(true);
+            btn_9.setDisable(true);
+            btn_A.setDisable(true);
+            btn_B.setDisable(true);
+            btn_C.setDisable(true);
+            btn_D.setDisable(true);
+            btn_E.setDisable(true);
+            btn_F.setDisable(true);
     }
 
     @FXML
@@ -339,6 +384,22 @@ public class FXMLDocumentController implements Initializable {
         DEC_FLAG = false;
         OCT_FLAG = false;
         BIN_FLAG = false;
+        
+        btn_2.setDisable(false);
+            btn_3.setDisable(false);
+            btn_4.setDisable(false);
+            btn_5.setDisable(false);
+            btn_6.setDisable(false);
+            btn_7.setDisable(false);
+            btn_8.setDisable(false);
+            btn_9.setDisable(false);
+            btn_A.setDisable(false);
+            btn_B.setDisable(false);
+            btn_C.setDisable(false);
+            btn_D.setDisable(false);
+            btn_E.setDisable(false);
+            btn_F.setDisable(false);
+        
     }
 
     @FXML
@@ -349,22 +410,43 @@ public class FXMLDocumentController implements Initializable {
         HEX_FLAG = false;
         OCT_FLAG = false;
         BIN_FLAG = false;
+        
+            btn_2.setDisable(false);
+            btn_3.setDisable(false);
+            btn_4.setDisable(false);
+            btn_5.setDisable(false);
+            btn_6.setDisable(false);
+            btn_7.setDisable(false);
+            btn_8.setDisable(false);
+            btn_9.setDisable(false);
+            btn_A.setDisable(true);
+            btn_B.setDisable(true);
+            btn_C.setDisable(true);
+            btn_D.setDisable(true);
+            btn_E.setDisable(true);
+            btn_F.setDisable(true);
     }
 
+    
     @FXML
     private void Button_Equal(ActionEvent event) //Show Values
     {
     
-     if (text_Area.getText().contains(" = " ))
-    {
-      label_OCT.setText("wrong Number"); 
-      
-      label_HEX.setText("wrong Number"); 
-      
-      label_BIN.setText("wrong Number");
- 
-      label_DEC.setText("wrong Number");
         
+     if (text_Area.getText().contains(" = "))
+    {
+      
+       String s= String.valueOf(ans);
+       long decimal = Long.parseLong(s);
+       String oct = Long.toOctalString(decimal);//Converting to octal
+      label_OCT.setText(oct); 
+      String hex = Long.toHexString(decimal);  //Convertig to hex
+      label_HEX.setText(hex); 
+      String bin = Long.toBinaryString(decimal);//Converting to binary
+      label_BIN.setText(bin);
+      String dec = Long.toString(decimal);
+      label_DEC.setText(dec);
+       
     }   
      else if (text_Area.getText().length() != 0 )
     {
@@ -372,14 +454,14 @@ public class FXMLDocumentController implements Initializable {
       {
        String text = text_Area.getText();
      //  String binaryString="1010";  
-       int decimal=Integer.parseInt(text,2);
-       String oct = Integer.toOctalString(decimal);//Converting to octal
+       long decimal=Long.parseLong(text,2);
+       String oct = Long.toOctalString(decimal);//Converting to octal
       label_OCT.setText(oct); 
-      String hex = Integer.toHexString(decimal);  //Convertig to hex
+      String hex = Long.toHexString(decimal);  //Convertig to hex
       label_HEX.setText(hex); 
-      String bin = Integer.toBinaryString(decimal);//Converting to binary
+      String bin = Long.toBinaryString(decimal);//Converting to binary
       label_BIN.setText(bin);
-      String dec = Integer.toString(decimal);
+      String dec = Long.toString(decimal);
       label_DEC.setText(dec);
        
       }
@@ -387,28 +469,27 @@ public class FXMLDocumentController implements Initializable {
       else if (HEX_FLAG == true)
       {
        String text = text_Area.getText();
-     //  String binaryString="1010";  
-       int decimal=Integer.parseInt(text,16);
-       String oct = Integer.toOctalString(decimal);//Converting to octal
-      label_OCT.setText(oct); 
-      String hex = Integer.toHexString(decimal);  //Convertig to hex
+       long decimal=Long.parseLong(text,16);
+       String oct = Long.toOctalString(decimal);//Converting to octal
+       label_OCT.setText(oct); 
+       String hex = Long.toHexString(decimal);  //Convertig to hex
       label_HEX.setText(hex); 
-      String bin = Integer.toBinaryString(decimal);//Converting to binary
+      String bin = Long.toBinaryString(decimal);//Converting to binary
       label_BIN.setText(bin);
-      String dec = Integer.toString(decimal);
+      String dec = Long.toString(decimal);
       label_DEC.setText(dec);
       }
       else if (OCT_FLAG == true)
       {
        String text = text_Area.getText();
-       int decimal=Integer.parseInt(text,8);
-       String oct = Integer.toOctalString(decimal);//Converting to octal
-      label_OCT.setText(oct); 
-      String hex = Integer.toHexString(decimal);  //Convertig to hex
+       long decimal=Long.parseLong(text,8);
+       String oct = Long.toOctalString(decimal);//Converting to octal
+       label_OCT.setText(oct); 
+      String hex = Long.toHexString(decimal);  //Convertig to hex
       label_HEX.setText(hex); 
-      String bin = Integer.toBinaryString(decimal);//Converting to binary
+      String bin = Long.toBinaryString(decimal);//Converting to binary
       label_BIN.setText(bin);
-      String dec = Integer.toString(decimal);
+      String dec = Long.toString(decimal);
       label_DEC.setText(dec);
       }
       
@@ -416,15 +497,14 @@ public class FXMLDocumentController implements Initializable {
       {    
       String text = text_Area.getText();
        
-      Integer num1 = new Integer(text);
+      Long num1 = new Long(text);
      
-      String oct = Integer.toOctalString(num1);//Converting to octal
+      String oct = Long.toOctalString(num1);//Converting to octal
       label_OCT.setText(oct); 
-      String hex = Integer.toHexString(num1);  //Convertig to hex
+      String hex = Long.toHexString(num1);  //Convertig to hex
       label_HEX.setText(hex); 
-      String bin = Integer.toBinaryString(num1);//Converting to binary
+      String bin = Long.toBinaryString(num1);//Converting to binary
       label_BIN.setText(bin);
-  //  String dec = Integer.toString(decimal);
       label_DEC.setText(text);
       }
     }
@@ -445,29 +525,65 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void Button_Clear(ActionEvent event)
     {
-        text_Area.clear();
-        
-        text_Area2.clear();
-        
-        TEXT_2 = false;
+      text_Area.clear();
+      text_Area2.clear();
+      
+      label_OCT.clear(); 
+      label_HEX.clear();
+      label_BIN.clear();
+      label_DEC.clear();
+      
+      operation.setText("");
+      
+      TEXT_2 = false;
     }
 
     @FXML
     private void Button_NOT(ActionEvent event) 
     {
         String text = text_Area.getText();
-        Integer num = new Integer(text);
-        
-        int result = ~num;
-        String s=String.valueOf(result);  //Converting result to string 
-        text_Area.clear();
-        text_Area.setText("NOT ( "+text+" ) = " + s);
-        if (text_History.getText().length() != 0)
-        {    
-        text_History.appendText("\n");
-        }
-        text_History.appendText("NOT ( "+text+" ) = " + s);
+        long num = 0;
        
+        if (BIN_FLAG == true )
+        {
+            num = Long.parseLong(text,2); // to return Decimal number
+        }
+        else if (HEX_FLAG == true )
+        {
+            num = Long.parseLong(text,16);
+        }
+        else if (OCT_FLAG == true )
+        {
+            num = Long.parseLong(text,8);
+        }
+        else 
+            num = Long.parseLong(text);
+       
+        long result = ~num; // result is a Decimal Number and we will convert it to suitable number 
+        ans =  result;
+        String s = "0";
+        if (BIN_FLAG == true)
+        {
+             s = Long.toBinaryString(result);//Converting to binary
+           
+        }
+        else if (HEX_FLAG == true)
+        {
+             s = Long.toHexString(result);  //Convertig to hex
+        }
+        else if (OCT_FLAG == true)
+        {
+             s = Long.toOctalString(result);//Converting to octal
+        }    
+        else
+       
+        s = String.valueOf(result); 
+      //Converting result to string 
+        text_Area.setText(s);
+        label_Equation.setText("NOT ( "+text+" ) = " + s);
+        
+        EQ_FLAG = 1 ;
+        
     }
     
 
@@ -477,12 +593,10 @@ public class FXMLDocumentController implements Initializable {
         XOR_FLAG = true;
         AND_FLAG = false;
         OR_FLAG  = false;
-        
         EQ_FLAG = 0;
         TEXT_2 = true;
         operation.setText("XOR");
-        
-        
+       
     }
 
     @FXML
@@ -495,7 +609,6 @@ public class FXMLDocumentController implements Initializable {
         EQ_FLAG = 0;
         
         TEXT_2 = true;
-        
         operation.setText("AND");
         
     }
@@ -522,23 +635,66 @@ public class FXMLDocumentController implements Initializable {
          
         if (EQ_FLAG  == 0)
         {
-        if (XOR_FLAG == true)
+        if (XOR_FLAG == true) /***************** XOR Operation ***********************/
         {
             String text = text_Area.getText();
-            Integer num1 = new Integer(text);
-        
+            long num1 = 0 ;   
+            if (BIN_FLAG == true )
+            {
+            num1 = Long.parseLong(text,2);
+            }
+            else if (HEX_FLAG == true )
+            {
+            num1 = Long.parseLong(text,16);
+            }
+            else if (OCT_FLAG == true )
+            {
+            num1 = Long.parseLong(text,8);
+            }
+            else 
+            num1 = Long.parseLong(text);    
+            
             String text2 = text_Area2.getText();
-            Integer num2 = new Integer(text2);
-        
-            int result = num1 ^ num2;
+            long num2 = 0 ;   
+            if (BIN_FLAG == true )
+            {
+            num2 = Long.parseLong(text2,2);
+            }
+            else if (HEX_FLAG == true )
+            {
+            num2 = Long.parseLong(text2,16);
+            }
+            else if (OCT_FLAG == true )
+            {
+            num2 = Long.parseLong(text2,8);
+            }
+            else 
+            num2 = Long.parseLong(text2);    
+            
+            
+            //(2) Result
+            long result = num1 ^ num2;
             ans = result;
-
-            String s=String.valueOf(result); 
+            
+            String s = "0";
+            if (BIN_FLAG == true)
+            {
+             s = Long.toBinaryString(result);//Converting to binary
+           
+            }
+            else if (HEX_FLAG == true)
+            {
+             s = Long.toHexString(result);  //Convertig to hex
+            }
+            else if (OCT_FLAG == true)
+            {
+             s = Long.toOctalString(result);//Converting to octal
+            }    
+            else
+             s = String.valueOf(result); 
             operation.setText("   ");
-            if (text_History.getText().length() != 0)
-            { text_History.appendText("\n");}
-            text_History.appendText(text + " XOR ( " + text2 + " ) = "+s);
-            //text_Area.setText(text + " XOR ( " + text2 + " ) = ");
+      
+            label_Equation.setText(text + " XOR ( " + text2 + " ) = "+s);
             text_Area.setText(s);
             text_Area2.clear();
             
@@ -546,23 +702,64 @@ public class FXMLDocumentController implements Initializable {
         }
         else if (OR_FLAG == true)
         {
-            
-          //  if(text_Area2.getText().length() == 0)
-           // {
             String text = text_Area.getText();
-            Integer num1 = new Integer(text);
-        
+           
+            long num1 = 0 ;   
+            if (BIN_FLAG == true )
+            {
+            num1 = Long.parseLong(text,2);
+            }
+            else if (HEX_FLAG == true )
+            {
+            num1 = Long.parseLong(text,16);
+            }
+            else if (OCT_FLAG == true )
+            {
+            num1 = Long.parseLong(text,8);
+            }
+            else 
+            num1 = Long.parseLong(text);    
+            
             String text2 = text_Area2.getText();
-            Integer num2 = new Integer(text2);
+            long num2 = 0 ;   
+            if (BIN_FLAG == true )
+            {
+            num2 = Long.parseLong(text2,2);
+            }
+            else if (HEX_FLAG == true )
+            {
+            num2 = Long.parseLong(text2,16);
+            }
+            else if (OCT_FLAG == true )
+            {
+            num2 = Long.parseLong(text2,8);
+            }
+            else 
+            num2 = Long.parseLong(text2);    
+            
         
-            int result = num1 | num2;
+            long result = num1 | num2;
             ans = result;
-            String s=String.valueOf(result); 
+            
+            String s = "0";
+             if (BIN_FLAG == true)
+            {
+             s = Long.toBinaryString(result);//Converting to binary
+           
+            }
+            else if (HEX_FLAG == true)
+             {
+                 s = Long.toHexString(result);  //Convertig to hex
+            }
+            else if (OCT_FLAG == true)
+             {
+             s = Long.toOctalString(result);//Converting to octal
+             }    
+            else
+            s = String.valueOf(result); 
             operation.setText("  ");
-            if (text_History.getText().length() != 0)
-            {   
-            text_History.appendText("\n");}
-            text_History.appendText(text + " OR ( " + text2 + " ) = "+s);
+            
+            label_Equation.setText(text + " OR ( " + text2 + " ) = "+s);
            
             text_Area.setText(s);
             text_Area2.clear();
@@ -572,19 +769,62 @@ public class FXMLDocumentController implements Initializable {
          else if (AND_FLAG == true)
         {
             String text = text_Area.getText();
-            Integer num1 = new Integer(text);
-        
-            String text2 = text_Area2.getText();
-            Integer num2 = new Integer(text2);
-        
-            int result = num1 & num2;
-            ans = result;
             
-            String s=String.valueOf(result); 
+            long num1 = 0 ;   
+            if (BIN_FLAG == true )
+            {
+            num1 = Long.parseLong(text,2);
+            }
+            else if (HEX_FLAG == true )
+            {
+            num1 = Long.parseLong(text,16);
+            }
+            else if (OCT_FLAG == true )
+            {
+            num1 = Long.parseLong(text,8);
+            }
+            else 
+            num1 = Long.parseLong(text);    
+            
+            String text2 = text_Area2.getText();
+            long num2 = 0 ;   
+            if (BIN_FLAG == true )
+            {
+            num2 = Long.parseLong(text2,2);
+            }
+            else if (HEX_FLAG == true )
+            {
+            num2 = Long.parseLong(text2,16);
+            }
+            else if (OCT_FLAG == true )
+            {
+            num2 = Long.parseLong(text2,8);
+            }
+            else 
+            num2 = Long.parseLong(text2);    
+           
+            long result = num1 & num2;
+            ans = result;
+           
+            String s = "0";
+              if (BIN_FLAG == true)
+            {
+             s = Long.toBinaryString(result);//Converting to binary
+           
+            }
+            else if (HEX_FLAG == true)
+            {
+             s = Long.toHexString(result);  //Convertig to hex
+            }
+            else if (OCT_FLAG == true)
+            {
+             s = Long.toOctalString(result);//Converting to octal
+            }    
+            else
+            s = String.valueOf(result); 
             operation.setText("   ");
-            if (text_History.getText().length() != 0)
-            {text_History.appendText("\n");}
-            text_History.appendText(text + " AND ( " + text2 + " ) = "+s);
+         
+            label_Equation.setText(text + " AND ( " + text2 + " ) = "+s);
             text_Area.setText(s);
             text_Area2.clear();
             EQ_FLAG = 1;
@@ -592,10 +832,28 @@ public class FXMLDocumentController implements Initializable {
     }
         else 
         {
-            String s_ans = String.valueOf(ans);
+            String s_ans = "0";
+             if (BIN_FLAG == true)
+            {
+             s_ans = Long.toBinaryString(ans);//Converting to binary
+           
+            }
+            else if (HEX_FLAG == true)
+            {
+             s_ans = Long.toHexString(ans);  //Convertig to hex
+            }
+            else if (OCT_FLAG == true)
+            {
+             s_ans = Long.toOctalString(ans);//Converting to octal
+            }    
+            else
+            s_ans = String.valueOf(ans);
             text_Area.setText(s_ans);
         }    
     }    
-    
-    
+
+    @FXML
+    private void Concurrent(MouseEvent event) {
+    }
+
 }

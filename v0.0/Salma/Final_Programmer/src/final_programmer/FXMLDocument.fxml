@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane id="btn_0" blendMode="DARKEN" cache="true" depthTest="DISABLE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="final_programmer.FXMLDocumentController">
+<Pane id="btn_0" blendMode="DARKEN" cache="true" depthTest="DISABLE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="final_programmer.FXMLDocumentController">
    <children>
-      <Button fx:id="btn_0" contentDisplay="CENTER" layoutX="356.0" layoutY="492.0" mnemonicParsing="false" onAction="#Button_0" prefHeight="48.0" prefWidth="62.0" text="0" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_0" contentDisplay="CENTER" layoutX="303.0" layoutY="492.0" mnemonicParsing="false" onAction="#Button_0" prefHeight="40.0" prefWidth="50.0" text="0" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="34.0" />
          </font>
@@ -22,7 +22,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button id="btn_1" fx:id="btn_1" contentDisplay="CENTER" layoutX="288.0" layoutY="439.0" mnemonicParsing="false" onAction="#Button_1" prefHeight="48.0" prefWidth="62.0" text="1" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+      <Button id="btn_1" fx:id="btn_1" contentDisplay="CENTER" layoutX="235.0" layoutY="439.0" mnemonicParsing="false" onAction="#Button_1" prefHeight="40.0" prefWidth="50.0" text="1" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="34.0" />
          </font>
@@ -33,7 +33,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btn_2" contentDisplay="CENTER" layoutX="355.0" layoutY="439.0" mnemonicParsing="false" onAction="#Button_2" prefHeight="48.0" prefWidth="62.0" text="2" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_2" contentDisplay="CENTER" layoutX="302.0" layoutY="439.0" mnemonicParsing="false" onAction="#Button_2" prefHeight="40.0" prefWidth="50.0" text="2" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="34.0" />
          </font>
@@ -41,7 +41,7 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button fx:id="btn_3" contentDisplay="CENTER" layoutX="422.0" layoutY="439.0" mnemonicParsing="false" onAction="#Button_3" prefHeight="48.0" prefWidth="62.0" text="3" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_3" contentDisplay="CENTER" layoutX="369.0" layoutY="439.0" mnemonicParsing="false" onAction="#Button_3" prefHeight="40.0" prefWidth="50.0" text="3" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="34.0" />
          </font>
@@ -49,18 +49,7 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button fx:id="btn_4" contentDisplay="CENTER" layoutX="288.0" layoutY="387.0" mnemonicParsing="false" onAction="#Button_4" prefHeight="48.0" prefWidth="62.0" text="4" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
-         <font>
-            <Font name="Arial Italic" size="34.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <effect>
-            <Blend />
-         </effect>
-      </Button>
-      <Button fx:id="btn_5" contentDisplay="CENTER" layoutX="355.0" layoutY="387.0" mnemonicParsing="false" onAction="#Button_5" prefHeight="48.0" prefWidth="62.0" text="5" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_4" contentDisplay="CENTER" layoutX="235.0" layoutY="387.0" mnemonicParsing="false" onAction="#Button_4" prefHeight="40.0" prefWidth="50.0" text="4" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="34.0" />
          </font>
@@ -71,7 +60,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btn_6" contentDisplay="CENTER" layoutX="422.0" layoutY="387.0" mnemonicParsing="false" onAction="#Button_6" prefHeight="48.0" prefWidth="62.0" text="6" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_5" contentDisplay="CENTER" layoutX="302.0" layoutY="387.0" mnemonicParsing="false" onAction="#Button_5" prefHeight="40.0" prefWidth="50.0" text="5" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="34.0" />
          </font>
@@ -82,7 +71,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btn_7" contentDisplay="CENTER" layoutX="288.0" layoutY="334.0" mnemonicParsing="false" onAction="#Button_7" prefHeight="48.0" prefWidth="62.0" text="7" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_6" contentDisplay="CENTER" layoutX="369.0" layoutY="387.0" mnemonicParsing="false" onAction="#Button_6" prefHeight="40.0" prefWidth="50.0" text="6" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="34.0" />
          </font>
@@ -93,7 +82,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btn_8" contentDisplay="CENTER" layoutX="355.0" layoutY="334.0" mnemonicParsing="false" onAction="#Button_8" prefHeight="48.0" prefWidth="62.0" text="8" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_7" contentDisplay="CENTER" layoutX="235.0" layoutY="334.0" mnemonicParsing="false" onAction="#Button_7" prefHeight="40.0" prefWidth="50.0" text="7" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="34.0" />
          </font>
@@ -104,7 +93,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btn_9" contentDisplay="CENTER" layoutX="422.0" layoutY="334.0" mnemonicParsing="false" onAction="#Button_9" prefHeight="48.0" prefWidth="62.0" text="9" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_8" contentDisplay="CENTER" layoutX="302.0" layoutY="334.0" mnemonicParsing="false" onAction="#Button_8" prefHeight="40.0" prefWidth="50.0" text="8" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="34.0" />
          </font>
@@ -115,13 +104,9 @@
             <Blend />
          </effect>
       </Button>
-      <TextField fx:id="label_OCT" layoutX="84.0" layoutY="442.0" onAction="#Label_OCT" prefHeight="35.0" prefWidth="119.0" />
-      <TextField fx:id="label_DEC" layoutX="84.0" layoutY="387.0" onAction="#Label_DEC" prefHeight="35.0" prefWidth="119.0" />
-      <TextField fx:id="label_HEX" layoutX="84.0" layoutY="330.0" onAction="#Label_HEX" prefHeight="35.0" prefWidth="119.0" />
-      <TextField fx:id="label_BIN" layoutX="84.0" layoutY="275.0" onAction="#Label_BIN" prefHeight="42.0" prefWidth="119.0" styleClass="text-field" />
-      <Button fx:id="btn_BIN" contentDisplay="CENTER" layoutX="15.0" layoutY="272.0" mnemonicParsing="false" onAction="#Button_BIN" prefHeight="48.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #CF6966;" text="BIN" textFill="#d30f0f" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_9" contentDisplay="CENTER" layoutX="369.0" layoutY="334.0" mnemonicParsing="false" onAction="#Button_9" prefHeight="40.0" prefWidth="50.0" text="9" textOverrun="CENTER_ELLIPSIS">
          <font>
-            <Font name="Berlin Sans FB" size="16.0" />
+            <Font name="Arial Italic" size="34.0" />
          </font>
          <opaqueInsets>
             <Insets />
@@ -130,9 +115,13 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btn_OCT" contentDisplay="CENTER" layoutX="15.0" layoutY="439.0" mnemonicParsing="false" onAction="#Button_OCT" prefHeight="48.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #C98554;" text="OCT" textFill="#d00808" textOverrun="CENTER_ELLIPSIS">
+      <TextField fx:id="label_OCT" editable="false" layoutX="229.0" layoutY="245.0" onAction="#Label_OCT" prefHeight="30.0" prefWidth="120.0" promptText="0" />
+      <TextField fx:id="label_DEC" editable="false" layoutX="229.0" layoutY="207.0" onAction="#Label_DEC" prefHeight="30.0" prefWidth="120.0" promptText="0" />
+      <TextField fx:id="label_HEX" editable="false" layoutX="229.0" layoutY="169.0" onAction="#Label_HEX" prefHeight="30.0" prefWidth="120.0" promptText="0" />
+      <TextField fx:id="label_BIN" editable="false" layoutX="229.0" layoutY="131.0" onAction="#Label_BIN" prefHeight="30.0" prefWidth="120.0" promptText="0" styleClass="text-field" />
+      <Button fx:id="btn_BIN" contentDisplay="CENTER" layoutX="170.0" layoutY="131.0" mnemonicParsing="false" onAction="#Button_BIN" prefHeight="30.0" prefWidth="50.0" style="-fx-background-radius: 13; -fx-background-color: #CF6966;" text="BIN" textFill="#fff5f5" textOverrun="CENTER_ELLIPSIS">
          <font>
-            <Font name="Algerian" size="18.0" />
+            <Font name="Calibri" size="16.0" />
          </font>
          <opaqueInsets>
             <Insets />
@@ -141,9 +130,9 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btn_HEX" contentDisplay="CENTER" layoutX="15.0" layoutY="327.0" mnemonicParsing="false" onAction="#Button_HEX" prefHeight="48.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #CF6966;" text="HEX" textFill="#e40f0f" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_OCT" contentDisplay="CENTER" layoutX="170.0" layoutY="245.0" mnemonicParsing="false" onAction="#Button_OCT" prefHeight="30.0" prefWidth="50.0" style="-fx-background-radius: 13; -fx-background-color: #CF6966;" text="OCT" textFill="#fff5f5" textOverrun="CENTER_ELLIPSIS">
          <font>
-            <Font name="Aldhabi" size="19.0" />
+            <Font name="Calibri" size="16.0" />
          </font>
          <opaqueInsets>
             <Insets />
@@ -152,9 +141,9 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btn_DEC" contentDisplay="CENTER" layoutX="15.0" layoutY="384.0" mnemonicParsing="false" onAction="#Buuton_DEC" prefHeight="48.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #C98554;" text="DEC" textFill="#eb1111" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_HEX" contentDisplay="CENTER" layoutX="170.0" layoutY="169.0" mnemonicParsing="false" onAction="#Button_HEX" prefHeight="30.0" prefWidth="50.0" style="-fx-background-radius: 13; -fx-background-color: #CF6966;" text="HEX" textFill="#fff5f5" textOverrun="CENTER_ELLIPSIS">
          <font>
-            <Font name="AMGDT" size="15.0" />
+            <Font name="Calibri" size="16.0" />
          </font>
          <opaqueInsets>
             <Insets />
@@ -163,8 +152,19 @@
             <Blend />
          </effect>
       </Button>
-      <TextArea fx:id="text_Area" layoutX="222.0" layoutY="127.0" prefHeight="55.0" prefWidth="261.0" promptText="0" />
-      <Button fx:id="btn_C" contentDisplay="CENTER" layoutX="424.0" layoutY="492.0" mnemonicParsing="false" onAction="#Button_Clear" prefHeight="48.0" prefWidth="62.0" styleClass="clear-button" text="C" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_DEC" contentDisplay="CENTER" layoutX="170.0" layoutY="207.0" mnemonicParsing="false" onAction="#Buuton_DEC" prefHeight="30.0" prefWidth="50.0" style="-fx-background-radius: 13; -fx-background-color: #CF6966;" text="DEC" textFill="#fff5f5" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <TextArea fx:id="text_Area" layoutX="169.0" layoutY="26.0" onDragDetected="#Concurrent" prefHeight="42.0" prefWidth="330.0" promptText="0" />
+      <Button fx:id="btn_C" contentDisplay="CENTER" layoutX="371.0" layoutY="492.0" mnemonicParsing="false" onAction="#Button_Clear" prefHeight="40.0" prefWidth="50.0" styleClass="clear-button" text="C" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="28.0" />
          </font>
@@ -175,7 +175,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btn_NOT" contentDisplay="CENTER" layoutX="356.0" layoutY="281.0" mnemonicParsing="false" onAction="#Button_NOT" prefHeight="48.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #BA6E80;" text="NOT" textFill="#e42121" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_NOT" contentDisplay="CENTER" layoutX="303.0" layoutY="281.0" mnemonicParsing="false" onAction="#Button_NOT" prefHeight="48.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #BA6E80;" text="NOT" textFill="#f4f0f0" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="13.0" />
          </font>
@@ -186,7 +186,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btn_XOR" contentDisplay="CENTER" layoutX="422.0" layoutY="281.0" mnemonicParsing="false" onAction="#Button_XOR" prefHeight="48.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #BA6E80;" text="XOR" textFill="#e42121" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_XOR" contentDisplay="CENTER" layoutX="369.0" layoutY="281.0" mnemonicParsing="false" onAction="#Button_XOR" prefHeight="48.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #BA6E80;" text="XOR" textFill="#f4f0f0" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="13.0" />
          </font>
@@ -197,7 +197,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btn_AND" contentDisplay="CENTER" layoutX="222.0" layoutY="281.0" mnemonicParsing="false" onAction="#Button_AND" prefHeight="48.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #BA6E80;" text="AND" textFill="#e42121" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_AND" contentDisplay="CENTER" layoutX="169.0" layoutY="281.0" mnemonicParsing="false" onAction="#Button_AND" prefHeight="48.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #BA6E80;" text="AND" textFill="#f4f0f0" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="13.0" />
          </font>
@@ -208,7 +208,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btn_OR" contentDisplay="CENTER" layoutX="288.0" layoutY="281.0" mnemonicParsing="false" onAction="#Button_OR" prefHeight="48.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #BA6E80;" text="OR" textFill="#e42121" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_OR" contentDisplay="CENTER" layoutX="235.0" layoutY="281.0" mnemonicParsing="false" onAction="#Button_OR" prefHeight="48.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #BA6E80;" text="OR" textFill="#f4f0f0" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="13.0" />
          </font>
@@ -219,7 +219,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button id="btn_1" fx:id="btn_F" contentDisplay="CENTER" layoutX="222.0" layoutY="508.0" mnemonicParsing="false" onAction="#Button_F" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="F" textAlignment="CENTER" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+      <Button id="btn_1" fx:id="btn_F" contentDisplay="CENTER" disable="true" layoutX="169.0" layoutY="508.0" mnemonicParsing="false" onAction="#Button_F" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="F" textAlignment="CENTER" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="34.0" />
          </font>
@@ -230,7 +230,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btn_E" contentDisplay="CENTER" layoutX="222.0" layoutY="473.0" mnemonicParsing="false" onAction="#Button_E" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="E" textAlignment="CENTER" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_E" contentDisplay="CENTER" disable="true" layoutX="169.0" layoutY="473.0" mnemonicParsing="false" onAction="#Button_E" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="E" textAlignment="CENTER" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="34.0" />
          </font>
@@ -241,7 +241,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btn_D" contentDisplay="CENTER" layoutX="221.0" layoutY="439.0" mnemonicParsing="false" onAction="#Button_D" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="D" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_D" contentDisplay="CENTER" disable="true" layoutX="168.0" layoutY="439.0" mnemonicParsing="false" onAction="#Button_D" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="D" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="34.0" />
          </font>
@@ -252,7 +252,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button id="btn_1" fx:id="btn_C" contentDisplay="CENTER" layoutX="221.0" layoutY="404.0" mnemonicParsing="false" onAction="#Button_C" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="C" textAlignment="CENTER" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+      <Button id="btn_1" fx:id="btn_C" contentDisplay="CENTER" disable="true" layoutX="168.0" layoutY="404.0" mnemonicParsing="false" onAction="#Button_C" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="C" textAlignment="CENTER" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="34.0" />
          </font>
@@ -263,7 +263,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btn_B" contentDisplay="CENTER" layoutX="221.0" layoutY="369.0" mnemonicParsing="false" onAction="#Button_B" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="B" textAlignment="CENTER" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_B" contentDisplay="CENTER" disable="true" layoutX="168.0" layoutY="369.0" mnemonicParsing="false" onAction="#Button_B" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="B" textAlignment="CENTER" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="34.0" />
          </font>
@@ -274,7 +274,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btn_A" contentDisplay="CENTER" layoutX="221.0" layoutY="334.0" mnemonicParsing="false" onAction="#Button_A" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="A" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_A" contentDisplay="CENTER" disable="true" layoutX="168.0" layoutY="334.0" mnemonicParsing="false" onAction="#Button_A" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="A" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="34.0" />
          </font>
@@ -285,9 +285,9 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btn_equal" contentDisplay="CENTER" layoutX="17.0" layoutY="494.0" mnemonicParsing="false" onAction="#Button_Equal" prefHeight="48.0" prefWidth="186.0" style="-fx-background-radius: 100;" text="Estimate" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btn_equal" contentDisplay="CENTER" layoutX="360.0" layoutY="138.0" mnemonicParsing="false" onAction="#Button_Equal" prefHeight="128.0" prefWidth="69.0" style="-fx-background-radius: 100; -fx-background-color: #C98554; -fx-border-radius: 200;" text="Values" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
          <font>
-            <Font name="Arial Italic" size="19.0" />
+            <Font name="Arial Italic" size="15.0" />
          </font>
          <opaqueInsets>
             <Insets />
@@ -296,9 +296,9 @@
             <Blend />
          </effect>
       </Button>
-      <TextArea fx:id="text_Area2" layoutX="222.0" layoutY="221.0" prefHeight="55.0" prefWidth="261.0" promptText="0" />
-      <Label fx:id="operation" layoutX="331.0" layoutY="190.0" prefHeight="21.0" prefWidth="43.0" textFill="#a10591" />
-      <Button fx:id="btn_equal1" contentDisplay="CENTER" layoutX="289.0" layoutY="491.0" mnemonicParsing="false" onAction="#Button_Equal1" prefHeight="48.0" prefWidth="62.0" text="=" textOverrun="CENTER_ELLIPSIS">
+      <TextArea fx:id="text_Area2" layoutX="169.0" layoutY="88.0" prefHeight="31.0" prefWidth="330.0" promptText="0" />
+      <Label fx:id="operation" layoutX="289.0" layoutY="67.0" prefHeight="20.0" prefWidth="43.0" textFill="#a10591" />
+      <Button fx:id="btn_equal1" contentDisplay="CENTER" layoutX="236.0" layoutY="491.0" mnemonicParsing="false" onAction="#Button_Equal1" prefHeight="40.0" prefWidth="50.0" text="=" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Italic" size="30.0" />
          </font>
@@ -309,7 +309,7 @@
             <Blend />
          </effect>
       </Button>
-      <Label fx:id="operation1" contentDisplay="CENTER" layoutX="74.0" layoutY="91.0" prefHeight="31.0" prefWidth="87.0" style="-fx-font-style: itaic;" text="HISTORY" textAlignment="RIGHT" textFill="#a10591" textOverrun="CENTER_ELLIPSIS">
+      <Label fx:id="operation1" contentDisplay="CENTER" layoutX="57.0" layoutY="91.0" prefHeight="31.0" prefWidth="87.0" text="HISTORY" textAlignment="RIGHT" textFill="#a10591" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font size="21.0" />
          </font>
@@ -319,6 +319,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextArea fx:id="text_History" editable="false" layoutX="22.0" layoutY="129.0" prefHeight="139.0" prefWidth="180.0" />
+      <TextArea fx:id="text_History" editable="false" layoutX="19.0" layoutY="129.0" prefHeight="148.0" prefWidth="129.0" />
+      <Label fx:id="label_Equation" layoutX="173.0" layoutY="6.0" prefHeight="17.0" prefWidth="323.0" />
    </children>
 </Pane>
