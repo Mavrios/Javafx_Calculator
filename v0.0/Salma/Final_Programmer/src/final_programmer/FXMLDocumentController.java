@@ -108,7 +108,7 @@ public class FXMLDocumentController implements Initializable {
     boolean AND_FLAG = false;
     boolean OR_FLAG  = false;
     boolean XOR_FLAG = false;
-    
+    //boolean NOT_FLAG
     boolean TEXT_2 = false; // Flag for checking about which text Atrea(text_Area , text_Area2) will choose to append
 
     int EQ_FLAG = 0;
@@ -130,6 +130,10 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void Button_0(ActionEvent event)
     {
+        if (EQ_FLAG == 1 )
+        {
+            text_Area.clear();
+        }
         if (TEXT_2 == true )
         { 
             text_Area2.appendText("0");
@@ -138,169 +142,262 @@ public class FXMLDocumentController implements Initializable {
         {
             text_Area.appendText("0");
         }
+        EQ_FLAG = 0;
     }
 
     @FXML
     private void Button_1(ActionEvent event)
     {
+        if (EQ_FLAG >= 1 )
+        {
+            text_Area.clear();
+        }
         if (TEXT_2 == true )
         { 
             text_Area2.appendText("1");
         }
         else
         text_Area.appendText("1");
-    
+        
+        EQ_FLAG = 0;
+
     }
 
     @FXML
     private void Button_2(ActionEvent event) 
     { 
+        if (EQ_FLAG >= 1 )
+        {
+            text_Area.clear();
+        }
         if (TEXT_2 == true )
         { 
             text_Area2.appendText("2");
         }
         else
-        text_Area.appendText("2");
+        {text_Area.appendText("2");
+        }
+        EQ_FLAG = 0;
+
     }
 
     @FXML
     private void Button_3(ActionEvent event) 
     {
+        if (EQ_FLAG >= 1 )
+        {
+            text_Area.clear();
+        }
         if (TEXT_2 == true )    
         { 
             text_Area2.appendText("3");
         }
         else
         text_Area.appendText("3");
+        
+                EQ_FLAG = 0;
+
     }
 
     @FXML
     private void Button_4(ActionEvent event)
     {
+         if (EQ_FLAG >= 1 )
+        {
+            text_Area.clear();
+        }
         if (TEXT_2 == true )
         { 
             text_Area2.appendText("4");
         }
         else
         text_Area.appendText("4");
+        EQ_FLAG = 0;
+
     }
 
     @FXML
     private void Button_5(ActionEvent event) 
     {
+         if (EQ_FLAG >= 1 )
+        {
+            text_Area.clear();
+        }
         if (TEXT_2 == true )
         { 
             text_Area2.appendText("5");
         }
         else
         text_Area.appendText("5");
+        EQ_FLAG = 0;
 
     }
 
     @FXML
     private void Button_6(ActionEvent event) 
     {
+         if (EQ_FLAG >= 1 )
+        {
+            text_Area.clear();
+        }
         if (TEXT_2 == true )
         { 
             text_Area2.appendText("6");
         }
         else
-         text_Area.appendText("6");
+        { text_Area.appendText("6");
+        }
+        EQ_FLAG = 0;
+
     }
 
     @FXML
     private void Button_7(ActionEvent event)
     {
+         if (EQ_FLAG >= 1 )
+        {
+            text_Area.clear();
+        }
         if (TEXT_2 == true )
         { 
             text_Area2.appendText("7");
         }
         else
-         text_Area.appendText("7");
-    
+        {text_Area.appendText("7");
+        }
+        EQ_FLAG = 0;
+
     }
 
     @FXML
     private void Button_8(ActionEvent event)
     {
+         if (EQ_FLAG >= 1 )
+        {
+            text_Area.clear();
+        }
         if (TEXT_2 == true )
         { 
             text_Area2.appendText("8");
         }
         else
-        text_Area.appendText("8");
+        {text_Area.appendText("8");
+        }
+                EQ_FLAG = 0;
+
     }
 
     @FXML
     private void Button_9(ActionEvent event) 
     {
+         if (EQ_FLAG >= 1 )
+        {
+            text_Area.clear();
+        }
         if (TEXT_2 == true )
         { 
             text_Area2.appendText("9");
         }
         else
-         text_Area.appendText("9");
+        { text_Area.appendText("9");}
+                EQ_FLAG = 0;
+
     }
 
    @FXML
     private void Button_F(ActionEvent event) {
+         if (EQ_FLAG >= 1 )
+        {
+            text_Area.clear();
+        }
         if (TEXT_2 == true )
         { 
             text_Area2.appendText("F");
         }
         else
-        text_Area.appendText("F");
+        {text_Area.appendText("F");}
+                EQ_FLAG = 0;
+
     }
 
     @FXML
     private void Button_E(ActionEvent event) {
+         if (EQ_FLAG >= 1 )
+        {
+            text_Area.clear();
+        }
         if (TEXT_2 == true )
         { 
             text_Area2.appendText("E");
         }
         else
-        text_Area.appendText("E");
+        {text_Area.appendText("E");}
+                EQ_FLAG = 0;
+
     }
 
     @FXML
     private void Button_D(ActionEvent event) {
+         if (EQ_FLAG >= 1 )
+        {
+            text_Area.clear();
+        }
         if (TEXT_2 == true )
         { 
             text_Area2.appendText("D");
         }
         else
-        text_Area.appendText("D");
+        { text_Area.appendText("D");}
+                EQ_FLAG = 0;
+
     }
 
     @FXML
     private void Button_C(ActionEvent event) {
-        
+        if (EQ_FLAG >= 1 )
+        {
+            text_Area.clear();
+        } 
         if (TEXT_2 == true )
         { 
             text_Area2.appendText("C");
         }
         else
-        text_Area.appendText("C");
+        {text_Area.appendText("C");}
+                EQ_FLAG = 0;
+
     }
 
     @FXML
     private void Button_B(ActionEvent event) {
-       if (TEXT_2 == true )
+        if (EQ_FLAG >= 1 )
+        {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true )
         { 
             text_Area2.appendText("B");
         }
         else
-        text_Area.appendText("B");
+        {text_Area.appendText("B");}
+                EQ_FLAG = 0;
+
     }
 
     @FXML
     private void Button_A(ActionEvent event) {
+         if (EQ_FLAG >= 1 )
+        {
+            text_Area.clear();
+        }
         if (TEXT_2 == true )
         { 
             text_Area2.appendText("A");
         }
         else
-        text_Area.appendText("A");
+        {text_Area.appendText("A");}
+                EQ_FLAG = 0;
+
     }
 
     
@@ -427,7 +524,11 @@ public class FXMLDocumentController implements Initializable {
             btn_F.setDisable(true);
     }
 
-    
+    /**************************** Show values (Button_Equal) *************************************************************************/
+    /************this method is running when user press Show Values Button************************************************************/
+    /************it checks if the user wants to convert binary or decimal or octal or hex number in text_area 1 **********************/
+    /************and if the number is not exceed 15 number it can be converted into the other numbers representation  ****************/
+
     @FXML
     private void Button_Equal(ActionEvent event) //Show Values
     {
@@ -450,6 +551,7 @@ public class FXMLDocumentController implements Initializable {
     }   
      else if (text_Area.getText().length() != 0 )
     {
+      try{ 
       if (BIN_FLAG == true )
       {
        String text = text_Area.getText();
@@ -507,6 +609,18 @@ public class FXMLDocumentController implements Initializable {
       label_BIN.setText(bin);
       label_DEC.setText(text);
       }
+      }
+            catch(NumberFormatException e)
+            {   
+                text_Area.appendText("  Very Long Number (Exceeds 15 ) ");
+                System.out.println("Number of Exception occured because it is very long number at textArea1!");
+                label_OCT.clear(); 
+                label_HEX.clear();
+                label_BIN.clear();
+                label_DEC.clear();
+            }
+            
+            
     }
     
     else
@@ -542,7 +656,8 @@ public class FXMLDocumentController implements Initializable {
     private void Button_NOT(ActionEvent event) 
     {
         String text = text_Area.getText();
-        long num = 0;
+       try{
+        long  num ;
        
         if (BIN_FLAG == true )
         {
@@ -550,18 +665,18 @@ public class FXMLDocumentController implements Initializable {
         }
         else if (HEX_FLAG == true )
         {
-            num = Long.parseLong(text,16);
+            num =  Long.parseLong(text,16);
         }
         else if (OCT_FLAG == true )
         {
             num = Long.parseLong(text,8);
         }
         else 
-            num = Long.parseLong(text);
+            num =  Long.parseLong(text);
        
         long result = ~num; // result is a Decimal Number and we will convert it to suitable number 
         ans =  result;
-        String s = "0";
+       String s = "0";
         if (BIN_FLAG == true)
         {
              s = Long.toBinaryString(result);//Converting to binary
@@ -581,7 +696,12 @@ public class FXMLDocumentController implements Initializable {
       //Converting result to string 
         text_Area.setText(s);
         label_Equation.setText("NOT ( "+text+" ) = " + s);
-        
+       }
+       catch(NumberFormatException e)
+       {   
+           text_Area.appendText("  Very Long Number");
+           System.out.println("Number of Exception occured because it is very long number !");
+       }
         EQ_FLAG = 1 ;
         
     }
@@ -628,6 +748,11 @@ public class FXMLDocumentController implements Initializable {
         
     }
 
+    /**************************** (=) Button_Equal1 *************************************************************************************************/
+    /************this method is running when user press = Button*************************************************************************************/
+    /************it checks which operation(OR / AND /XOR) the user wants to do between the numbers at first and second areas ************************/
+    /************and checks the Numbering system if binary or hex or octal or decimal and returns the value at this numbering system he choosed******/
+
     @FXML
     private void Button_Equal1(ActionEvent event) //For Equality of (OR / XOR / AND Operations)
     {
@@ -635,10 +760,13 @@ public class FXMLDocumentController implements Initializable {
          
         if (EQ_FLAG  == 0)
         {
+       
+            
         if (XOR_FLAG == true) /***************** XOR Operation ***********************/
         {
             String text = text_Area.getText();
-            long num1 = 0 ;   
+            try {
+            long num1  ;   
             if (BIN_FLAG == true )
             {
             num1 = Long.parseLong(text,2);
@@ -654,7 +782,9 @@ public class FXMLDocumentController implements Initializable {
             else 
             num1 = Long.parseLong(text);    
             
+          
             String text2 = text_Area2.getText();
+            try{
             long num2 = 0 ;   
             if (BIN_FLAG == true )
             {
@@ -675,8 +805,9 @@ public class FXMLDocumentController implements Initializable {
             //(2) Result
             long result = num1 ^ num2;
             ans = result;
-            
+           
             String s = "0";
+            
             if (BIN_FLAG == true)
             {
              s = Long.toBinaryString(result);//Converting to binary
@@ -697,13 +828,25 @@ public class FXMLDocumentController implements Initializable {
             label_Equation.setText(text + " XOR ( " + text2 + " ) = "+s);
             text_Area.setText(s);
             text_Area2.clear();
+            }
+            catch(NumberFormatException e)
+            {   
+                text_Area2.appendText("  Very Long Number ");
+                System.out.println("Number of Exception occured because it is very long number at textArea2!");
+            }
             
+            }
+            catch(NumberFormatException e)
+            {   
+                text_Area.appendText("  Very Long Number ");
+                System.out.println("Number of Exception occured because it is very long number  at textArea !");
+            } 
             EQ_FLAG = 1 ;
         }
         else if (OR_FLAG == true)
         {
             String text = text_Area.getText();
-           
+           try{
             long num1 = 0 ;   
             if (BIN_FLAG == true )
             {
@@ -721,6 +864,7 @@ public class FXMLDocumentController implements Initializable {
             num1 = Long.parseLong(text);    
             
             String text2 = text_Area2.getText();
+            try{
             long num2 = 0 ;   
             if (BIN_FLAG == true )
             {
@@ -763,13 +907,26 @@ public class FXMLDocumentController implements Initializable {
            
             text_Area.setText(s);
             text_Area2.clear();
-        //    }
+            }
+            catch(NumberFormatException e)
+            {   
+                text_Area2.appendText("  Very Long Number ");
+                System.out.println("Number of Exception occured because it is very long number at textArea2!");
+            }
+            
+            }
+            catch(NumberFormatException e)
+            {   
+                text_Area.appendText("  Very Long Number ");
+                System.out.println("Number of Exception occured because it is very long number  at textArea !");
+            } 
             EQ_FLAG =1;
         }
          else if (AND_FLAG == true)
         {
             String text = text_Area.getText();
             
+            try{
             long num1 = 0 ;   
             if (BIN_FLAG == true )
             {
@@ -787,6 +944,7 @@ public class FXMLDocumentController implements Initializable {
             num1 = Long.parseLong(text);    
             
             String text2 = text_Area2.getText();
+            try{
             long num2 = 0 ;   
             if (BIN_FLAG == true )
             {
@@ -827,12 +985,28 @@ public class FXMLDocumentController implements Initializable {
             label_Equation.setText(text + " AND ( " + text2 + " ) = "+s);
             text_Area.setText(s);
             text_Area2.clear();
+            }
+            catch(NumberFormatException e)
+            {   
+                text_Area2.appendText("  Very Long Number ");
+                System.out.println("Number of Exception occured because it is very long number at textArea2!");
+            }
+            
+            }
+            catch(NumberFormatException e)
+            {   
+                text_Area.appendText("  Very Long Number ");
+                System.out.println("Number of Exception occured because it is very long number  at textArea !");
+            } 
+            
             EQ_FLAG = 1;
         }
-    }
+        }
         else 
         {
-            String s_ans = "0";
+            String s_ans ;
+            operation.setText("");
+            text_Area2.clear();
              if (BIN_FLAG == true)
             {
              s_ans = Long.toBinaryString(ans);//Converting to binary
