@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -11,6 +13,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,7 +24,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculatorv1.pkg0.FXMLDocumentController">
     <children>
-      <AnchorPane fx:id="ScientificPane" focusTraversable="true" layoutY="-1.0" onKeyPressed="#handleButton" onMouseClicked="#ScientificPaneClicked" prefHeight="550.0" prefWidth="350.0">
+      <AnchorPane fx:id="ScientificPane" focusTraversable="true" layoutY="-1.0" onKeyPressed="#handleButton" onMouseClicked="#ScientificPaneClicked" prefHeight="550.0" prefWidth="350.0" visible="false">
          <children>
             <Button fx:id="button7" focusTraversable="false" layoutX="77.0" layoutY="328.0" onAction="#handleButtonAction7" prefHeight="48.0" prefWidth="62.0" text="7" />
             <Button fx:id="button8" focusTraversable="false" layoutX="144.0" layoutY="328.0" onAction="#handleButtonAction8" prefHeight="48.0" prefWidth="62.0" text="8" />
@@ -37,7 +40,7 @@
             <Button fx:id="buttonC" focusTraversable="false" layoutX="213.0" layoutY="163.0" onAction="#handleButtonActionC" prefHeight="48.0" prefWidth="62.0" styleClass="clear-button" text="C" />
             <Button fx:id="button0" focusTraversable="false" layoutX="145.0" layoutY="493.0" onAction="#handleButtonAction0" prefHeight="48.0" prefWidth="62.0" text="0" />
             <Button fx:id="buttonPlus" focusTraversable="false" layoutX="281.0" layoutY="438.0" onAction="#handleButtonActionP" prefHeight="48.0" prefWidth="62.0" styleClass="op-button" text="+" />
-            <TextField fx:id="TA" editable="false" onMousePressed="#ScientificPaneClicked" prefHeight="121.0" prefWidth="350.0" promptText="0" styleClass="text-field" />
+            <TextField fx:id="TA" editable="false" onKeyPressed="#handleButton" onMousePressed="#ScientificPaneClicked" prefHeight="121.0" prefWidth="350.0" promptText="0" styleClass="text-field" />
             <Button fx:id="buttonDot" focusTraversable="false" layoutX="213.0" layoutY="493.0" onAction="#handleButtonActionDot" prefHeight="48.0" prefWidth="62.0" text="." />
             <Button id="equals" fx:id="equals" focusTraversable="false" layoutX="281.0" layoutY="493.0" onAction="#handleButtonActionEqu" prefHeight="48.0" prefWidth="62.0" styleClass="equals-button" text="=" />
             <Button fx:id="button3" focusTraversable="false" layoutX="213.0" layoutY="438.0" onAction="#handleButtonAction3" prefHeight="48.0" prefWidth="62.0" text="3" />
@@ -98,7 +101,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <VBox fx:id="MenuBox" prefHeight="542.0" prefWidth="208.0" styleClass="root" visible="false">
+            <VBox fx:id="MenuBox" prefHeight="552.0" prefWidth="208.0" styleClass="root" visible="false">
                <children>
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#MenuHandling" prefHeight="32.0" prefWidth="34.0" styleClass="op-button">
                      <graphic>
@@ -110,15 +113,16 @@
                      </graphic>
                   </Button>
                   <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Calculator" />
-                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#ScientificButton" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
-                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#GraphingButton" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
-                  <Button focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
-                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
+                  <Button fx:id="ScientificMenuButton" focusTraversable="false" mnemonicParsing="false" onAction="#ScientificButton" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
+                  <Button fx:id="GraphingMenuButton" focusTraversable="false" mnemonicParsing="false" onAction="#GraphingButton" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
+                  <Button fx:id="ProgrammerMenuButton" focusTraversable="false" mnemonicParsing="false" onAction="#ProgrammerButton" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
+                  <Button fx:id="DateCalcMenuButton" focusTraversable="false" mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
                   <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
-                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
+                  <Button fx:id="LengthMenuButton" focusTraversable="false" mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
                   <Separator prefWidth="200.0" />
+                  <Button fx:id="TempMenuButton" focusTraversable="false" mnemonicParsing="false" onAction="#TemperatureButton" prefHeight="42.0" prefWidth="208.0" text="Temperature" />
                   <Label focusTraversable="false" prefHeight="26.0" prefWidth="185.0" styleClass="Label" text="   Configurations" />
-                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#ConfigurationButton" prefHeight="42.0" prefWidth="208.0" text="Configurations" />
+                  <Button fx:id="ConfigurationsMenuButton" focusTraversable="false" mnemonicParsing="false" onAction="#ConfigurationButton" prefHeight="42.0" prefWidth="208.0" text="Configurations" />
                </children>
             </VBox>
             <VBox fx:id="FunctionsMenu" layoutX="116.0" layoutY="163.0" prefHeight="49.0" prefWidth="228.0" spacing="4.0" styleClass="root" visible="false">
@@ -144,7 +148,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane id="AnchorPane" fx:id="LengthPane" focusTraversable="true" onKeyPressed="#Change" onMouseClicked="#ScientificPaneClicked" prefHeight="552.0" prefWidth="351.0" visible="false">
+      <AnchorPane id="AnchorPane" fx:id="LengthPane" focusTraversable="true" onKeyPressed="#handleButton" onMouseClicked="#ScientificPaneClicked" prefHeight="552.0" prefWidth="351.0">
          <children>
             <Button fx:id="zero" focusTraversable="false" layoutX="151.0" layoutY="460.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="0">
                <font>
@@ -239,15 +243,16 @@
                      </graphic>
                   </Button>
                   <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Calculator" />
-                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#ScientificButton" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
-                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#GraphingButton" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
-                  <Button focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
-                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
+                  <Button fx:id="ScientificMenuButton3" focusTraversable="false" mnemonicParsing="false" onAction="#ScientificButton" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
+                  <Button fx:id="GraphingMenuButton3" focusTraversable="false" mnemonicParsing="false" onAction="#GraphingButton" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
+                  <Button fx:id="ProgrammerMenuButton3" focusTraversable="false" mnemonicParsing="false" onAction="#ProgrammerButton" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
+                  <Button fx:id="DateCalcMenuButton3" focusTraversable="false" mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
                   <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
-                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
+                  <Button fx:id="LengthMenuButton3" focusTraversable="false" mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
+                  <Button fx:id="TempMenuButton2" focusTraversable="false" mnemonicParsing="false" onAction="#TemperatureButton" prefHeight="42.0" prefWidth="208.0" text="Temperature" />
                   <Separator prefWidth="200.0" />
                   <Label focusTraversable="false" prefHeight="26.0" prefWidth="185.0" styleClass="Label" text="   Configurations" />
-                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#ConfigurationButton" prefHeight="42.0" prefWidth="208.0" text="Configurations" />
+                  <Button fx:id="ConfigurationsMenuButton3" focusTraversable="false" mnemonicParsing="false" onAction="#ConfigurationButton" prefHeight="42.0" prefWidth="208.0" text="Configurations" />
                </children>
             </VBox>
             <Label focusTraversable="false" layoutX="47.0" layoutY="-6.0" prefHeight="58.0" prefWidth="219.0" styleClass="Converter-Label" text="Length" textAlignment="CENTER" />
@@ -290,15 +295,16 @@
                      </graphic>
                   </Button>
                   <Label prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Calculator" />
-                  <Button mnemonicParsing="false" onAction="#ScientificButton" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
-                  <Button mnemonicParsing="false" onAction="#GraphingButton" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
-                  <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
-                  <Button mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
+                  <Button fx:id="ScientificMenuButton2" mnemonicParsing="false" onAction="#ScientificButton" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
+                  <Button fx:id="GraphingMenuButton2" mnemonicParsing="false" onAction="#GraphingButton" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
+                  <Button fx:id="ProgrammerMenuButton2" mnemonicParsing="false" onAction="#ProgrammerButton" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
+                  <Button fx:id="DateCalcMenuButton2" mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
                   <Label prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
-                  <Button mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
+                  <Button fx:id="LengthMenuButton2" mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
+                  <Button fx:id="TempMenuButton21" focusTraversable="false" mnemonicParsing="false" onAction="#TemperatureButton" prefHeight="42.0" prefWidth="208.0" text="Temperature" />
                   <Separator prefWidth="200.0" />
                   <Label focusTraversable="false" prefHeight="26.0" prefWidth="185.0" styleClass="Label" text="   Configurations" />
-                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#ConfigurationButton" prefHeight="42.0" prefWidth="208.0" text="Configurations" />
+                  <Button fx:id="ConfigurationsMenuButton2" focusTraversable="false" mnemonicParsing="false" onAction="#ConfigurationButton" prefHeight="42.0" prefWidth="208.0" text="Configurations" />
                </children>
             </VBox>
             <Label layoutX="46.0" layoutY="1.0" styleClass="Converter-Label" text="Date Calculation" />
@@ -355,10 +361,11 @@
                   <Label prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Graphing" />
                   <Button mnemonicParsing="false" onAction="#ScientificButton" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
                   <Button fx:id="GraphingBtn" mnemonicParsing="false" onAction="#GraphingButton" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
-                  <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
+                  <Button mnemonicParsing="false" onAction="#ProgrammerButton" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
                   <Button mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
                   <Label prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
                   <Button mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
+                  <Button fx:id="TempMenuButton22" focusTraversable="false" mnemonicParsing="false" onAction="#TemperatureButton" prefHeight="42.0" prefWidth="208.0" text="Temperature" />
                   <Separator prefWidth="200.0" />
                   <Label focusTraversable="false" prefHeight="26.0" prefWidth="185.0" styleClass="Label" text="   Configurations" />
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#ConfigurationButton" prefHeight="42.0" prefWidth="208.0" text="Configurations" />
@@ -403,16 +410,468 @@
                   <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Calculator" />
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#ScientificButton" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#GraphingButton" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
-                  <Button focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
+                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#ProgrammerButton" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
                   <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
+                  <Button fx:id="TempMenuButton23" focusTraversable="false" mnemonicParsing="false" onAction="#TemperatureButton" prefHeight="42.0" prefWidth="208.0" text="Temperature" />
                   <Separator prefWidth="200.0" />
                   <Label focusTraversable="false" prefHeight="26.0" prefWidth="185.0" styleClass="Label" text="   Configurations" />
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#ConfigurationButton" prefHeight="42.0" prefWidth="208.0" text="Configurations" />
                </children>
             </VBox>
             <Label layoutX="46.0" styleClass="Converter-Label" text="Configurations" />
+         </children>
+      </AnchorPane>
+      <AnchorPane id="AnchorPane" fx:id="TemperaturePane" layoutX="5.0" layoutY="10.0" onKeyPressed="#Change2" onMousePressed="#ScientificPaneClicked" prefHeight="530.0" prefWidth="340.0" visible="false">
+         <children>
+            <Button fx:id="zero1" layoutX="150.0" layoutY="466.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="0">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="one1" layoutX="93.0" layoutY="327.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" stylesheets="@../../../../../../../../../My_Files/Github/Javafx_Calculator/v0.0/Fady/Calculator_Temperature_Converter/src/calculator_converter/Button.css" text="1" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="two1" layoutX="150.0" layoutY="327.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="2">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="three1" layoutX="205.0" layoutY="327.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="3">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="four1" layoutX="93.0" layoutY="375.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="4">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="five1" layoutX="150.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="5">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="six1" layoutX="205.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="6">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="seven1" layoutX="93.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="7">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="eight1" layoutX="150.0" layoutY="422.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="8">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="nine1" layoutX="205.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="9">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="dot1" layoutX="93.0" layoutY="466.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text=".">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="clear1" layoutX="205.0" layoutY="466.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" styleClass="clear-button" text="CL">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <TextField fx:id="TA11" alignment="CENTER" editable="false" layoutX="-10.0" layoutY="68.0" prefHeight="68.0" prefWidth="350.0" promptText="0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="TA21" alignment="CENTER" editable="false" layoutX="-10.0" layoutY="187.0" prefHeight="68.0" prefWidth="350.0" promptText="0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <ComboBox fx:id="box21" layoutX="13.0" layoutY="264.0" onAction="#Converter2" prefHeight="25.0" prefWidth="122.0" />
+            <ComboBox fx:id="box11" layoutX="13.0" layoutY="148.0" onAction="#Converter2" prefHeight="25.0" prefWidth="122.0" />
+            <Button focusTraversable="false" mnemonicParsing="false" onAction="#MenuHandling" opacity="0.3" prefHeight="32.0" prefWidth="34.0" styleClass="op-button">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@3329671.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <VBox fx:id="TempMenu" layoutX="-5.0" prefHeight="552.0" prefWidth="208.0" styleClass="root">
+               <children>
+                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#MenuHandling" prefHeight="32.0" prefWidth="34.0" styleClass="op-button">
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@3329671.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Calculator" />
+                  <Button fx:id="ScientificMenuButton1" focusTraversable="false" mnemonicParsing="false" onAction="#ScientificButton" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
+                  <Button fx:id="GraphingMenuButton1" focusTraversable="false" mnemonicParsing="false" onAction="#GraphingButton" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
+                  <Button fx:id="ProgrammerMenuButton1" focusTraversable="false" mnemonicParsing="false" onAction="#ProgrammerButton" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
+                  <Button fx:id="DateCalcMenuButton1" focusTraversable="false" mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
+                  <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
+                  <Button fx:id="LengthMenuButton1" focusTraversable="false" mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
+                  <Separator prefWidth="200.0" />
+                  <Button fx:id="TempMenuButton1" focusTraversable="false" mnemonicParsing="false" onAction="#TemperatureButton" prefHeight="42.0" prefWidth="208.0" text="Temperature" />
+                  <Label focusTraversable="false" prefHeight="26.0" prefWidth="185.0" styleClass="Label" text="   Configurations" />
+                  <Button fx:id="ConfigurationsMenuButton1" focusTraversable="false" mnemonicParsing="false" onAction="#ConfigurationButton" prefHeight="42.0" prefWidth="208.0" text="Configurations" />
+               </children>
+            </VBox>
+            <Label layoutX="47.0" layoutY="1.0" styleClass="Converter-Label" text="Temperature" />
+         </children>
+         <stylesheets>
+            <URL value="@../../../../../../../../../My_Files/Github/Javafx_Calculator/v0.0/Fady/Calculator_Temperature_Converter/src/calculator_converter/Base.css" />
+            <URL value="@../../../../../../../../../My_Files/Github/Javafx_Calculator/v0.0/Fady/Calculator_Temperature_Converter/src/calculator_converter/Text.css" />
+            <URL value="@../../../../../../../../../My_Files/Github/Javafx_Calculator/v0.0/Fady/Calculator_Temperature_Converter/src/calculator_converter/Button.css" />
+         </stylesheets>
+      </AnchorPane>
+      <AnchorPane fx:id="ProgrammerPane" onMousePressed="#ScientificPaneClicked" prefHeight="562.0" prefWidth="352.0" visible="false">
+         <children>
+            <Button fx:id="btn_0" contentDisplay="CENTER" layoutX="213.0" layoutY="504.0" mnemonicParsing="false" onAction="#Button_0" prefHeight="40.0" prefWidth="50.0" text="0" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="34.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button id="btn_1" fx:id="btn_1" contentDisplay="CENTER" layoutX="141.0" layoutY="451.0" mnemonicParsing="false" onAction="#Button_1" prefHeight="40.0" prefWidth="50.0" text="1" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="34.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_2" contentDisplay="CENTER" layoutX="212.0" layoutY="451.0" mnemonicParsing="false" onAction="#Button_2" prefHeight="40.0" prefWidth="50.0" text="2" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="34.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btn_3" contentDisplay="CENTER" layoutX="283.0" layoutY="451.0" mnemonicParsing="false" onAction="#Button_3" prefHeight="40.0" prefWidth="50.0" text="3" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="34.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btn_4" contentDisplay="CENTER" layoutX="141.0" layoutY="397.0" mnemonicParsing="false" onAction="#Button_4" prefHeight="40.0" prefWidth="50.0" text="4" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="34.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_5" contentDisplay="CENTER" layoutX="212.0" layoutY="397.0" mnemonicParsing="false" onAction="#Button_5" prefHeight="40.0" prefWidth="50.0" text="5" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="34.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_6" contentDisplay="CENTER" layoutX="283.0" layoutY="397.0" mnemonicParsing="false" onAction="#Button_6" prefHeight="40.0" prefWidth="50.0" text="6" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="34.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_7" contentDisplay="CENTER" layoutX="141.0" layoutY="343.0" mnemonicParsing="false" onAction="#Button_7" prefHeight="40.0" prefWidth="50.0" text="7" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="34.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_8" contentDisplay="CENTER" layoutX="212.0" layoutY="343.0" mnemonicParsing="false" onAction="#Button_8" prefHeight="40.0" prefWidth="50.0" text="8" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="34.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_9" contentDisplay="CENTER" layoutX="283.0" layoutY="343.0" mnemonicParsing="false" onAction="#Button_9" prefHeight="40.0" prefWidth="50.0" text="9" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="34.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <TextField fx:id="label_OCT" editable="false" layoutX="136.0" layoutY="250.0" onAction="#Label_OCT" prefHeight="30.0" prefWidth="120.0" promptText="0" />
+            <TextField fx:id="label_DEC" editable="false" layoutX="136.0" layoutY="212.0" onAction="#Label_DEC" prefHeight="30.0" prefWidth="120.0" promptText="0" />
+            <TextField fx:id="label_HEX" editable="false" layoutX="136.0" layoutY="174.0" onAction="#Label_HEX" prefHeight="30.0" prefWidth="120.0" promptText="0" />
+            <TextField fx:id="label_BIN" editable="false" layoutX="136.0" layoutY="136.0" onAction="#Label_BIN" prefHeight="30.0" prefWidth="120.0" promptText="0" styleClass="text-field" />
+            <Button fx:id="btn_BIN" contentDisplay="CENTER" layoutX="63.0" layoutY="141.0" maxHeight="21.0" mnemonicParsing="false" onAction="#Button_BIN" prefHeight="21.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #CF6966;" text="BIN" textFill="#fff5f5" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_OCT" contentDisplay="CENTER" layoutX="63.0" layoutY="261.0" maxHeight="21.0" mnemonicParsing="false" onAction="#Button_OCT" prefHeight="30.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #CF6966;" text="OCT" textFill="#fff5f5" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_HEX" contentDisplay="CENTER" layoutX="63.0" layoutY="181.0" maxHeight="21.0" mnemonicParsing="false" onAction="#Button_HEX" prefHeight="21.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #CF6966;" text="HEX" textFill="#fff5f5" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_DEC" contentDisplay="CENTER" layoutX="63.0" layoutY="221.0" maxHeight="21.0" mnemonicParsing="false" onAction="#Buuton_DEC" prefHeight="30.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #CF6966;" text="DEC" textFill="#fff5f5" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <TextArea fx:id="text_Area" layoutX="62.0" layoutY="25.0" onDragDetected="#Concurrent" prefHeight="39.0" prefWidth="273.0" promptText="0" />
+            <Button fx:id="btn_C" contentDisplay="CENTER" layoutX="285.0" layoutY="504.0" mnemonicParsing="false" onAction="#Button_Clear" prefHeight="40.0" prefWidth="50.0" styleClass="clear-button" text="C" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="28.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_NOT" contentDisplay="CENTER" layoutX="205.0" layoutY="301.0" mnemonicParsing="false" onAction="#Button_NOT" prefHeight="31.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #BA6E80;" text="NOT" textFill="#f4f0f0" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_XOR" contentDisplay="CENTER" layoutX="278.0" layoutY="301.0" mnemonicParsing="false" onAction="#Button_XOR" prefHeight="31.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #BA6E80;" text="XOR" textFill="#f4f0f0" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_AND" contentDisplay="CENTER" layoutX="63.0" layoutY="301.0" mnemonicParsing="false" onAction="#Button_AND" prefHeight="31.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #BA6E80;" text="AND" textFill="#f4f0f0" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_OR" contentDisplay="CENTER" layoutX="134.0" layoutY="301.0" mnemonicParsing="false" onAction="#Button_OR" prefHeight="31.0" prefWidth="62.0" style="-fx-background-radius: 13; -fx-background-color: #BA6E80;" text="OR" textFill="#f4f0f0" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button id="btn_1" fx:id="btn_F" contentDisplay="CENTER" disable="true" layoutX="66.0" layoutY="516.0" mnemonicParsing="false" onAction="#Button_F" prefHeight="20.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="F" textAlignment="CENTER" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="34.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_E" contentDisplay="CENTER" disable="true" layoutX="66.0" layoutY="481.0" mnemonicParsing="false" onAction="#Button_E" prefHeight="20.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="E" textAlignment="CENTER" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="34.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_D" contentDisplay="CENTER" disable="true" layoutX="65.0" layoutY="447.0" mnemonicParsing="false" onAction="#Button_D" prefHeight="20.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="D" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="34.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button id="btn_1" fx:id="btn_C" contentDisplay="CENTER" disable="true" layoutX="65.0" layoutY="412.0" mnemonicParsing="false" onAction="#Button_C" prefHeight="20.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="C" textAlignment="CENTER" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="34.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_B" contentDisplay="CENTER" disable="true" layoutX="65.0" layoutY="377.0" mnemonicParsing="false" onAction="#Button_B" prefHeight="20.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="B" textAlignment="CENTER" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="34.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_A" contentDisplay="CENTER" disable="true" layoutX="65.0" layoutY="342.0" mnemonicParsing="false" onAction="#Button_A" prefHeight="20.0" prefWidth="62.0" style="-fx-background-color: #993366; -fx-background-radius: 10;" text="A" textFill="#0f0fff" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="34.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_equal" contentDisplay="CENTER" layoutX="267.0" layoutY="137.0" mnemonicParsing="false" onAction="#Button_Equal" prefHeight="157.0" prefWidth="69.0" style="-fx-background-radius: 100; -fx-background-color: #C98554; -fx-border-radius: 200;" text="Values" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="15.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <TextArea fx:id="text_Area2" layoutX="62.0" layoutY="85.0" prefHeight="39.0" prefWidth="273.0" promptText="0" />
+            <Label fx:id="operation" layoutX="178.0" layoutY="60.0" prefHeight="21.0" prefWidth="43.0" styleClass="Label" textFill="#a10591" />
+            <Button fx:id="btn_equal1" contentDisplay="CENTER" layoutX="142.0" layoutY="503.0" mnemonicParsing="false" onAction="#Button_Equal1" prefHeight="40.0" prefWidth="50.0" styleClass="equals-button" text="=" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Arial Italic" size="30.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Label layoutX="-36.0" layoutY="89.0" rotate="90.0" styleClass="Converter-Label" text="Programmer" />
+            <Button focusTraversable="false" mnemonicParsing="false" onAction="#MenuHandling" opacity="0.3" prefHeight="32.0" prefWidth="34.0" styleClass="op-button">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@3329671.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <VBox fx:id="ProgrammerMenu" prefHeight="552.0" prefWidth="208.0" styleClass="root" visible="false">
+               <children>
+                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#MenuHandling" prefHeight="32.0" prefWidth="34.0" styleClass="op-button">
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@3329671.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Calculator" />
+                  <Button fx:id="ScientificMenuButton11" focusTraversable="false" mnemonicParsing="false" onAction="#ScientificButton" prefHeight="42.0" prefWidth="208.0" text="Scientific" />
+                  <Button fx:id="GraphingMenuButton11" focusTraversable="false" mnemonicParsing="false" onAction="#GraphingButton" prefHeight="42.0" prefWidth="208.0" text="Graphing" />
+                  <Button fx:id="ProgrammerMenuButton11" focusTraversable="false" mnemonicParsing="false" onAction="#ProgrammerButton" prefHeight="42.0" prefWidth="208.0" text="Programmer" />
+                  <Button fx:id="DateCalcMenuButton11" focusTraversable="false" mnemonicParsing="false" onAction="#DateCalulationBtn" prefHeight="42.0" prefWidth="208.0" text="Date calculation" />
+                  <Label focusTraversable="false" prefHeight="17.0" prefWidth="112.0" styleClass="Label" text="   Converter" />
+                  <Button fx:id="LengthMenuButton11" focusTraversable="false" mnemonicParsing="false" onAction="#LengthButton" prefHeight="42.0" prefWidth="208.0" text="Length" />
+                  <Separator prefWidth="200.0" />
+                  <Button fx:id="TempMenuButton11" focusTraversable="false" mnemonicParsing="false" onAction="#TemperatureButton" prefHeight="42.0" prefWidth="208.0" text="Temperature" />
+                  <Label focusTraversable="false" prefHeight="26.0" prefWidth="185.0" styleClass="Label" text="   Configurations" />
+                  <Button fx:id="ConfigurationsMenuButton11" focusTraversable="false" mnemonicParsing="false" onAction="#ConfigurationButton" prefHeight="42.0" prefWidth="208.0" text="Configurations" />
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
     </children>

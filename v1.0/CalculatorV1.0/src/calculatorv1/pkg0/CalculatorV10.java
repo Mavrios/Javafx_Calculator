@@ -4,7 +4,6 @@
  */
 package calculatorv1.pkg0;
 
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,9 +17,8 @@ import javafx.stage.StageStyle;
  * @author lenovo2
  */
 public class CalculatorV10 extends Application {
-
+    @Override
     public void start(Stage stage) throws Exception {
-
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         Scene scene = new Scene(root);
         scene.getStylesheets().add("calculatorv1/pkg0/Button.css");
@@ -37,9 +35,10 @@ public class CalculatorV10 extends Application {
         stage.show();
     }
 
+    @Override
     public void stop(){
-    }
 
+    }
     /**
      * @param args the command line arguments
      */
