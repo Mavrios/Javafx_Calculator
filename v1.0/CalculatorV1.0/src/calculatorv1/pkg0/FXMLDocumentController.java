@@ -1284,12 +1284,12 @@ public class FXMLDocumentController implements Initializable {
                 factTA = factTemp;
                 factorial = Integer.parseInt(TA_Value);
                 TA.clear();
-                TA.clear();
                 int i;
                 Integer sum = 1;
                 for (i = 1; i <= factorial; i++) {
                     sum = sum * i;
                 }
+
                 factTemp = factTemp.replace("fact(" + TA_Value + ")", sum.toString());
                 TA.setText(factTemp);
 
@@ -4165,7 +4165,22 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void GraphingNowBtn() {
+        String tmp = TA.getText();
         GraphingButton();
+        if (FactFlag) {
+            factorial = Integer.parseInt(TA_Value);
+            TA.clear();
+            int i;
+            Integer sum = 1;
+            for (i = 1; i <= factorial; i++) {
+                sum = sum * i;
+            }
+
+            tmp = tmp.replace("fact(" + TA_Value + ")", sum.toString());
+        }
+        FactFlag = false;
+        plotEqn.setText(tmp);
+
     }
 
 }
