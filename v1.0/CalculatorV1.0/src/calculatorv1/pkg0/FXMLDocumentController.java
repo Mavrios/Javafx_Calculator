@@ -136,6 +136,7 @@ public class FXMLDocumentController implements Initializable {
     boolean endTF_Flag = false;
     String TA_Value = "";
     String factVal = "";
+    String progEqn = "";
     @FXML
     private VBox Vbox;
     boolean Vbox_Flag = false;
@@ -3964,8 +3965,6 @@ public class FXMLDocumentController implements Initializable {
 
                 lineChart.getData().clear();
             }
-
-            System.out.println(Xaxis + " " + Graphing_Y);
             if (Graphing_Y.isNaN()) {
                 lineChart.getData().clear();
                 plotEqn.setText("ERROR! Check Your Formula or Range");
@@ -4210,12 +4209,13 @@ public class FXMLDocumentController implements Initializable {
         HistoryPane1.setVisible(History_Flag);
         if (serverFound) {
             /* You need here to change to the path of your files*/
-            br = new BufferedReader(new FileReader("C:\\Users\\lenovo2\\Documents\\NetBeansProjects\\HistoryServer\\" + file));
+            br = new BufferedReader(new FileReader("D:\\" + file));
             String st;
             History_TA.clear();
-            History_TA.appendText("Scientific Calculator History\n");
+            History_TA1.clear();
             while ((st = br.readLine()) != null) {
                 History_TA.appendText(st + "\n");
+                History_TA1.appendText(st + "\n");
                 System.out.println(st);
             }
 
@@ -4678,7 +4678,8 @@ public class FXMLDocumentController implements Initializable {
             }
             //Converting result to string 
             text_Area.setText(s);
-//            label_Equation.setText("NOT ( " + text + " ) = " + s);
+            progEqn = "NOT ( " + text + " ) = " + s;
+            ps.println(progEqn);
         } catch (NumberFormatException e) {
             text_Area.appendText("  Very Long Number");
             System.out.println("Number of Exception occured because it is very long number !");
@@ -4947,7 +4948,8 @@ public class FXMLDocumentController implements Initializable {
                         }
                         operation.setText("   ");
 
-//                        label_Equation.setText(text + " XOR ( " + text2 + " ) = " + s);
+                        progEqn = text + " XOR ( " + text2 + " ) = " + s;
+                        ps.println(progEqn);
                         text_Area.setText(s);
                         text_Area2.clear();
                     } catch (NumberFormatException e) {
@@ -5003,7 +5005,8 @@ public class FXMLDocumentController implements Initializable {
                         }
                         operation.setText("  ");
 
-//                        label_Equation.setText(text + " OR ( " + text2 + " ) = " + s);
+                        progEqn = text + " OR ( " + text2 + " ) = " + s;
+                        ps.println(progEqn);
                         text_Area.setText(s);
                         text_Area2.clear();
                     } catch (NumberFormatException e) {
@@ -5060,7 +5063,8 @@ public class FXMLDocumentController implements Initializable {
                         }
                         operation.setText("   ");
 
-//                        label_Equation.setText(text + " AND ( " + text2 + " ) = " + s);
+                        progEqn = text + " AND ( " + text2 + " ) = " + s;
+                        ps.println(progEqn);
                         text_Area.setText(s);
                         text_Area2.clear();
                     } catch (NumberFormatException e) {
@@ -5091,6 +5095,7 @@ public class FXMLDocumentController implements Initializable {
             }
             text_Area.setText(s_ans);
         }
+        History_TA1.appendText(progEqn);
     }
 
     @FXML
@@ -5103,6 +5108,7 @@ public class FXMLDocumentController implements Initializable {
         DateCalc_Flag = false;
         Temperature_Flag = false;
         Programmer_Flag = true;
+        TA.clear();
         TA1.clear();
         TA2.clear();
         TA11.clear();

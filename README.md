@@ -21,6 +21,10 @@
 * Used arduino mega and developed the code on Arduino IDE.
 ### Important Libraries:
 * Keypad.h
+### Components: 
+### Connections:
+### Design modes:
+
 ------------------------
 ### 2. Software Toolbox :
 ### This project will work with:
