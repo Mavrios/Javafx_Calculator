@@ -1038,6 +1038,7 @@ public class FXMLDocumentController implements Initializable {
             TA.appendText("sin-1(");
         } else if (!scnd_flag && hypFlag) {
             TA.appendText("sinh(");
+            trioFlag = true;
         } else {
             TA.appendText("sinh-1(");
             trioFlag = true;
@@ -1060,6 +1061,7 @@ public class FXMLDocumentController implements Initializable {
             TA.appendText("cos-1(");
         } else if (!scnd_flag && hypFlag) {
             TA.appendText("cosh(");
+            trioFlag = true;
         } else {
             TA.appendText("cosh-1(");
             trioFlag = true;
@@ -1082,6 +1084,7 @@ public class FXMLDocumentController implements Initializable {
             TA.appendText("tan-1(");
         } else if (!scnd_flag && hypFlag) {
             TA.appendText("tanh(");
+            trioFlag = true;
         } else {
             TA.appendText("tanh-1(");
             trioFlag = true;
@@ -1104,6 +1107,7 @@ public class FXMLDocumentController implements Initializable {
             TA.appendText("sec-1(");
         } else if (!scnd_flag && hypFlag) {
             TA.appendText("sech(");
+            trioFlag = true;
         } else {
             TA.appendText("sech-1(");
             trioFlag = true;
@@ -1126,6 +1130,7 @@ public class FXMLDocumentController implements Initializable {
             TA.appendText("csc-1(");
         } else if (!scnd_flag && hypFlag) {
             TA.appendText("csch(");
+            trioFlag = true;
         } else {
             TA.appendText("csch-1(");
             trioFlag = true;
@@ -1148,6 +1153,7 @@ public class FXMLDocumentController implements Initializable {
             TA.appendText("cot-1(");
         } else if (!scnd_flag && hypFlag) {
             TA.appendText("coth(");
+            trioFlag = true;
         } else {
             TA.appendText("coth-1(");
             trioFlag = true;
@@ -1295,22 +1301,23 @@ public class FXMLDocumentController implements Initializable {
                 replace("sinh-1(", "Math.log(" + TA_Value + " + Math.sqrt(" + TA_Value + "*" + TA_Value + " + 1.0))*-1*((" + TA_Value + "-1)-").
                 replace("cosh-1(", " Math.log(" + TA_Value + " + Math.sqrt(" + TA_Value + "*" + TA_Value + " - 1.0))*-1*((" + TA_Value + "-1)-").
                 replace("tanh-1(", "0.5*(Math.log(" + TA_Value + " + 1.0) - Math.log(" + "1-" + TA_Value + " ))*-1*((" + TA_Value + "-1)-").
-                replace("sech(", "1/Math.sinh( (Math.PI/180)*").
-                replace("csch(", "1/Math.cosh( (Math.PI/180)*").
-                replace("coth(", "1/Math.tanh( (Math.PI/180)*").
-                replace("sinh(", "Math.sinh( (Math.PI/180)*").
-                replace("cosh(", "Math.cosh( (Math.PI/180)*").
-                replace("tanh(", "Math.tanh( (Math.PI/180)*").
-                replace("sin-1(", "(180/Math.PI)*Math.asin(").
-                replace("cos-1(", "(180/Math.PI)*Math.acos(").
-                replace("tan-1(", "(180/Math.PI)*Math.atan(").
+                replace("sech(", "1/cosh( ").
+                replace("csch(", "1/sinh( ").
+                replace("coth(", "1 / (tanh( ").
+                replace("tanh(", "sinh(" + TA_Value + ")" + "/" + "cosh(" + TA_Value + ")*-1*((" + TA_Value + "-1)-").
+                replace("sinh(", "((Math.exp(" + TA_Value + ")" + "-Math.exp(-" + TA_Value + "))/2)*-1*((" + TA_Value + "-1)-").
+                replace("cosh(", "((Math.exp(" + TA_Value + ")" + "+Math.exp(-" + TA_Value + "))/2)*-1*((" + TA_Value + "-1)-").
                 replace("sec", "1/cos").
                 replace("csc", "1/sin").
                 replace("cot", "1/tan").
                 replace("sin(", "Math.sin( (Math.PI/180)*").
                 replace("cos(", "Math.cos( (Math.PI/180)*").
                 replace("tan(", "Math.tan( (Math.PI/180)*").
+                replace("sin-1(", "(180/Math.PI)*Math.asin(").
+                replace("cos-1(", "(180/Math.PI)*Math.acos(").
+                replace("tan-1(", "(180/Math.PI)*Math.atan(").
                 replace("cot", "1/tan").
+                replace("*-1*((" + TA_Value + "-1)-" + TA_Value + ")*-1*((" + TA_Value + "-1)- " + TA_Value + ")", "*-1*((" + TA_Value + "-1)-" + TA_Value + ")*-1*((" + TA_Value + "-1)- " + TA_Value + "))").
                 replace("sqr(", ('(' + TA_Value + '*'));
         return tmp;
     }

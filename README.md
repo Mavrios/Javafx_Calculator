@@ -1,4 +1,4 @@
-# **Java Calculator App**
+# <center>**Java Calculator App**
 ### Team Names:
 | Name | 
 | ----------- | 
@@ -8,22 +8,29 @@
 | Fady Nashaat Sorial | 
 | Salma Salah El Din Abdullah |
 
-> ## *Idea of Project*
+> ## <center> *Idea of Project*
 ### Engineers, students and many people need to do complex calculations very fast so we need a calculator with simple GUI and greet features to do these calculations. 
 ### We can control our calculator using :
 * Keypad 
 *  Mouse 
 * Laptop Keyboard
 
-> ## *Materials and Method*
+> ## <center> *Materials and Method*
 
 ### 1. Hardware Toolbox :
 * Used arduino mega and developed the code on Arduino IDE.
 ### Important Libraries:
 * Keypad.h
 ### Components: 
+
 ### Connections:
+![Components](images/hw3.png)
+
 ### Design modes:
+* ### We use 4x4 keypad with two modes, Arrows and numbers
+![4x4 keypad](images/hw1.png)
+* ### We use 1x4 keypad to choose between 4 options
+![1x4 keypad ](images/hw2.png)
 
 ------------------------
 ### 2. Software Toolbox :
@@ -40,10 +47,18 @@ Libraries Added :
 * jssc.2.8.0 (for serial communication between java and arduino)
 ---------------
 
-> ## *Modes*
-
+> ## <center> *Modes*
 ## Scientific Mode
+![Scientific Mode ](images/2.jpg)
 ## Graphing Mode
+![Graphing Mode ](images/5.jpg)
 ## Programmer Mode
+![Programmer Mode ](images/prog.png)
 ## Data Calculation Mode
+![Data Calculation Mode ](images/7.jpeg)
 ## Converter Mode
+![Converter Mode ](images/8.png)
+
+----------------------------
+
+#### <center> Note : All src code provided and detailed report.
