@@ -63,6 +63,26 @@ import jssc.SerialPortList;
  */
 public class FXMLDocumentController implements Initializable {
 
+    /**
+     * * (2) - '2' Defining Some Global Variables which are used in handling
+     * the algorithm we want*****
+     */
+    boolean FLAGS;
+    boolean BIN_FLAG = false;
+    boolean OCT_FLAG = false;
+    boolean HEX_FLAG = false;
+    boolean DEC_FLAG = true;
+
+    boolean AND_FLAG = false;
+    boolean OR_FLAG = false;
+    boolean XOR_FLAG = false;
+    //boolean NOT_FLAG
+    boolean TEXT_2 = false; // Flag for checking about which text Atrea(text_Area , text_Area2) will choose to append
+
+    int EQ_FLAG = 0;
+
+    long ans = 0; //to store in it the old values 
+
     SerialPort arduinoPort = null;
     ObservableList<String> portList, port_listener;
     boolean detectPort_Flag = false;
@@ -109,6 +129,11 @@ public class FXMLDocumentController implements Initializable {
     boolean Scientific_Flag = true;
     boolean DateCalc_Flag = false;
     boolean Temperature_Flag = false;
+    boolean Programmer_Flag = false;
+    boolean Graph_Flag = false;
+    boolean GraphTF_Flag = false;
+    boolean startTF_Flag = false;
+    boolean endTF_Flag = false;
     String TA_Value = "";
     String factVal = "";
     @FXML
@@ -301,8 +326,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private VBox GraphingMenuBox;
     @FXML
-    private Button GraphingBtn;
-    @FXML
     private Button AbsButton;
     @FXML
     private Button FloorButton;
@@ -411,10 +434,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button TempMenuButton21;
     @FXML
-    private Button TempMenuButton22;
-    @FXML
-    private Button TempMenuButton23;
-    @FXML
     private AnchorPane ProgrammerPane;
     @FXML
     private Button btn_0;
@@ -485,20 +504,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private VBox ProgrammerMenu;
     @FXML
-    private Button ScientificMenuButton11;
-    @FXML
-    private Button GraphingMenuButton11;
-    @FXML
-    private Button ProgrammerMenuButton11;
-    @FXML
-    private Button DateCalcMenuButton11;
-    @FXML
-    private Button LengthMenuButton11;
-    @FXML
-    private Button TempMenuButton11;
-    @FXML
-    private Button ConfigurationsMenuButton11;
-    @FXML
     private Button ScientificMenuButton2;
     @FXML
     private Button GraphingMenuButton2;
@@ -524,6 +529,54 @@ public class FXMLDocumentController implements Initializable {
     private Button ConfigurationsMenuButton3;
     @FXML
     private Button GraphNow;
+    @FXML
+    private Button ScientificMenuButton4;
+    @FXML
+    private Button GraphingMenuButton4;
+    @FXML
+    private Button ProgrammerMenuButton4;
+    @FXML
+    private Button DateCalcMenuButton4;
+    @FXML
+    private Button LengthMenuButton4;
+    @FXML
+    private Button TempMenuButton4;
+    @FXML
+    private Button ConfigurationsMenuButton4;
+    @FXML
+    private AnchorPane HistoryPane1;
+    @FXML
+    private TextArea History_TA1;
+    @FXML
+    private Button btn_Clear;
+    @FXML
+    private Button ScientificMenuButton5;
+    @FXML
+    private Button GraphingMenuButton5;
+    @FXML
+    private Button ProgrammerMenuButton5;
+    @FXML
+    private Button DateCalcMenuButton5;
+    @FXML
+    private Button LengthMenuButton5;
+    @FXML
+    private Button TempMenuButton5;
+    @FXML
+    private Button ConfigurationsMenuButton5;
+    @FXML
+    private Button ScientificMenuButton6;
+    @FXML
+    private Button GraphingMenuButton6;
+    @FXML
+    private Button ProgrammerMenuButton6;
+    @FXML
+    private Button DateCalcMenuButton6;
+    @FXML
+    private Button LengthMenuButton6;
+    @FXML
+    private Button TempMenuButton6;
+    @FXML
+    private Button ConfigurationsMenuButton6;
 
     @FXML
     private void btnRightBrace() {
@@ -1451,6 +1504,24 @@ public class FXMLDocumentController implements Initializable {
                     } else if (y > 3) {
                         y = 3;
                     }
+                } else if (Graph_Flag) {
+                    if (y > 2) {
+                        y = 2;
+                    }
+                } else if (Programmer_Flag) {
+                    if (x == 0) {
+                        if (y > 10) {
+                            y = 10;
+                        }
+                    } else if (x == 3) {
+                        if (y > 5) {
+                            y = 5;
+                        }
+                    } else {
+                        if (y > 4) {
+                            y = 4;
+                        }
+                    }
                 } else {
                     if (y > 8) {
                         y = 8;
@@ -1472,6 +1543,14 @@ public class FXMLDocumentController implements Initializable {
             }
             if (event.getCode() == KeyCode.LEFT) {
                 x--;
+                if (Programmer_Flag) {
+                    if (x == 0 && y == 4) {
+                        y = 6;
+                    }
+                    if (x == 2 && y == 5) {
+                        y = 4;
+                    }
+                }
                 if (x < 0) {
                     x = 0;
                 }
@@ -1489,6 +1568,19 @@ public class FXMLDocumentController implements Initializable {
                 } else if (Length_Flag || DateCalc_Flag || Temperature_Flag) {
                     if (x > 2) {
                         x = 2;
+                    }
+                } else if (Graph_Flag) {
+                    if (x > 1) {
+                        x = 1;
+                    }
+                } else if (Programmer_Flag) {
+                    if (x > 3) {
+                        x = 3;
+                    }
+                    if (x == 1 && y == 5) {
+                        y = 3;
+                    } else if (y > 5) {
+                        y = 4;
                     }
                 } else {
                     if (x > 4) {
@@ -1527,6 +1619,12 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Temperature_Flag) {
                             TA11.appendText(".");
                             Converter2();
+                        } else if (Graph_Flag) {
+                            Plot();
+                        } else if (Programmer_Flag) {
+                            if (!btn_F.isDisable()) {
+                                Button_F();
+                            }
                         }
                         break;
 
@@ -1549,6 +1647,12 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Temperature_Flag) {
                             TA11.appendText("7");
                             Converter2();
+                        } else if (Graph_Flag) {
+                            GraphTF_Flag = true;
+                        } else if (Programmer_Flag) {
+                            if (!btn_E.isDisable()) {
+                                Button_E();
+                            }
                         }
                         break;
 
@@ -1571,6 +1675,12 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Temperature_Flag) {
                             TA11.appendText("4");
                             Converter2();
+                        } else if (Graph_Flag) {
+                            startTF_Flag = true;
+                        } else if (Programmer_Flag) {
+                            if (!btn_D.isDisable()) {
+                                Button_D();
+                            }
                         }
                         break;
 
@@ -1587,6 +1697,10 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Temperature_Flag) {
                             TA11.appendText("1");
                             Converter2();
+                        } else if (Programmer_Flag) {
+                            if (!btn_C.isDisable()) {
+                                Button_C();
+                            }
                         }
                         break;
 
@@ -1599,6 +1713,10 @@ public class FXMLDocumentController implements Initializable {
                             box2.show();
                         } else if (Temperature_Flag) {
                             box21.show();
+                        } else if (Programmer_Flag) {
+                            if (!btn_E.isDisable()) {
+                                Button_B();
+                            }
                         }
                         break;
 
@@ -1615,6 +1733,10 @@ public class FXMLDocumentController implements Initializable {
                             box1.show();
                         } else if (Temperature_Flag) {
                             box11.show();
+                        } else if (Programmer_Flag) {
+                            if (!btn_A.isDisable()) {
+                                Button_A();
+                            }
                         }
                         break;
 
@@ -1628,18 +1750,37 @@ public class FXMLDocumentController implements Initializable {
                             } else {
                                 scndbtn();
                             }
+                        } else if (Programmer_Flag) {
+                            Button_AND();
                         }
                         break;
 
                     case 7:
                         if (Scientific_Flag) {
                             Trigonometry();
+                        } else if (Programmer_Flag) {
+                            Button_OCT();
                         }
                         break;
                     case 8:
-                        GraphingNowBtn();
+                        if (Scientific_Flag) {
+                            GraphingNowBtn();
+                        } else if (Programmer_Flag) {
+                            Buuton_DEC();
+                        }
                         break;
 
+                    case 9:
+                        if (Programmer_Flag) {
+                            Button_HEX();
+                        }
+                        break;
+
+                    case 10:
+                        if (Programmer_Flag) {
+                            Button_BIN();
+                        }
+                        break;
                 }
                 break;
 
@@ -1656,6 +1797,10 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Temperature_Flag) {
                             TA11.appendText("0");
                             Converter2();
+                        } else if (Graph_Flag) {
+                            Plot();
+                        } else if (Programmer_Flag) {
+                            Button_Equal1();
                         }
 
                         break;
@@ -1677,6 +1822,12 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Temperature_Flag) {
                             TA11.appendText("8");
                             Converter2();
+                        } else if (Graph_Flag) {
+                            GraphTF_Flag = true;
+                        } else if (Programmer_Flag) {
+                            if (!btn_1.isDisable()) {
+                                Button_1();
+                            }
                         }
                         break;
 
@@ -1697,6 +1848,12 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Temperature_Flag) {
                             TA11.appendText("5");
                             Converter2();
+                        } else if (Graph_Flag) {
+                            endTF_Flag = true;
+                        } else if (Programmer_Flag) {
+                            if (!btn_4.isDisable()) {
+                                Button_4();
+                            }
                         }
                         break;
 
@@ -1711,6 +1868,10 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Temperature_Flag) {
                             TA11.appendText("2");
                             Converter2();
+                        } else if (Programmer_Flag) {
+                            if (!btn_7.isDisable()) {
+                                Button_7();
+                            }
                         }
                         break;
 
@@ -1721,6 +1882,8 @@ public class FXMLDocumentController implements Initializable {
                             box2.show();
                         } else if (Temperature_Flag) {
                             box21.show();
+                        } else if (Programmer_Flag) {
+                            Button_OR();
                         }
                         break;
 
@@ -1776,6 +1939,10 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Temperature_Flag) {
                             TA11.clear();
                             Converter2();
+                        } else if (Programmer_Flag) {
+                            if (!btn_0.isDisable()) {
+                                Button_0();
+                            }
                         }
 
                         break;
@@ -1798,6 +1965,10 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Temperature_Flag) {
                             TA11.appendText("9");
                             Converter2();
+                        } else if (Programmer_Flag) {
+                            if (!btn_2.isDisable()) {
+                                Button_2();
+                            }
                         }
                         break;
 
@@ -1818,6 +1989,10 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Temperature_Flag) {
                             TA11.appendText("6");
                             Converter2();
+                        } else if (Programmer_Flag) {
+                            if (!btn_5.isDisable()) {
+                                Button_5();
+                            }
                         }
                         break;
 
@@ -1832,6 +2007,10 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Temperature_Flag) {
                             TA11.appendText("3");
                             Converter2();
+                        } else if (Programmer_Flag) {
+                            if (!btn_8.isDisable()) {
+                                Button_8();
+                            }
                         }
 
                         break;
@@ -1843,6 +2022,8 @@ public class FXMLDocumentController implements Initializable {
                             box2.show();
                         } else if (Temperature_Flag) {
                             box21.show();
+                        } else if (Programmer_Flag) {
+                            Button_NOT();
                         }
                         break;
 
@@ -1891,30 +2072,46 @@ public class FXMLDocumentController implements Initializable {
                     case 0:
                         if (Scientific_Flag) {
                             handleButtonActionDot();
+                        } else if (Programmer_Flag) {
+                            Button_Clear();
                         }
                         break;
 
                     case 1:
                         if (Scientific_Flag) {
                             handleButtonAction3();
+                        } else if (Programmer_Flag) {
+                            if (!btn_3.isDisable()) {
+                                Button_3();
+                            }
                         }
                         break;
 
                     case 2:
                         if (Scientific_Flag) {
                             handleButtonAction6();
+                        } else if (Programmer_Flag) {
+                            if (!btn_6.isDisable()) {
+                                Button_6();
+                            }
                         }
                         break;
 
                     case 3:
                         if (Scientific_Flag) {
                             handleButtonAction9();
+                        } else if (Programmer_Flag) {
+                            if (!btn_9.isDisable()) {
+                                Button_9();
+                            }
                         }
                         break;
 
                     case 4:
                         if (Scientific_Flag) {
                             btnFact();
+                        } else if (Programmer_Flag) {
+                            Button_XOR();
                         }
                         break;
 
@@ -1925,6 +2122,8 @@ public class FXMLDocumentController implements Initializable {
                             } else {
                                 btnExp();
                             }
+                        } else if (Programmer_Flag) {
+                            Button_Equal();
                         }
                         break;
 
@@ -2024,6 +2223,9 @@ public class FXMLDocumentController implements Initializable {
                             ConfigurationsMenuButton1.setId("selected-button");
                             ConfigurationsMenuButton2.setId("selected-button");
                             ConfigurationsMenuButton3.setId("selected-button");
+                            ConfigurationsMenuButton4.setId("selected-button");
+                            ConfigurationsMenuButton5.setId("selected-button");
+                            ConfigurationsMenuButton6.setId("selected-button");
                         } else if (Scientific_Flag) {
                             buttonLn.setId("selected-button");
                         } else if (Length_Flag) {
@@ -2032,6 +2234,10 @@ public class FXMLDocumentController implements Initializable {
                             calculateButton.setId("selected-button");
                         } else if (Temperature_Flag) {
                             dot1.setId("selected-button");
+                        } else if (Graph_Flag) {
+                            PlotBtn.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_F.setId("selected-button");
                         }
 
                         break;
@@ -2042,6 +2248,9 @@ public class FXMLDocumentController implements Initializable {
                             TempMenuButton1.setId("selected-button");
                             TempMenuButton2.setId("selected-button");
                             TempMenuButton21.setId("selected-button");
+                            TempMenuButton4.setId("selected-button");
+                            TempMenuButton5.setId("selected-button");
+                            TempMenuButton6.setId("selected-button");
                         } else if (Scientific_Flag) {
                             buttonLog.setId("selected-button");
                         } else if (Length_Flag) {
@@ -2054,6 +2263,10 @@ public class FXMLDocumentController implements Initializable {
                             }
                         } else if (Temperature_Flag) {
                             seven1.setId("selected-button");
+                        } else if (Graph_Flag) {
+                            plotEqn.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_E.setId("selected-button");
                         }
 
                         break;
@@ -2064,6 +2277,9 @@ public class FXMLDocumentController implements Initializable {
                             LengthMenuButton1.setId("selected-button");
                             LengthMenuButton2.setId("selected-button");
                             LengthMenuButton3.setId("selected-button");
+                            LengthMenuButton4.setId("selected-button");
+                            LengthMenuButton5.setId("selected-button");
+                            LengthMenuButton6.setId("selected-button");
                         } else if (Scientific_Flag) {
                             button10PowerX.setId("selected-button");
                         } else if (Length_Flag) {
@@ -2076,6 +2292,10 @@ public class FXMLDocumentController implements Initializable {
                             }
                         } else if (Temperature_Flag) {
                             four1.setId("selected-button");
+                        } else if (Graph_Flag) {
+                            startTF.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_D.setId("selected-button");
                         }
                         break;
 
@@ -2085,6 +2305,9 @@ public class FXMLDocumentController implements Initializable {
                             DateCalcMenuButton1.setId("selected-button");
                             DateCalcMenuButton2.setId("selected-button");
                             DateCalcMenuButton3.setId("selected-button");
+                            DateCalcMenuButton4.setId("selected-button");
+                            DateCalcMenuButton5.setId("selected-button");
+                            DateCalcMenuButton6.setId("selected-button");
                         } else if (Scientific_Flag) {
                             buttonXpY.setId("selected-button");
                         } else if (Length_Flag) {
@@ -2093,6 +2316,8 @@ public class FXMLDocumentController implements Initializable {
                             StartDay.setId("selected-button");
                         } else if (Temperature_Flag) {
                             one1.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_C.setId("selected-button");
                         }
                         break;
 
@@ -2102,12 +2327,17 @@ public class FXMLDocumentController implements Initializable {
                             ProgrammerMenuButton1.setId("selected-button");
                             ProgrammerMenuButton2.setId("selected-button");
                             ProgrammerMenuButton3.setId("selected-button");
+                            ProgrammerMenuButton4.setId("selected-button");
+                            ProgrammerMenuButton5.setId("selected-button");
+                            ProgrammerMenuButton6.setId("selected-button");
                         } else if (Scientific_Flag) {
                             buttonSqrt.setId("selected-button");
                         } else if (Length_Flag) {
                             box2.setId("selected-button");
                         } else if (Temperature_Flag) {
                             box21.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_B.setId("selected-button");
                         }
                         break;
 
@@ -2117,6 +2347,10 @@ public class FXMLDocumentController implements Initializable {
                             GraphingMenuButton1.setId("selected-button");
                             GraphingMenuButton2.setId("selected-button");
                             GraphingMenuButton3.setId("selected-button");
+                            GraphingMenuButton3.setId("selected-button");
+                            GraphingMenuButton4.setId("selected-button");
+                            GraphingMenuButton5.setId("selected-button");
+                            GraphingMenuButton6.setId("selected-button");
 
                         } else if (Scientific_Flag) {
                             if (Vbox_Flag) {
@@ -2128,6 +2362,8 @@ public class FXMLDocumentController implements Initializable {
                             box1.setId("selected-button");
                         } else if (Temperature_Flag) {
                             box11.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_A.setId("selected-button");
                         }
                         break;
 
@@ -2137,6 +2373,9 @@ public class FXMLDocumentController implements Initializable {
                             ScientificMenuButton1.setId("selected-button");
                             ScientificMenuButton2.setId("selected-button");
                             ScientificMenuButton3.setId("selected-button");
+                            ScientificMenuButton4.setId("selected-button");
+                            ScientificMenuButton5.setId("selected-button");
+                            ScientificMenuButton6.setId("selected-button");
 
                         } else if (Scientific_Flag) {
                             if (Vbox_Flag) {
@@ -2147,6 +2386,8 @@ public class FXMLDocumentController implements Initializable {
                             } else {
                                 button2nd.setId("selected-button");
                             }
+                        } else if (Programmer_Flag) {
+                            btn_AND.setId("selected-button");
                         }
                         break;
 
@@ -2157,15 +2398,35 @@ public class FXMLDocumentController implements Initializable {
                             ScientificMenuButton1.setId("selected-button");
                             ScientificMenuButton2.setId("selected-button");
                             ScientificMenuButton3.setId("selected-button");
+                            ScientificMenuButton4.setId("selected-button");
+                            ScientificMenuButton5.setId("selected-button");
+                            ScientificMenuButton6.setId("selected-button");
                         } else if (Scientific_Flag) {
                             TogButton.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_OCT.setId("selected-button");
                         }
                         break;
 
                     case 8:
-                        GraphNow.setId("selected-button");
+                        if (Scientific_Flag) {
+                            GraphNow.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_DEC.setId("selected-button");
+                        }
                         break;
 
+                    case 9:
+                        if (Programmer_Flag) {
+                            btn_HEX.setId("selected-button");
+                        }
+                        break;
+
+                    case 10:
+                        if (Programmer_Flag) {
+                            btn_BIN.setId("selected-button");
+                        }
+                        break;
                 }
                 break;
 
@@ -2180,6 +2441,10 @@ public class FXMLDocumentController implements Initializable {
                             calculateButton.setId("selected-button");
                         } else if (Temperature_Flag) {
                             zero1.setId("selected-button");
+                        } else if (Graph_Flag) {
+                            PlotBtn.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_equal1.setId("selected-button");
                         }
                         break;
 
@@ -2196,6 +2461,10 @@ public class FXMLDocumentController implements Initializable {
                             }
                         } else if (Temperature_Flag) {
                             eight1.setId("selected-button");
+                        } else if (Graph_Flag) {
+                            plotEqn.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_1.setId("selected-button");
                         }
                         break;
 
@@ -2212,6 +2481,10 @@ public class FXMLDocumentController implements Initializable {
                             }
                         } else if (Temperature_Flag) {
                             five1.setId("selected-button");
+                        } else if (Graph_Flag) {
+                            endTF.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_4.setId("selected-button");
                         }
                         break;
 
@@ -2224,6 +2497,8 @@ public class FXMLDocumentController implements Initializable {
                             StartMonth.setId("selected-button");
                         } else if (Temperature_Flag) {
                             two1.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_7.setId("selected-button");
                         }
                         break;
 
@@ -2234,6 +2509,8 @@ public class FXMLDocumentController implements Initializable {
                             box2.setId("selected-button");
                         } else if (Temperature_Flag) {
                             box21.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_OR.setId("selected-button");
                         }
                         break;
 
@@ -2286,6 +2563,8 @@ public class FXMLDocumentController implements Initializable {
                             calculateButton.setId("selected-button");
                         } else if (Temperature_Flag) {
                             clear1.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_0.setId("selected-button");
                         }
                         break;
 
@@ -2302,6 +2581,8 @@ public class FXMLDocumentController implements Initializable {
                             }
                         } else if (Temperature_Flag) {
                             nine1.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_2.setId("selected-button");
                         }
                         break;
 
@@ -2318,6 +2599,8 @@ public class FXMLDocumentController implements Initializable {
                             }
                         } else if (Temperature_Flag) {
                             six1.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_5.setId("selected-button");
                         }
                         break;
 
@@ -2330,6 +2613,8 @@ public class FXMLDocumentController implements Initializable {
                             StartYear.setId("selected-button");
                         } else if (Temperature_Flag) {
                             three1.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_8.setId("selected-button");
                         }
                         break;
 
@@ -2340,6 +2625,8 @@ public class FXMLDocumentController implements Initializable {
                             box2.setId("selected-button");
                         } else if (Temperature_Flag) {
                             box21.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_NOT.setId("selected-button");
                         }
                         break;
 
@@ -2387,30 +2674,40 @@ public class FXMLDocumentController implements Initializable {
                     case 0:
                         if (Scientific_Flag) {
                             buttonDot.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_Clear.setId("selected-button");
                         }
                         break;
 
                     case 1:
                         if (Scientific_Flag) {
                             button3.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_3.setId("selected-button");
                         }
                         break;
 
                     case 2:
                         if (Scientific_Flag) {
                             button6.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_6.setId("selected-button");
                         }
                         break;
 
                     case 3:
                         if (Scientific_Flag) {
                             button9.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_9.setId("selected-button");
                         }
                         break;
 
                     case 4:
                         if (Scientific_Flag) {
                             buttonFact.setId("selected-button");
+                        } else if (Programmer_Flag) {
+                            btn_XOR.setId("selected-button");
                         }
                         break;
 
@@ -2421,6 +2718,8 @@ public class FXMLDocumentController implements Initializable {
                             } else {
                                 buttonExp.setId("selected-button");
                             }
+                        } else if (Programmer_Flag) {
+                            btn_equal.setId("selected-button");
                         }
                         break;
 
@@ -2586,6 +2885,27 @@ public class FXMLDocumentController implements Initializable {
         LengthMenuButton3.setId("");
         TempMenuButton2.setId("");
         ConfigurationsMenuButton3.setId("");
+        ScientificMenuButton4.setId("");
+        GraphingMenuButton4.setId("");
+        ProgrammerMenuButton4.setId("");
+        DateCalcMenuButton4.setId("");
+        LengthMenuButton4.setId("");
+        TempMenuButton4.setId("");
+        ConfigurationsMenuButton4.setId("");
+        ScientificMenuButton5.setId("");
+        GraphingMenuButton5.setId("");
+        ProgrammerMenuButton5.setId("");
+        DateCalcMenuButton5.setId("");
+        LengthMenuButton5.setId("");
+        TempMenuButton5.setId("");
+        ConfigurationsMenuButton5.setId("");
+        ScientificMenuButton6.setId("");
+        GraphingMenuButton6.setId("");
+        ProgrammerMenuButton6.setId("");
+        DateCalcMenuButton6.setId("");
+        LengthMenuButton6.setId("");
+        TempMenuButton6.setId("");
+        ConfigurationsMenuButton6.setId("");
         one.setId("");
         two.setId("");
         three.setId("");
@@ -2623,6 +2943,40 @@ public class FXMLDocumentController implements Initializable {
         EndMonth.setId("");
         EndYear.setId("");
         GraphNow.setId("");
+        PlotBtn.setId("");
+        plotEqn.setId("");
+        startTF.setId("");
+        endTF.setId("");
+        GraphTF_Flag = false;
+        startTF_Flag = false;
+        endTF_Flag = false;
+        btn_F.setId("");
+        btn_E.setId("");
+        btn_D.setId("");
+        btn_C.setId("");
+        btn_B.setId("");
+        btn_A.setId("");
+        btn_AND.setId("");
+        btn_OCT.setId("");
+        btn_DEC.setId("");
+        btn_HEX.setId("");
+        btn_BIN.setId("");
+        btn_equal1.setId("");
+        btn_1.setId("");
+        btn_4.setId("");
+        btn_7.setId("");
+        btn_OR.setId("");
+        btn_0.setId("");
+        btn_2.setId("");
+        btn_5.setId("");
+        btn_8.setId("");
+        btn_NOT.setId("");
+        btn_Clear.setId("");
+        btn_3.setId("");
+        btn_6.setId("");
+        btn_9.setId("");
+        btn_XOR.setId("");
+        btn_equal.setId("");
 
         if (Sci_scnd_flag == false) {
             button2nd.setId("");
@@ -2661,6 +3015,7 @@ public class FXMLDocumentController implements Initializable {
         MenuBox2.setVisible(false);
         FunctionsMenu.setVisible(false);
         HistoryPane.setVisible(false);
+        HistoryPane1.setVisible(false);
         y = 7;
         x = 0;
         Vbox_Flag = false;
@@ -2701,6 +3056,7 @@ public class FXMLDocumentController implements Initializable {
         ProgrammerMenu.setVisible(false);
         TempMenu.setVisible(false);
         HistoryPane.setVisible(false);
+        HistoryPane1.setVisible(false);
         History_Flag = false;
         Menu_Flag = false;
         Vbox_Flag = false;
@@ -2838,7 +3194,9 @@ public class FXMLDocumentController implements Initializable {
         Scientific_Flag = true;
         Length_Flag = false;
         DateCalc_Flag = false;
+        Graph_Flag = false;
         Temperature_Flag = false;
+        Programmer_Flag = false;
         TA1.clear();
         TA2.clear();
         TA11.clear();
@@ -2874,7 +3232,9 @@ public class FXMLDocumentController implements Initializable {
         y = 0;
         Scientific_Flag = false;
         Temperature_Flag = false;
+        Programmer_Flag = false;
         DateCalc_Flag = false;
+        Graph_Flag = false;
         Length_Flag = true;
         TA.clear();
         TA11.clear();
@@ -3445,7 +3805,9 @@ public class FXMLDocumentController implements Initializable {
         DateCalc_Flag = true;
         Scientific_Flag = false;
         Length_Flag = false;
+        Graph_Flag = false;
         Temperature_Flag = false;
+        Programmer_Flag = false;
         TA.clear();
         TA1.clear();
         TA11.clear();
@@ -3572,7 +3934,7 @@ public class FXMLDocumentController implements Initializable {
      * * Plotting Function to handle X,Y data provided for te eqn to plot it **
      */
     @FXML
-    private void Plot(ActionEvent event) {
+    private void Plot() {
         eqn = plotEqn.getText();
         eqnTmp = plotEqn.getText();
         lineChart.getData().clear();
@@ -3624,10 +3986,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void GraphingButton() {
+        x = 0;
+        y = 0;
         Scientific_Flag = false;
         Length_Flag = false;
         DateCalc_Flag = false;
+        Graph_Flag = true;
         Temperature_Flag = false;
+        Programmer_Flag = false;
         TA.clear();
         TA1.clear();
         TA2.clear();
@@ -3649,7 +4015,9 @@ public class FXMLDocumentController implements Initializable {
         Scientific_Flag = false;
         Length_Flag = false;
         DateCalc_Flag = false;
+        Graph_Flag = false;
         Temperature_Flag = false;
+        Programmer_Flag = false;
         TA.clear();
         TA1.clear();
         TA2.clear();
@@ -3831,6 +4199,7 @@ public class FXMLDocumentController implements Initializable {
         MenuBox2.setVisible(false);
         FunctionsMenu.setVisible(false);
         HistoryPane.setVisible(false);
+        HistoryPane1.setVisible(false);
         y = 7;
         x = 0;
         Vbox_Flag = false;
@@ -3838,6 +4207,7 @@ public class FXMLDocumentController implements Initializable {
         Menu_Flag = false;
         History_Flag = !History_Flag;
         HistoryPane.setVisible(History_Flag);
+        HistoryPane1.setVisible(History_Flag);
         if (serverFound) {
             /* You need here to change to the path of your files*/
             br = new BufferedReader(new FileReader("C:\\Users\\lenovo2\\Documents\\NetBeansProjects\\HistoryServer\\" + file));
@@ -3963,9 +4333,11 @@ public class FXMLDocumentController implements Initializable {
         x = 0;
         y = 0;
         Length_Flag = false;
+        Graph_Flag = false;
         Scientific_Flag = false;
         DateCalc_Flag = false;
         Temperature_Flag = true;
+        Programmer_Flag = false;
         TA.clear();
         TA1.clear();
         TA2.clear();
@@ -4001,75 +4373,259 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void Button_0(ActionEvent event) {
+    private void Button_0() {
+        if (EQ_FLAG == 1) {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true) {
+            text_Area2.appendText("0");
+        } else {
+            text_Area.appendText("0");
+        }
+        EQ_FLAG = 0;
     }
 
     @FXML
-    private void Button_1(ActionEvent event) {
+    private void Button_1() {
+        if (EQ_FLAG >= 1) {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true) {
+            text_Area2.appendText("1");
+        } else {
+            text_Area.appendText("1");
+        }
+
+        EQ_FLAG = 0;
+
     }
 
     @FXML
-    private void Button_2(ActionEvent event) {
+    private void Button_2() {
+        if (EQ_FLAG >= 1) {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true) {
+            text_Area2.appendText("2");
+        } else {
+            text_Area.appendText("2");
+        }
+        EQ_FLAG = 0;
+
     }
 
     @FXML
-    private void Button_3(ActionEvent event) {
+    private void Button_3() {
+        if (EQ_FLAG >= 1) {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true) {
+            text_Area2.appendText("3");
+        } else {
+            text_Area.appendText("3");
+        }
+
+        EQ_FLAG = 0;
+
     }
 
     @FXML
-    private void Button_4(ActionEvent event) {
+    private void Button_4() {
+
+        if (EQ_FLAG >= 1) {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true) {
+            text_Area2.appendText("4");
+        } else {
+            text_Area.appendText("4");
+        }
+        EQ_FLAG = 0;
     }
 
     @FXML
-    private void Button_5(ActionEvent event) {
+    private void Button_5() {
+        if (EQ_FLAG >= 1) {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true) {
+            text_Area2.appendText("5");
+        } else {
+            text_Area.appendText("5");
+        }
+        EQ_FLAG = 0;
+
     }
 
     @FXML
-    private void Button_6(ActionEvent event) {
+    private void Button_6() {
+        if (EQ_FLAG >= 1) {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true) {
+            text_Area2.appendText("6");
+        } else {
+            text_Area.appendText("6");
+        }
+        EQ_FLAG = 0;
+
     }
 
     @FXML
-    private void Button_7(ActionEvent event) {
+    private void Button_7() {
+        if (EQ_FLAG >= 1) {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true) {
+            text_Area2.appendText("7");
+        } else {
+            text_Area.appendText("7");
+        }
+        EQ_FLAG = 0;
+
     }
 
     @FXML
-    private void Button_8(ActionEvent event) {
+    private void Button_8() {
+        if (EQ_FLAG >= 1) {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true) {
+            text_Area2.appendText("8");
+        } else {
+            text_Area.appendText("8");
+        }
+        EQ_FLAG = 0;
+
     }
 
     @FXML
-    private void Button_9(ActionEvent event) {
+    private void Button_9() {
+        if (EQ_FLAG >= 1) {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true) {
+            text_Area2.appendText("9");
+        } else {
+            text_Area.appendText("9");
+        }
+        EQ_FLAG = 0;
+
+    }
+
+    private void Label_OCT() {
+        if (EQ_FLAG >= 1) {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true) {
+            text_Area2.appendText("F");
+        } else {
+            text_Area.appendText("F");
+        }
+        EQ_FLAG = 0;
+
     }
 
     @FXML
-    private void Label_OCT(ActionEvent event) {
+    private void Button_BIN() {
+        //Flag of binary numbers
+        BIN_FLAG = true;
+
+        DEC_FLAG = false;
+        OCT_FLAG = false;
+        HEX_FLAG = false;
+        //Enable Zeros and Ones Button only
+
+        btn_2.setDisable(true);
+        btn_3.setDisable(true);
+        btn_4.setDisable(true);
+        btn_5.setDisable(true);
+        btn_6.setDisable(true);
+        btn_7.setDisable(true);
+        btn_8.setDisable(true);
+        btn_9.setDisable(true);
+        btn_A.setDisable(true);
+        btn_B.setDisable(true);
+        btn_C.setDisable(true);
+        btn_D.setDisable(true);
+        btn_E.setDisable(true);
+        btn_F.setDisable(true);
     }
 
     @FXML
-    private void Label_DEC(ActionEvent event) {
+    private void Button_OCT() {
+        //(1) Flag of Octal
+        OCT_FLAG = true;
+
+        DEC_FLAG = false;
+        BIN_FLAG = false;
+        HEX_FLAG = false;
+
+        btn_2.setDisable(false);
+        btn_3.setDisable(false);
+        btn_4.setDisable(false);
+        btn_5.setDisable(false);
+        btn_6.setDisable(false);
+        btn_7.setDisable(false);
+        btn_8.setDisable(true);
+        btn_9.setDisable(true);
+        btn_A.setDisable(true);
+        btn_B.setDisable(true);
+        btn_C.setDisable(true);
+        btn_D.setDisable(true);
+        btn_E.setDisable(true);
+        btn_F.setDisable(true);
+
     }
 
     @FXML
-    private void Label_HEX(ActionEvent event) {
+    private void Button_HEX() {
+        //(1) Flag of Hexadecimal numbers
+        HEX_FLAG = true;
+
+        DEC_FLAG = false;
+        OCT_FLAG = false;
+        BIN_FLAG = false;
+
+        btn_2.setDisable(false);
+        btn_3.setDisable(false);
+        btn_4.setDisable(false);
+        btn_5.setDisable(false);
+        btn_6.setDisable(false);
+        btn_7.setDisable(false);
+        btn_8.setDisable(false);
+        btn_9.setDisable(false);
+        btn_A.setDisable(false);
+        btn_B.setDisable(false);
+        btn_C.setDisable(false);
+        btn_D.setDisable(false);
+        btn_E.setDisable(false);
+        btn_F.setDisable(false);
+
     }
 
     @FXML
-    private void Label_BIN(ActionEvent event) {
-    }
+    private void Buuton_DEC() {
+        DEC_FLAG = true;
 
-    @FXML
-    private void Button_BIN(ActionEvent event) {
-    }
+        HEX_FLAG = false;
+        OCT_FLAG = false;
+        BIN_FLAG = false;
 
-    @FXML
-    private void Button_OCT(ActionEvent event) {
-    }
-
-    @FXML
-    private void Button_HEX(ActionEvent event) {
-    }
-
-    @FXML
-    private void Buuton_DEC(ActionEvent event) {
+        btn_2.setDisable(false);
+        btn_3.setDisable(false);
+        btn_4.setDisable(false);
+        btn_5.setDisable(false);
+        btn_6.setDisable(false);
+        btn_7.setDisable(false);
+        btn_8.setDisable(false);
+        btn_9.setDisable(false);
+        btn_A.setDisable(true);
+        btn_B.setDisable(true);
+        btn_C.setDisable(true);
+        btn_D.setDisable(true);
+        btn_E.setDisable(true);
+        btn_F.setDisable(true);
     }
 
     @FXML
@@ -4077,63 +4633,476 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void Button_Clear(ActionEvent event) {
+    private void Button_Clear() {
+        text_Area.clear();
+        text_Area2.clear();
+
+        label_OCT.clear();
+        label_HEX.clear();
+        label_BIN.clear();
+        label_DEC.clear();
+
+        operation.setText("");
+
+        TEXT_2 = false;
     }
 
     @FXML
-    private void Button_NOT(ActionEvent event) {
+    private void Button_NOT() {
+        String text = text_Area.getText();
+        try {
+            long num;
+
+            if (BIN_FLAG == true) {
+                num = Long.parseLong(text, 2); // to return Decimal number
+            } else if (HEX_FLAG == true) {
+                num = Long.parseLong(text, 16);
+            } else if (OCT_FLAG == true) {
+                num = Long.parseLong(text, 8);
+            } else {
+                num = Long.parseLong(text);
+            }
+
+            long result = ~num; // result is a Decimal Number and we will convert it to suitable number 
+            ans = result;
+            String s = "0";
+            if (BIN_FLAG == true) {
+                s = Long.toBinaryString(result);//Converting to binary
+
+            } else if (HEX_FLAG == true) {
+                s = Long.toHexString(result);  //Convertig to hex
+            } else if (OCT_FLAG == true) {
+                s = Long.toOctalString(result);//Converting to octal
+            } else {
+                s = String.valueOf(result);
+            }
+            //Converting result to string 
+            text_Area.setText(s);
+//            label_Equation.setText("NOT ( " + text + " ) = " + s);
+        } catch (NumberFormatException e) {
+            text_Area.appendText("  Very Long Number");
+            System.out.println("Number of Exception occured because it is very long number !");
+        }
+        EQ_FLAG = 1;
+
     }
 
     @FXML
-    private void Button_XOR(ActionEvent event) {
+    private void Button_XOR() {
+        XOR_FLAG = true;
+        AND_FLAG = false;
+        OR_FLAG = false;
+        EQ_FLAG = 0;
+        TEXT_2 = true;
+        operation.setText("XOR");
+
     }
 
     @FXML
-    private void Button_AND(ActionEvent event) {
+    private void Button_AND() {
+        XOR_FLAG = false;
+        AND_FLAG = true;
+        OR_FLAG = false;
+
+        EQ_FLAG = 0;
+
+        TEXT_2 = true;
+        operation.setText("AND");
     }
 
     @FXML
-    private void Button_OR(ActionEvent event) {
+    private void Button_OR() {
+        XOR_FLAG = false;
+        AND_FLAG = false;
+        OR_FLAG = true;
+
+        EQ_FLAG = 0;
+
+        TEXT_2 = true;
+
+        operation.setText("OR");
     }
 
     @FXML
-    private void Button_F(ActionEvent event) {
+    private void Button_F() {
+        if (EQ_FLAG >= 1) {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true) {
+            text_Area2.appendText("F");
+        } else {
+            text_Area.appendText("F");
+        }
+        EQ_FLAG = 0;
+
     }
 
     @FXML
-    private void Button_E(ActionEvent event) {
+    private void Button_E() {
+        if (EQ_FLAG >= 1) {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true) {
+            text_Area2.appendText("E");
+        } else {
+            text_Area.appendText("E");
+        }
+        EQ_FLAG = 0;
+
     }
 
     @FXML
-    private void Button_D(ActionEvent event) {
+    private void Button_D() {
+        if (EQ_FLAG >= 1) {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true) {
+            text_Area2.appendText("D");
+        } else {
+            text_Area.appendText("D");
+        }
+        EQ_FLAG = 0;
+
     }
 
     @FXML
-    private void Button_C(ActionEvent event) {
+    private void Button_C() {
+        if (EQ_FLAG >= 1) {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true) {
+            text_Area2.appendText("C");
+        } else {
+            text_Area.appendText("C");
+        }
+        EQ_FLAG = 0;
+
     }
 
     @FXML
-    private void Button_B(ActionEvent event) {
+    private void Button_B() {
+        if (EQ_FLAG >= 1) {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true) {
+            text_Area2.appendText("B");
+        } else {
+            text_Area.appendText("B");
+        }
+        EQ_FLAG = 0;
+
     }
 
     @FXML
-    private void Button_A(ActionEvent event) {
+    private void Button_A() {
+        if (EQ_FLAG >= 1) {
+            text_Area.clear();
+        }
+        if (TEXT_2 == true) {
+            text_Area2.appendText("A");
+        } else {
+            text_Area.appendText("A");
+        }
+        EQ_FLAG = 0;
     }
 
     @FXML
-    private void Button_Equal(ActionEvent event) {
+    private void Button_Equal() {
+
+        if (text_Area.getText().contains(" = ")) {
+
+            String s = String.valueOf(ans);
+            long decimal = Long.parseLong(s);
+            String oct = Long.toOctalString(decimal);//Converting to octal
+            label_OCT.setText(oct);
+            String hex = Long.toHexString(decimal);  //Convertig to hex
+            label_HEX.setText(hex);
+            String bin = Long.toBinaryString(decimal);//Converting to binary
+            label_BIN.setText(bin);
+            String dec = Long.toString(decimal);
+            label_DEC.setText(dec);
+
+        } else if (text_Area.getText().length() != 0) {
+            try {
+                if (BIN_FLAG == true) {
+                    String text = text_Area.getText();
+                    //  String binaryString="1010";  
+                    long decimal = Long.parseLong(text, 2);
+                    String oct = Long.toOctalString(decimal);//Converting to octal
+                    label_OCT.setText(oct);
+                    String hex = Long.toHexString(decimal);  //Convertig to hex
+                    label_HEX.setText(hex);
+                    String bin = Long.toBinaryString(decimal);//Converting to binary
+                    label_BIN.setText(bin);
+                    String dec = Long.toString(decimal);
+                    label_DEC.setText(dec);
+
+                } else if (HEX_FLAG == true) {
+                    String text = text_Area.getText();
+                    long decimal = Long.parseLong(text, 16);
+                    String oct = Long.toOctalString(decimal);//Converting to octal
+                    label_OCT.setText(oct);
+                    String hex = Long.toHexString(decimal);  //Convertig to hex
+                    label_HEX.setText(hex);
+                    String bin = Long.toBinaryString(decimal);//Converting to binary
+                    label_BIN.setText(bin);
+                    String dec = Long.toString(decimal);
+                    label_DEC.setText(dec);
+                } else if (OCT_FLAG == true) {
+                    String text = text_Area.getText();
+                    long decimal = Long.parseLong(text, 8);
+                    String oct = Long.toOctalString(decimal);//Converting to octal
+                    label_OCT.setText(oct);
+                    String hex = Long.toHexString(decimal);  //Convertig to hex
+                    label_HEX.setText(hex);
+                    String bin = Long.toBinaryString(decimal);//Converting to binary
+                    label_BIN.setText(bin);
+                    String dec = Long.toString(decimal);
+                    label_DEC.setText(dec);
+                } else {
+                    String text = text_Area.getText();
+
+                    Long num1 = new Long(text);
+
+                    String oct = Long.toOctalString(num1);//Converting to octal
+                    label_OCT.setText(oct);
+                    String hex = Long.toHexString(num1);  //Convertig to hex
+                    label_HEX.setText(hex);
+                    String bin = Long.toBinaryString(num1);//Converting to binary
+                    label_BIN.setText(bin);
+                    label_DEC.setText(text);
+                }
+            } catch (NumberFormatException e) {
+                text_Area.appendText("  Very Long Number (Exceeds 15 ) ");
+                System.out.println("Number of Exception occured because it is very long number at textArea1!");
+                label_OCT.clear();
+                label_HEX.clear();
+                label_BIN.clear();
+                label_DEC.clear();
+            }
+
+        } else {
+            label_OCT.setText("0");
+
+            label_HEX.setText("0");
+
+            label_BIN.setText("0");
+
+            label_DEC.setText("0");
+        }
+
     }
 
     @FXML
-    private void Button_Equal1(ActionEvent event) {
+    private void Button_Equal1() {
+        TEXT_2 = false;
+
+        if (EQ_FLAG == 0) {
+
+            if (XOR_FLAG == true) /**
+             * *************** XOR Operation **********************
+             */
+            {
+                String text = text_Area.getText();
+                try {
+                    long num1;
+                    if (BIN_FLAG == true) {
+                        num1 = Long.parseLong(text, 2);
+                    } else if (HEX_FLAG == true) {
+                        num1 = Long.parseLong(text, 16);
+                    } else if (OCT_FLAG == true) {
+                        num1 = Long.parseLong(text, 8);
+                    } else {
+                        num1 = Long.parseLong(text);
+                    }
+
+                    String text2 = text_Area2.getText();
+                    try {
+                        long num2 = 0;
+                        if (BIN_FLAG == true) {
+                            num2 = Long.parseLong(text2, 2);
+                        } else if (HEX_FLAG == true) {
+                            num2 = Long.parseLong(text2, 16);
+                        } else if (OCT_FLAG == true) {
+                            num2 = Long.parseLong(text2, 8);
+                        } else {
+                            num2 = Long.parseLong(text2);
+                        }
+
+                        //(2) Result
+                        long result = num1 ^ num2;
+                        ans = result;
+
+                        String s = "0";
+
+                        if (BIN_FLAG == true) {
+                            s = Long.toBinaryString(result);//Converting to binary
+
+                        } else if (HEX_FLAG == true) {
+                            s = Long.toHexString(result);  //Convertig to hex
+                        } else if (OCT_FLAG == true) {
+                            s = Long.toOctalString(result);//Converting to octal
+                        } else {
+                            s = String.valueOf(result);
+                        }
+                        operation.setText("   ");
+
+//                        label_Equation.setText(text + " XOR ( " + text2 + " ) = " + s);
+                        text_Area.setText(s);
+                        text_Area2.clear();
+                    } catch (NumberFormatException e) {
+                        text_Area2.appendText("  Very Long Number ");
+                        System.out.println("Number of Exception occured because it is very long number at textArea2!");
+                    }
+
+                } catch (NumberFormatException e) {
+                    text_Area.appendText("  Very Long Number ");
+                    System.out.println("Number of Exception occured because it is very long number  at textArea !");
+                }
+                EQ_FLAG = 1;
+            } else if (OR_FLAG == true) {
+                String text = text_Area.getText();
+                try {
+                    long num1 = 0;
+                    if (BIN_FLAG == true) {
+                        num1 = Long.parseLong(text, 2);
+                    } else if (HEX_FLAG == true) {
+                        num1 = Long.parseLong(text, 16);
+                    } else if (OCT_FLAG == true) {
+                        num1 = Long.parseLong(text, 8);
+                    } else {
+                        num1 = Long.parseLong(text);
+                    }
+
+                    String text2 = text_Area2.getText();
+                    try {
+                        long num2 = 0;
+                        if (BIN_FLAG == true) {
+                            num2 = Long.parseLong(text2, 2);
+                        } else if (HEX_FLAG == true) {
+                            num2 = Long.parseLong(text2, 16);
+                        } else if (OCT_FLAG == true) {
+                            num2 = Long.parseLong(text2, 8);
+                        } else {
+                            num2 = Long.parseLong(text2);
+                        }
+
+                        long result = num1 | num2;
+                        ans = result;
+
+                        String s = "0";
+                        if (BIN_FLAG == true) {
+                            s = Long.toBinaryString(result);//Converting to binary
+
+                        } else if (HEX_FLAG == true) {
+                            s = Long.toHexString(result);  //Convertig to hex
+                        } else if (OCT_FLAG == true) {
+                            s = Long.toOctalString(result);//Converting to octal
+                        } else {
+                            s = String.valueOf(result);
+                        }
+                        operation.setText("  ");
+
+//                        label_Equation.setText(text + " OR ( " + text2 + " ) = " + s);
+                        text_Area.setText(s);
+                        text_Area2.clear();
+                    } catch (NumberFormatException e) {
+                        text_Area2.appendText("  Very Long Number ");
+                        System.out.println("Number of Exception occured because it is very long number at textArea2!");
+                    }
+
+                } catch (NumberFormatException e) {
+                    text_Area.appendText("  Very Long Number ");
+                    System.out.println("Number of Exception occured because it is very long number  at textArea !");
+                }
+                EQ_FLAG = 1;
+            } else if (AND_FLAG == true) {
+                String text = text_Area.getText();
+
+                try {
+                    long num1 = 0;
+                    if (BIN_FLAG == true) {
+                        num1 = Long.parseLong(text, 2);
+                    } else if (HEX_FLAG == true) {
+                        num1 = Long.parseLong(text, 16);
+                    } else if (OCT_FLAG == true) {
+                        num1 = Long.parseLong(text, 8);
+                    } else {
+                        num1 = Long.parseLong(text);
+                    }
+
+                    String text2 = text_Area2.getText();
+                    try {
+                        long num2 = 0;
+                        if (BIN_FLAG == true) {
+                            num2 = Long.parseLong(text2, 2);
+                        } else if (HEX_FLAG == true) {
+                            num2 = Long.parseLong(text2, 16);
+                        } else if (OCT_FLAG == true) {
+                            num2 = Long.parseLong(text2, 8);
+                        } else {
+                            num2 = Long.parseLong(text2);
+                        }
+
+                        long result = num1 & num2;
+                        ans = result;
+
+                        String s = "0";
+                        if (BIN_FLAG == true) {
+                            s = Long.toBinaryString(result);//Converting to binary
+
+                        } else if (HEX_FLAG == true) {
+                            s = Long.toHexString(result);  //Convertig to hex
+                        } else if (OCT_FLAG == true) {
+                            s = Long.toOctalString(result);//Converting to octal
+                        } else {
+                            s = String.valueOf(result);
+                        }
+                        operation.setText("   ");
+
+//                        label_Equation.setText(text + " AND ( " + text2 + " ) = " + s);
+                        text_Area.setText(s);
+                        text_Area2.clear();
+                    } catch (NumberFormatException e) {
+                        text_Area2.appendText("  Very Long Number ");
+                        System.out.println("Number of Exception occured because it is very long number at textArea2!");
+                    }
+
+                } catch (NumberFormatException e) {
+                    text_Area.appendText("  Very Long Number ");
+                    System.out.println("Number of Exception occured because it is very long number  at textArea !");
+                }
+
+                EQ_FLAG = 1;
+            }
+        } else {
+            String s_ans;
+            operation.setText("");
+            text_Area2.clear();
+            if (BIN_FLAG == true) {
+                s_ans = Long.toBinaryString(ans);//Converting to binary
+
+            } else if (HEX_FLAG == true) {
+                s_ans = Long.toHexString(ans);  //Convertig to hex
+            } else if (OCT_FLAG == true) {
+                s_ans = Long.toOctalString(ans);//Converting to octal
+            } else {
+                s_ans = String.valueOf(ans);
+            }
+            text_Area.setText(s_ans);
+        }
     }
 
     @FXML
     private void ProgrammerButton() {
+        x = 0;
+        y = 0;
         Scientific_Flag = false;
         Length_Flag = false;
+        Graph_Flag = false;
         DateCalc_Flag = false;
         Temperature_Flag = false;
+        Programmer_Flag = true;
         TA1.clear();
         TA2.clear();
         TA11.clear();

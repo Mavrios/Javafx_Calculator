@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="CalculatorV1.0.jar" size="139376" download="eager" />
+    <jar href="CalculatorV1.0.jar" size="146202" download="eager" />
     <jar href="lib\jssc-2.8.0-arduino4.jar" size="163122" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="calculatorv1.pkg0.CalculatorV10"  name="CalculatorV1.0" />

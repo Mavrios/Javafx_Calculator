@@ -188,3 +188,45 @@
     -fx-border-radius: 0 3 3 0, 0 3 3 0, 0 2 2 0, 0 1 1 0;
     -fx-background-radius: 0 3 3 0, 0 3 3 0, 0 2 2 0, 0 1 1 0;
 }
+
+
+.programmer-selected-button {
+    -fx-background-color: #993366;
+    -fx-background-radius: 10;
+    -fx-background-insets: 0;
+    -fx-text-fill: #d7dae0;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+
+
+.programmer-selected-button:hover {
+	-fx-background-color: #6C6F93;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+
+.Gate-selected-button {
+    -fx-background-color:  #BA6E80;
+    -fx-background-radius: 13;
+    -fx-background-insets: 0;
+    -fx-text-fill: #d7dae0;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.logic-selected-button {
+    -fx-background-color:   #CF6966;
+    -fx-background-radius: 13;
+    -fx-background-insets: 0;
+    -fx-text-fill: #d7dae0;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
+
+.Value-selected-button {
+    -fx-background-color:    #C98554;
+    -fx-background-radius: 100;
+    -fx-border-radius: 200;
+    -fx-background-insets: 0;
+    -fx-text-fill: #d7dae0;
+    -fx-effect: dropshadow(three-pass-box, #1C1E26, 0.5, 0.0, 1.0, 2.0);
+}
