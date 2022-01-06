@@ -4,11 +4,13 @@
  */
 package calculatorv1.pkg0;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -18,26 +20,21 @@ import javafx.stage.StageStyle;
  */
 public class CalculatorV10 extends Application {
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("calculatorv1/pkg0/Button.css");
-        scene.getStylesheets().add("calculatorv1/pkg0/Base.css");
-        scene.getStylesheets().add("calculatorv1/pkg0/Text.css");
-        scene.getStylesheets().add("calculatorv1/pkg0/chart_style.css");
-        stage.setResizable(false);
+    public void start(Stage stage) throws IOException {
+        Parent pane = FXMLLoader.load(getClass().getResource("Splash.fxml"));
+        Scene scene = new Scene(pane);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        scene.setFill(Color.TRANSPARENT);
         stage.setMinWidth(340);
         stage.setMinHeight(530);
-        stage.getIcons().add(new Image("calculatorv1/pkg0/icon.png"));
-        stage.initStyle(StageStyle.DECORATED);
         stage.setScene(scene);
-        stage.setTitle("Calculator v1.0");
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
     }
 
     @Override
-    public void stop(){
-
+    public void stop() {
+        System.exit(0);
     }
     /**
      * @param args the command line arguments

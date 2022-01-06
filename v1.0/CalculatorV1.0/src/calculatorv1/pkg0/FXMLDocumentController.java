@@ -4124,25 +4124,25 @@ public class FXMLDocumentController implements Initializable {
 
                             Platform.runLater(() -> {
                                 ArduinoRecieved = st;
-                                if (st == "UP") {
+                                if (st.equalsIgnoreCase("UP")) {
                                     r.keyPress(KeyEvent.VK_UP);
-                                } else if (st == "DOWN") {
+                                } else if (st.equalsIgnoreCase("DOWN")) {
                                     r.keyPress(KeyEvent.VK_DOWN);
-                                } else if (st == "LEFT") {
+                                } else if (st.equalsIgnoreCase("LEFT")) {
                                     r.keyPress(KeyEvent.VK_LEFT);
-                                } else if (st == "RIGHT") {
+                                } else if (st.equalsIgnoreCase("RIGHT")) {
                                     r.keyPress(KeyEvent.VK_RIGHT);
                                 } else if (st.equalsIgnoreCase("Menu")) {
                                     MenuHandling();
-                                } else if (st == "History") {
+                                } else if (st.equalsIgnoreCase("History")) {
                                     try {
                                         HistoryBtn();
                                     } catch (IOException ex) {
                                         //Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                                     }
-                                } else if (st == "Exit") {
+                                } else if (st.equalsIgnoreCase("Exit")) {
                                     System.exit(0);
-                                } else if (st == "Enter") {
+                                } else if (st.equalsIgnoreCase("Enter")) {
                                     r.keyPress(KeyEvent.VK_ENTER);
                                 } else {
                                     /*TODO LATER*/
