@@ -4144,8 +4144,180 @@ public class FXMLDocumentController implements Initializable {
                                 } else if (st.equalsIgnoreCase("Enter")) {
                                     r.keyPress(KeyEvent.VK_ENTER);
                                 } else {
-                                    /*TODO LATER*/
-                                    TA.appendText(st);
+                                    if (Scientific_Flag) {
+                                        switch (st) {
+                                            case "0":
+                                                handleButtonAction0();
+                                                break;
+                                            case "1":
+                                                handleButtonAction1();
+                                                break;
+                                            case "2":
+                                                handleButtonAction2();
+                                                break;
+                                            case "3":
+                                                handleButtonAction3();
+                                                break;
+                                            case "4":
+                                                handleButtonAction4();
+                                                break;
+                                            case "5":
+                                                handleButtonAction5();
+                                                break;
+                                            case "6":
+                                                handleButtonAction6();
+                                                break;
+                                            case "7":
+                                                handleButtonAction7();
+                                                break;
+                                            case "8":
+                                                handleButtonAction8();
+                                                break;
+                                            case "9":
+                                                handleButtonAction9();
+                                                break;
+                                            case ".":
+                                                handleButtonActionDot();
+                                                break;
+                                            case "=":
+                                                handleButtonActionEqu();
+                                                break;
+                                            case "+":
+                                                handleButtonActionP();
+                                                break;
+                                            case "-":
+                                                handleButtonActionN();
+                                                break;
+                                            case "*":
+                                                handleButtonActionM();
+                                                break;
+                                            case "/":
+                                                handleButtonActionD();
+                                                break;
+                                        }
+                                    } else if (Graph_Flag) {
+                                        if (startTF_Flag) {
+                                            startTF.appendText(st);
+                                        } else if (endTF_Flag) {
+                                            endTF.appendText(st);
+                                        } else if (GraphTF_Flag) {
+                                            plotEqn.appendText(st);
+                                        }
+                                    } else if (Programmer_Flag) {
+                                        switch (st) {
+                                            case "0":
+                                                Button_0();
+                                                break;
+                                            case "1":
+                                                Button_1();
+                                                break;
+                                            case "2":
+                                                Button_2();
+                                                break;
+                                            case "3":
+                                                Button_3();
+                                                break;
+                                            case "4":
+                                                Button_4();
+                                                break;
+                                            case "5":
+                                                Button_5();
+                                                break;
+                                            case "6":
+                                                Button_6();
+                                                break;
+                                            case "7":
+                                                Button_7();
+                                                break;
+                                            case "8":
+                                                Button_8();
+                                                break;
+                                            case "9":
+                                                Button_9();
+                                                break;
+                                            case ".":
+                                                Button_Equal();
+                                                break;
+                                            case "=":
+                                                Button_Equal1();
+                                                break;
+                                        }
+                                    } else if (Length_Flag) {
+                                        switch (st) {
+                                            case "0":
+                                                TA1.appendText("0");
+                                                break;
+                                            case "1":
+                                                TA1.appendText("1");
+                                                break;
+                                            case "2":
+                                                TA1.appendText("2");
+                                                break;
+                                            case "3":
+                                                TA1.appendText("3");
+                                                break;
+                                            case "4":
+                                                TA1.appendText("4");
+                                                break;
+                                            case "5":
+                                                TA1.appendText("5");
+                                                break;
+                                            case "6":
+                                                TA1.appendText("6");
+                                                break;
+                                            case "7":
+                                                TA1.appendText("7");
+                                                break;
+                                            case "8":
+                                                TA1.appendText("8");
+                                                break;
+                                            case "9":
+                                                TA1.appendText("9");
+                                                break;
+                                            case ".":
+                                                TA1.appendText(".");
+                                                break;
+                                        }
+                                        Converter();
+                                    } else if (Temperature_Flag) {
+                                        switch (st) {
+                                            case "0":
+                                                TA11.appendText("0");
+                                                break;
+                                            case "1":
+                                                TA11.appendText("1");
+                                                break;
+                                            case "2":
+                                                TA11.appendText("2");
+                                                break;
+                                            case "3":
+                                                TA11.appendText("3");
+                                                break;
+                                            case "4":
+                                                TA11.appendText("4");
+                                                break;
+                                            case "5":
+                                                TA11.appendText("5");
+                                                break;
+                                            case "6":
+                                                TA11.appendText("6");
+                                                break;
+                                            case "7":
+                                                TA11.appendText("7");
+                                                break;
+                                            case "8":
+                                                TA11.appendText("8");
+                                                break;
+                                            case "9":
+                                                TA11.appendText("9");
+                                                break;
+                                            case ".":
+                                                TA11.appendText(".");
+                                                break;
+                                        }
+                                        Converter2();
+                                    }
+
                                 }
                             });
                         } catch (SerialPortException ex) {
