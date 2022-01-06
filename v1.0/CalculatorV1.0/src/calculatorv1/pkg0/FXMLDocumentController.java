@@ -4,6 +4,8 @@
  */
 package calculatorv1.pkg0;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -105,6 +107,8 @@ public class FXMLDocumentController implements Initializable {
     boolean History_Flag = false;
     boolean Length_Flag = false;
     boolean Scientific_Flag = true;
+    boolean DateCalc_Flag = false;
+    boolean Temperature_Flag = false;
     String TA_Value = "";
     String factVal = "";
     @FXML
@@ -119,6 +123,8 @@ public class FXMLDocumentController implements Initializable {
     PrintStream ps;
     BufferedReader br;
     File file;
+
+    Robot r;
     @FXML
     private AnchorPane ScientificPane;
     @FXML
@@ -516,6 +522,8 @@ public class FXMLDocumentController implements Initializable {
     private Button LengthMenuButton3;
     @FXML
     private Button ConfigurationsMenuButton3;
+    @FXML
+    private Button GraphNow;
 
     @FXML
     private void btnRightBrace() {
@@ -1330,6 +1338,11 @@ public class FXMLDocumentController implements Initializable {
             serverFound = false;
             System.out.println("No Server Found.");
         }
+        try {
+            r = new Robot();
+        } catch (AWTException ex) {
+            //    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         MenuVisibility();
         loaddata();
         loaddata2();
@@ -1393,7 +1406,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleButton(javafx.scene.input.KeyEvent event) {
+    private void handleButton(javafx.scene.input.KeyEvent event) throws AWTException {
         if (!event.getText().isEmpty()) {
             if ((event.getText().charAt(0) >= '0' && event.getText().charAt(0) <= '9')) {
                 if (R_flag == true) {
@@ -1412,6 +1425,8 @@ public class FXMLDocumentController implements Initializable {
 
                 TA.appendText(event.getText());
 
+            } else if (event.getText().charAt(0) == 'a') {
+                r.keyPress(KeyEvent.VK_DOWN);
             }
 
         } else {
@@ -1426,13 +1441,19 @@ public class FXMLDocumentController implements Initializable {
                     if (y > 7) {
                         y = 7;
                     }
-                } else if (Length_Flag) {
+                } else if (Length_Flag || Temperature_Flag) {
                     if (y > 5) {
                         y = 5;
                     }
+                } else if (DateCalc_Flag) {
+                    if (!EndDateCheckBox.isSelected() && y > 2) {
+                        y = 2;
+                    } else if (y > 3) {
+                        y = 3;
+                    }
                 } else {
-                    if (y > 7) {
-                        y = 7;
+                    if (y > 8) {
+                        y = 8;
                     }
                 }
 
@@ -1465,7 +1486,7 @@ public class FXMLDocumentController implements Initializable {
                 x++;
                 if (Menu_Flag) {
                     x = 0;
-                } else if (Length_Flag) {
+                } else if (Length_Flag || DateCalc_Flag || Temperature_Flag) {
                     if (x > 2) {
                         x = 2;
                     }
@@ -1483,7 +1504,6 @@ public class FXMLDocumentController implements Initializable {
             }
         }
         if (event.getCode() == KeyCode.ENTER) {
-            System.out.println("SA");
             EnterIndexHandle();
         }
 
@@ -1502,6 +1522,11 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Length_Flag) {
                             TA1.appendText(".");
                             Converter();
+                        } else if (DateCalc_Flag) {
+                            calculateButton();
+                        } else if (Temperature_Flag) {
+                            TA11.appendText(".");
+                            Converter2();
                         }
                         break;
 
@@ -1513,7 +1538,17 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Length_Flag) {
                             TA1.appendText("7");
                             Converter();
-
+                        } else if (DateCalc_Flag) {
+                            if (EndDateCheckBox.isSelected()) {
+                                EndDay.show();
+                            } else {
+                                y = 2;
+                                EndDateCheckBox.setSelected(!EndDateCheckBox.isSelected());
+                                EndDateCheckBox();
+                            }
+                        } else if (Temperature_Flag) {
+                            TA11.appendText("7");
+                            Converter2();
                         }
                         break;
 
@@ -1525,7 +1560,17 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Length_Flag) {
                             TA1.appendText("4");
                             Converter();
-
+                        } else if (DateCalc_Flag) {
+                            if (EndDateCheckBox.isSelected()) {
+                                y = 1;
+                                EndDateCheckBox.setSelected(!EndDateCheckBox.isSelected());
+                                EndDateCheckBox();
+                            } else {
+                                StartDay.show();
+                            }
+                        } else if (Temperature_Flag) {
+                            TA11.appendText("4");
+                            Converter2();
                         }
                         break;
 
@@ -1537,7 +1582,11 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Length_Flag) {
                             TA1.appendText("1");
                             Converter();
-
+                        } else if (DateCalc_Flag) {
+                            StartDay.show();
+                        } else if (Temperature_Flag) {
+                            TA11.appendText("1");
+                            Converter2();
                         }
                         break;
 
@@ -1548,6 +1597,8 @@ public class FXMLDocumentController implements Initializable {
                             btnSqrt();
                         } else if (Length_Flag) {
                             box2.show();
+                        } else if (Temperature_Flag) {
+                            box21.show();
                         }
                         break;
 
@@ -1562,6 +1613,8 @@ public class FXMLDocumentController implements Initializable {
                             }
                         } else if (Length_Flag) {
                             box1.show();
+                        } else if (Temperature_Flag) {
+                            box11.show();
                         }
                         break;
 
@@ -1583,6 +1636,9 @@ public class FXMLDocumentController implements Initializable {
                             Trigonometry();
                         }
                         break;
+                    case 8:
+                        GraphingNowBtn();
+                        break;
 
                 }
                 break;
@@ -1595,8 +1651,13 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Length_Flag) {
                             TA1.appendText("0");
                             Converter();
-
+                        } else if (DateCalc_Flag) {
+                            calculateButton();
+                        } else if (Temperature_Flag) {
+                            TA11.appendText("0");
+                            Converter2();
                         }
+
                         break;
 
                     case 1:
@@ -1605,7 +1666,17 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Length_Flag) {
                             TA1.appendText("8");
                             Converter();
-
+                        } else if (DateCalc_Flag) {
+                            if (EndDateCheckBox.isSelected()) {
+                                EndMonth.show();
+                            } else {
+                                y = 2;
+                                EndDateCheckBox.setSelected(!EndDateCheckBox.isSelected());
+                                EndDateCheckBox();
+                            }
+                        } else if (Temperature_Flag) {
+                            TA11.appendText("8");
+                            Converter2();
                         }
                         break;
 
@@ -1615,7 +1686,17 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Length_Flag) {
                             TA1.appendText("5");
                             Converter();
-
+                        } else if (DateCalc_Flag) {
+                            if (EndDateCheckBox.isSelected()) {
+                                y = 1;
+                                EndDateCheckBox.setSelected(!EndDateCheckBox.isSelected());
+                                EndDateCheckBox();
+                            } else {
+                                StartMonth.show();
+                            }
+                        } else if (Temperature_Flag) {
+                            TA11.appendText("5");
+                            Converter2();
                         }
                         break;
 
@@ -1625,7 +1706,11 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Length_Flag) {
                             TA1.appendText("2");
                             Converter();
-
+                        } else if (DateCalc_Flag) {
+                            StartMonth.show();
+                        } else if (Temperature_Flag) {
+                            TA11.appendText("2");
+                            Converter2();
                         }
                         break;
 
@@ -1634,6 +1719,8 @@ public class FXMLDocumentController implements Initializable {
                             btnRightBrace();
                         } else if (Length_Flag) {
                             box2.show();
+                        } else if (Temperature_Flag) {
+                            box21.show();
                         }
                         break;
 
@@ -1646,6 +1733,8 @@ public class FXMLDocumentController implements Initializable {
                             }
                         } else if (Length_Flag) {
                             box1.show();
+                        } else if (Temperature_Flag) {
+                            box11.show();
                         }
 
                         break;
@@ -1667,6 +1756,10 @@ public class FXMLDocumentController implements Initializable {
                             Trigonometry();
                         }
                         break;
+
+                    case 8:
+                        GraphingNowBtn();
+                        break;
                 }
                 break;
 
@@ -1678,8 +1771,13 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Length_Flag) {
                             TA1.clear();
                             Converter();
-
+                        } else if (DateCalc_Flag) {
+                            calculateButton();
+                        } else if (Temperature_Flag) {
+                            TA11.clear();
+                            Converter2();
                         }
+
                         break;
 
                     case 1:
@@ -1689,6 +1787,17 @@ public class FXMLDocumentController implements Initializable {
                             TA1.appendText("9");
                             Converter();
 
+                        } else if (DateCalc_Flag) {
+                            if (EndDateCheckBox.isSelected()) {
+                                EndYear.show();
+                            } else {
+                                y = 2;
+                                EndDateCheckBox.setSelected(!EndDateCheckBox.isSelected());
+                                EndDateCheckBox();
+                            }
+                        } else if (Temperature_Flag) {
+                            TA11.appendText("9");
+                            Converter2();
                         }
                         break;
 
@@ -1698,7 +1807,17 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Length_Flag) {
                             TA1.appendText("6");
                             Converter();
-
+                        } else if (DateCalc_Flag) {
+                            if (EndDateCheckBox.isSelected()) {
+                                y = 1;
+                                EndDateCheckBox.setSelected(!EndDateCheckBox.isSelected());
+                                EndDateCheckBox();
+                            } else {
+                                StartYear.show();
+                            }
+                        } else if (Temperature_Flag) {
+                            TA11.appendText("6");
+                            Converter2();
                         }
                         break;
 
@@ -1708,8 +1827,13 @@ public class FXMLDocumentController implements Initializable {
                         } else if (Length_Flag) {
                             TA1.appendText("3");
                             Converter();
-
+                        } else if (DateCalc_Flag) {
+                            StartYear.show();
+                        } else if (Temperature_Flag) {
+                            TA11.appendText("3");
+                            Converter2();
                         }
+
                         break;
 
                     case 4:
@@ -1717,6 +1841,8 @@ public class FXMLDocumentController implements Initializable {
                             btnLeftBrace();
                         } else if (Length_Flag) {
                             box2.show();
+                        } else if (Temperature_Flag) {
+                            box21.show();
                         }
                         break;
 
@@ -1728,7 +1854,9 @@ public class FXMLDocumentController implements Initializable {
                                 btnAbs();
                             }
                         } else if (Length_Flag) {
-                            box2.show();
+                            box1.show();
+                        } else if (Temperature_Flag) {
+                            box11.show();
                         }
                         break;
 
@@ -1749,6 +1877,10 @@ public class FXMLDocumentController implements Initializable {
                         if (Scientific_Flag) {
                             Trigonometry();
                         }
+                        break;
+
+                    case 8:
+                        GraphingNowBtn();
                         break;
                 }
 
@@ -1813,6 +1945,10 @@ public class FXMLDocumentController implements Initializable {
                             FunctionBtn();
                         }
                         break;
+
+                    case 8:
+                        GraphingNowBtn();
+                        break;
                 }
                 break;
 
@@ -1869,6 +2005,10 @@ public class FXMLDocumentController implements Initializable {
                             FunctionBtn();
                         }
                         break;
+
+                    case 8:
+                        GraphingNowBtn();
+                        break;
                 }
                 break;
         }
@@ -1888,7 +2028,12 @@ public class FXMLDocumentController implements Initializable {
                             buttonLn.setId("selected-button");
                         } else if (Length_Flag) {
                             dot.setId("selected-button");
+                        } else if (DateCalc_Flag) {
+                            calculateButton.setId("selected-button");
+                        } else if (Temperature_Flag) {
+                            dot1.setId("selected-button");
                         }
+
                         break;
 
                     case 1:
@@ -1901,7 +2046,16 @@ public class FXMLDocumentController implements Initializable {
                             buttonLog.setId("selected-button");
                         } else if (Length_Flag) {
                             seven.setId("selected-button");
+                        } else if (DateCalc_Flag) {
+                            if (EndDateCheckBox.isSelected()) {
+                                EndDay.setId("selected-button");
+                            } else {
+                                EndDateCheckBox.setId("selected-button");
+                            }
+                        } else if (Temperature_Flag) {
+                            seven1.setId("selected-button");
                         }
+
                         break;
 
                     case 2:
@@ -1914,6 +2068,14 @@ public class FXMLDocumentController implements Initializable {
                             button10PowerX.setId("selected-button");
                         } else if (Length_Flag) {
                             four.setId("selected-button");
+                        } else if (DateCalc_Flag) {
+                            if (EndDateCheckBox.isSelected()) {
+                                EndDateCheckBox.setId("selected-button");
+                            } else {
+                                StartDay.setId("selected-button");
+                            }
+                        } else if (Temperature_Flag) {
+                            four1.setId("selected-button");
                         }
                         break;
 
@@ -1927,6 +2089,10 @@ public class FXMLDocumentController implements Initializable {
                             buttonXpY.setId("selected-button");
                         } else if (Length_Flag) {
                             one.setId("selected-button");
+                        } else if (DateCalc_Flag) {
+                            StartDay.setId("selected-button");
+                        } else if (Temperature_Flag) {
+                            one1.setId("selected-button");
                         }
                         break;
 
@@ -1940,6 +2106,8 @@ public class FXMLDocumentController implements Initializable {
                             buttonSqrt.setId("selected-button");
                         } else if (Length_Flag) {
                             box2.setId("selected-button");
+                        } else if (Temperature_Flag) {
+                            box21.setId("selected-button");
                         }
                         break;
 
@@ -1958,6 +2126,8 @@ public class FXMLDocumentController implements Initializable {
                             }
                         } else if (Length_Flag) {
                             box1.setId("selected-button");
+                        } else if (Temperature_Flag) {
+                            box11.setId("selected-button");
                         }
                         break;
 
@@ -1992,6 +2162,10 @@ public class FXMLDocumentController implements Initializable {
                         }
                         break;
 
+                    case 8:
+                        GraphNow.setId("selected-button");
+                        break;
+
                 }
                 break;
 
@@ -2002,6 +2176,10 @@ public class FXMLDocumentController implements Initializable {
                             buttonPM.setId("selected-button");
                         } else if (Length_Flag) {
                             zero.setId("selected-button");
+                        } else if (DateCalc_Flag) {
+                            calculateButton.setId("selected-button");
+                        } else if (Temperature_Flag) {
+                            zero1.setId("selected-button");
                         }
                         break;
 
@@ -2010,6 +2188,14 @@ public class FXMLDocumentController implements Initializable {
                             button1.setId("selected-button");
                         } else if (Length_Flag) {
                             eight.setId("selected-button");
+                        } else if (DateCalc_Flag) {
+                            if (EndDateCheckBox.isSelected()) {
+                                EndMonth.setId("selected-button");
+                            } else {
+                                EndDateCheckBox.setId("selected-button");
+                            }
+                        } else if (Temperature_Flag) {
+                            eight1.setId("selected-button");
                         }
                         break;
 
@@ -2018,6 +2204,14 @@ public class FXMLDocumentController implements Initializable {
                             button4.setId("selected-button");
                         } else if (Length_Flag) {
                             five.setId("selected-button");
+                        } else if (DateCalc_Flag) {
+                            if (EndDateCheckBox.isSelected()) {
+                                EndDateCheckBox.setId("selected-button");
+                            } else {
+                                StartMonth.setId("selected-button");
+                            }
+                        } else if (Temperature_Flag) {
+                            five1.setId("selected-button");
                         }
                         break;
 
@@ -2026,6 +2220,10 @@ public class FXMLDocumentController implements Initializable {
                             button7.setId("selected-button");
                         } else if (Length_Flag) {
                             two.setId("selected-button");
+                        } else if (DateCalc_Flag) {
+                            StartMonth.setId("selected-button");
+                        } else if (Temperature_Flag) {
+                            two1.setId("selected-button");
                         }
                         break;
 
@@ -2034,6 +2232,8 @@ public class FXMLDocumentController implements Initializable {
                             buttonOBraces.setId("selected-button");
                         } else if (Length_Flag) {
                             box2.setId("selected-button");
+                        } else if (Temperature_Flag) {
+                            box21.setId("selected-button");
                         }
                         break;
 
@@ -2046,6 +2246,8 @@ public class FXMLDocumentController implements Initializable {
                             }
                         } else if (Length_Flag) {
                             box1.setId("selected-button");
+                        } else if (Temperature_Flag) {
+                            box11.setId("selected-button");
                         }
                         break;
 
@@ -2066,6 +2268,10 @@ public class FXMLDocumentController implements Initializable {
                             TogButton.setId("selected-button");
                         }
                         break;
+
+                    case 8:
+                        GraphNow.setId("selected-button");
+                        break;
                 }
                 break;
 
@@ -2076,6 +2282,10 @@ public class FXMLDocumentController implements Initializable {
                             button0.setId("selected-button");
                         } else if (Length_Flag) {
                             clear.setId("selected-button");
+                        } else if (DateCalc_Flag) {
+                            calculateButton.setId("selected-button");
+                        } else if (Temperature_Flag) {
+                            clear1.setId("selected-button");
                         }
                         break;
 
@@ -2084,6 +2294,14 @@ public class FXMLDocumentController implements Initializable {
                             button2.setId("selected-button");
                         } else if (Length_Flag) {
                             nine.setId("selected-button");
+                        } else if (DateCalc_Flag) {
+                            if (EndDateCheckBox.isSelected()) {
+                                EndYear.setId("selected-button");
+                            } else {
+                                EndDateCheckBox.setId("selected-button");
+                            }
+                        } else if (Temperature_Flag) {
+                            nine1.setId("selected-button");
                         }
                         break;
 
@@ -2092,6 +2310,14 @@ public class FXMLDocumentController implements Initializable {
                             button5.setId("selected-button");
                         } else if (Length_Flag) {
                             six.setId("selected-button");
+                        } else if (DateCalc_Flag) {
+                            if (EndDateCheckBox.isSelected()) {
+                                EndDateCheckBox.setId("selected-button");
+                            } else {
+                                StartYear.setId("selected-button");
+                            }
+                        } else if (Temperature_Flag) {
+                            six1.setId("selected-button");
                         }
                         break;
 
@@ -2100,6 +2326,10 @@ public class FXMLDocumentController implements Initializable {
                             button8.setId("selected-button");
                         } else if (Length_Flag) {
                             three.setId("selected-button");
+                        } else if (DateCalc_Flag) {
+                            StartYear.setId("selected-button");
+                        } else if (Temperature_Flag) {
+                            three1.setId("selected-button");
                         }
                         break;
 
@@ -2108,6 +2338,8 @@ public class FXMLDocumentController implements Initializable {
                             buttonCBraces.setId("selected-button");
                         } else if (Length_Flag) {
                             box2.setId("selected-button");
+                        } else if (Temperature_Flag) {
+                            box21.setId("selected-button");
                         }
                         break;
 
@@ -2120,6 +2352,8 @@ public class FXMLDocumentController implements Initializable {
                             }
                         } else if (Length_Flag) {
                             box1.setId("selected-button");
+                        } else if (Temperature_Flag) {
+                            box11.setId("selected-button");
                         }
                         break;
 
@@ -2139,6 +2373,10 @@ public class FXMLDocumentController implements Initializable {
                         if (Scientific_Flag) {
                             TogButton.setId("selected-button");
                         }
+                        break;
+
+                    case 8:
+                        GraphNow.setId("selected-button");
                         break;
                 }
 
@@ -2203,6 +2441,10 @@ public class FXMLDocumentController implements Initializable {
                             TogButton1.setId("selected-button");
                         }
                         break;
+
+                    case 8:
+                        GraphNow.setId("selected-button");
+                        break;
                 }
                 break;
 
@@ -2259,6 +2501,10 @@ public class FXMLDocumentController implements Initializable {
                         if (Scientific_Flag) {
                             TogButton1.setId("selected-button");
                         }
+                        break;
+
+                    case 8:
+                        GraphNow.setId("selected-button");
                         break;
                 }
                 break;
@@ -2354,6 +2600,29 @@ public class FXMLDocumentController implements Initializable {
         clear.setId("");
         box1.setId("");
         box2.setId("");
+        one1.setId("");
+        two1.setId("");
+        three1.setId("");
+        four1.setId("");
+        five1.setId("");
+        six1.setId("");
+        seven1.setId("");
+        eight1.setId("");
+        nine1.setId("");
+        dot1.setId("");
+        zero1.setId("");
+        clear1.setId("");
+        box11.setId("");
+        box21.setId("");
+        StartDay.setId("");
+        calculateButton.setId("");
+        StartMonth.setId("");
+        StartYear.setId("");
+        EndDateCheckBox.setId("");
+        EndDay.setId("");
+        EndMonth.setId("");
+        EndYear.setId("");
+        GraphNow.setId("");
 
         if (Sci_scnd_flag == false) {
             button2nd.setId("");
@@ -2568,6 +2837,8 @@ public class FXMLDocumentController implements Initializable {
     private void ScientificButton() {
         Scientific_Flag = true;
         Length_Flag = false;
+        DateCalc_Flag = false;
+        Temperature_Flag = false;
         TA1.clear();
         TA2.clear();
         TA11.clear();
@@ -2602,6 +2873,8 @@ public class FXMLDocumentController implements Initializable {
         x = 0;
         y = 0;
         Scientific_Flag = false;
+        Temperature_Flag = false;
+        DateCalc_Flag = false;
         Length_Flag = true;
         TA.clear();
         TA11.clear();
@@ -3167,8 +3440,12 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void DateCalulationBtn() {
+        x = 0;
+        y = 2;
+        DateCalc_Flag = true;
         Scientific_Flag = false;
         Length_Flag = false;
+        Temperature_Flag = false;
         TA.clear();
         TA1.clear();
         TA11.clear();
@@ -3187,12 +3464,12 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void EndDateCheckBox(MouseEvent event) {
+    private void EndDateCheckBox() {
         ToggleEndDate();
     }
 
     @FXML
-    private void calculateButton(MouseEvent event) {
+    private void calculateButton() {
         Display();
     }
 
@@ -3349,6 +3626,8 @@ public class FXMLDocumentController implements Initializable {
     private void GraphingButton() {
         Scientific_Flag = false;
         Length_Flag = false;
+        DateCalc_Flag = false;
+        Temperature_Flag = false;
         TA.clear();
         TA1.clear();
         TA2.clear();
@@ -3369,6 +3648,8 @@ public class FXMLDocumentController implements Initializable {
     private void ConfigurationButton() {
         Scientific_Flag = false;
         Length_Flag = false;
+        DateCalc_Flag = false;
+        Temperature_Flag = false;
         TA.clear();
         TA1.clear();
         TA2.clear();
@@ -3476,60 +3757,13 @@ public class FXMLDocumentController implements Initializable {
                             Platform.runLater(() -> {
                                 ArduinoRecieved = st;
                                 if (st == "UP") {
-                                    y++;
-                                    if (Menu_Flag) {
-                                        if (y > 7) {
-                                            y = 7;
-                                        }
-                                    } else if (Length_Flag) {
-                                        if (y > 5) {
-                                            y = 5;
-                                        }
-                                    } else {
-                                        if (y > 7) {
-                                            y = 7;
-                                        }
-                                    }
-
-                                    ResetButtonIDs();
-                                    ArrowIndexHandle();
-
+                                    r.keyPress(KeyEvent.VK_UP);
                                 } else if (st == "DOWN") {
-                                    y--;
-                                    if (y < 0) {
-                                        y = 0;
-                                    }
-                                    ResetButtonIDs();
-                                    ArrowIndexHandle();
-                                    System.out.println(y);
+                                    r.keyPress(KeyEvent.VK_DOWN);
                                 } else if (st == "LEFT") {
-                                    x--;
-                                    if (x < 0) {
-                                        x = 0;
-                                    }
-                                    if (y == 7) {
-                                        x = 1;
-                                    }
-                                    ResetButtonIDs();
-                                    ArrowIndexHandle();
+                                    r.keyPress(KeyEvent.VK_LEFT);
                                 } else if (st == "RIGHT") {
-                                    x++;
-                                    if (Menu_Flag) {
-                                        x = 0;
-                                    } else if (Length_Flag) {
-                                        if (x > 2) {
-                                            x = 2;
-                                        }
-                                    } else {
-                                        if (x > 4) {
-                                            x = 4;
-                                        }
-                                        if (y == 7) {
-                                            x = 3;
-                                        }
-                                    }
-                                    ResetButtonIDs();
-                                    ArrowIndexHandle();
+                                    r.keyPress(KeyEvent.VK_RIGHT);
                                 } else if (st.equalsIgnoreCase("Menu")) {
                                     MenuHandling();
                                 } else if (st == "History") {
@@ -3541,7 +3775,7 @@ public class FXMLDocumentController implements Initializable {
                                 } else if (st == "Exit") {
                                     System.exit(0);
                                 } else if (st == "Enter") {
-                                    EnterIndexHandle();
+                                    r.keyPress(KeyEvent.VK_ENTER);
                                 } else {
                                     /*TODO LATER*/
                                     TA.appendText(st);
@@ -3709,7 +3943,6 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
-    @FXML
     private void Change2(javafx.scene.input.KeyEvent event) {
         if (!event.getText().isEmpty()) {
             if (event.getText().matches("[0-9.]")) {
@@ -3727,8 +3960,12 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void TemperatureButton() {
+        x = 0;
+        y = 0;
         Length_Flag = false;
         Scientific_Flag = false;
+        DateCalc_Flag = false;
+        Temperature_Flag = true;
         TA.clear();
         TA1.clear();
         TA2.clear();
@@ -3895,6 +4132,8 @@ public class FXMLDocumentController implements Initializable {
     private void ProgrammerButton() {
         Scientific_Flag = false;
         Length_Flag = false;
+        DateCalc_Flag = false;
+        Temperature_Flag = false;
         TA1.clear();
         TA2.clear();
         TA11.clear();
@@ -3922,6 +4161,11 @@ public class FXMLDocumentController implements Initializable {
         EndYear.getSelectionModel().select(0);
         ToggleEndDate();
 
+    }
+
+    @FXML
+    private void GraphingNowBtn() {
+        GraphingButton();
     }
 
 }

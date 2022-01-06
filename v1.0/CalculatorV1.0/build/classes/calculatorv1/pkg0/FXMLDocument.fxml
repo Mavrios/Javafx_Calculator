@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
@@ -24,7 +23,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculatorv1.pkg0.FXMLDocumentController">
     <children>
-      <AnchorPane fx:id="ScientificPane" focusTraversable="true" layoutY="-1.0" onKeyPressed="#handleButton" onMouseClicked="#ScientificPaneClicked" prefHeight="550.0" prefWidth="350.0" visible="false">
+      <AnchorPane fx:id="ScientificPane" focusTraversable="true" layoutY="-1.0" onKeyPressed="#handleButton" onMouseClicked="#ScientificPaneClicked" prefHeight="550.0" prefWidth="350.0">
          <children>
             <Button fx:id="button7" focusTraversable="false" layoutX="77.0" layoutY="328.0" onAction="#handleButtonAction7" prefHeight="48.0" prefWidth="62.0" text="7" />
             <Button fx:id="button8" focusTraversable="false" layoutX="144.0" layoutY="328.0" onAction="#handleButtonAction8" prefHeight="48.0" prefWidth="62.0" text="8" />
@@ -146,9 +145,18 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button fx:id="GraphNow" layoutX="297.0" layoutY="84.0" mnemonicParsing="false" onAction="#GraphingNowBtn" opacity="0.4" prefHeight="32.0" prefWidth="45.0" styleClass="op-button">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Graph.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
-      <AnchorPane id="AnchorPane" fx:id="LengthPane" focusTraversable="true" onKeyPressed="#handleButton" onMouseClicked="#ScientificPaneClicked" prefHeight="552.0" prefWidth="351.0">
+      <AnchorPane id="AnchorPane" fx:id="LengthPane" focusTraversable="true" onKeyPressed="#handleButton" onMouseClicked="#ScientificPaneClicked" prefHeight="552.0" prefWidth="351.0" visible="false">
          <children>
             <Button fx:id="zero" focusTraversable="false" layoutX="151.0" layoutY="460.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="0">
                <font>
@@ -266,8 +274,8 @@
             <ComboBox fx:id="EndDay" layoutX="37.0" layoutY="235.0" prefHeight="25.0" prefWidth="75.0" promptText="Day" />
             <ComboBox fx:id="EndMonth" layoutX="129.0" layoutY="235.0" prefHeight="25.0" prefWidth="82.0" promptText="Month" />
             <ComboBox fx:id="EndYear" layoutX="225.0" layoutY="235.0" prefHeight="25.0" prefWidth="75.0" promptText="Year" />
-            <CheckBox fx:id="EndDateCheckBox" layoutX="83.0" layoutY="181.0" mnemonicParsing="false" onMouseClicked="#EndDateCheckBox" styleClass="Converter-Label" text="End Date" textFill="#f2f2f2" />
-            <Button fx:id="calculateButton" layoutX="35.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#calculateButton" prefHeight="70.0" prefWidth="270.0" styleClass="equals-button" text="Calculate" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
+            <CheckBox fx:id="EndDateCheckBox" layoutX="83.0" layoutY="181.0" mnemonicParsing="false" onAction="#EndDateCheckBox" styleClass="Converter-Label" text="End Date" textFill="#f2f2f2" />
+            <Button fx:id="calculateButton" layoutX="35.0" layoutY="314.0" mnemonicParsing="false" onAction="#calculateButton" prefHeight="70.0" prefWidth="270.0" styleClass="equals-button" text="Calculate" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
             <Label fx:id="StartDataLabel" layoutX="122.0" layoutY="74.0" prefHeight="31.0" prefWidth="96.0" styleClass="Converter-Label" text="Start Date" textAlignment="CENTER" />
             <Label fx:id="resultLabel" graphicTextGap="5.0" layoutX="61.0" layoutY="428.0" prefHeight="59.0" prefWidth="218.0" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                <font>
@@ -310,7 +318,7 @@
             <Label layoutX="46.0" layoutY="1.0" styleClass="Converter-Label" text="Date Calculation" />
          </children>
       </AnchorPane>
-      <AnchorPane id="AnchorPane" fx:id="GarphingPane" layoutX="4.0" layoutY="10.0" onMouseClicked="#ScientificPaneClicked" prefHeight="530.0" prefWidth="340.0" visible="false">
+      <AnchorPane id="AnchorPane" fx:id="GarphingPane" focusTraversable="true" layoutX="4.0" layoutY="10.0" onMouseClicked="#ScientificPaneClicked" prefHeight="530.0" prefWidth="340.0" visible="false">
          <children>
             <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
             <LineChart fx:id="lineChart" layoutX="-13.0" layoutY="2.0" prefHeight="329.0" prefWidth="352.0" title="Graphing">
@@ -373,7 +381,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane id="AnchorPane" fx:id="ConfigurationPane" layoutX="10.0" layoutY="10.0" onKeyPressed="#handleButton" onMousePressed="#ScientificPaneClicked" prefHeight="530.0" prefWidth="340.0" visible="false">
+      <AnchorPane id="AnchorPane" fx:id="ConfigurationPane" focusTraversable="true" layoutX="10.0" layoutY="10.0" onKeyPressed="#handleButton" onMousePressed="#ScientificPaneClicked" prefHeight="530.0" prefWidth="340.0" visible="false">
          <children>
             <TextField fx:id="TextField" editable="false" layoutX="25.0" layoutY="171.0" prefHeight="36.0" prefWidth="291.0" promptText="                          Output will be here" AnchorPane.bottomAnchor="323.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="171.0" />
             <ComboBox fx:id="Port" layoutX="25.0" layoutY="49.0" prefHeight="29.0" prefWidth="144.0" promptText="Select Port" />
@@ -423,7 +431,7 @@
             <Label layoutX="46.0" styleClass="Converter-Label" text="Configurations" />
          </children>
       </AnchorPane>
-      <AnchorPane id="AnchorPane" fx:id="TemperaturePane" layoutX="5.0" layoutY="10.0" onKeyPressed="#Change2" onMousePressed="#ScientificPaneClicked" prefHeight="530.0" prefWidth="340.0" visible="false">
+      <AnchorPane id="AnchorPane" fx:id="TemperaturePane" focusTraversable="true" layoutX="5.0" layoutY="10.0" onKeyPressed="#handleButton" onMousePressed="#ScientificPaneClicked" prefHeight="530.0" prefWidth="340.0" visible="false">
          <children>
             <Button fx:id="zero1" layoutX="150.0" layoutY="466.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="45.0" text="0">
                <font>
@@ -506,7 +514,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <VBox fx:id="TempMenu" layoutX="-5.0" prefHeight="552.0" prefWidth="208.0" styleClass="root">
+            <VBox fx:id="TempMenu" layoutX="-5.0" prefHeight="552.0" prefWidth="208.0" styleClass="root" visible="false">
                <children>
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#MenuHandling" prefHeight="32.0" prefWidth="34.0" styleClass="op-button">
                      <graphic>
@@ -533,7 +541,7 @@
             <Label layoutX="47.0" layoutY="1.0" styleClass="Converter-Label" text="Temperature" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="ProgrammerPane" onMousePressed="#ScientificPaneClicked" prefHeight="562.0" prefWidth="352.0" visible="false">
+      <AnchorPane fx:id="ProgrammerPane" focusTraversable="true" onMousePressed="#ScientificPaneClicked" prefHeight="562.0" prefWidth="352.0" visible="false">
          <children>
             <Button fx:id="btn_0" contentDisplay="CENTER" layoutX="213.0" layoutY="504.0" mnemonicParsing="false" onAction="#Button_0" prefHeight="40.0" prefWidth="50.0" text="0" textOverrun="CENTER_ELLIPSIS">
                <font>
