@@ -1,12 +1,16 @@
+
 # <center>**Java Calculator App**
 ### Team Names:
 | Name | 
 | ----------- | 
-| Ahmed Mohamed Abd Elghany Ahmed |
+| Ahmed Mohamed Abd Elghany Ahmed | 
 | Ahmed Adel Mahmoud Kishk | 
 | Marwa Abdullah Mohamed Omar |
 | Fady Nashaat Sorial | 
 | Salma Salah El Din Abdullah |
+## Demo
+
+![Demo](images/CalculatorDemo.gif)
 
 > ## <center> *Idea of Project*
 ### Engineers, students and many people need to do complex calculations very fast so we need a calculator with simple GUI and greet features to do these calculations. 
@@ -32,6 +36,9 @@
 * ### We use 1x4 keypad to choose between 4 options
 ![1x4 keypad ](images/hw2.png)
 
+### Actual Hardware output:
+![Hardware img 1 ](images/hw4.jpeg)
+![Hardware img 2 ](images/hw5.jpeg)
 ------------------------
 ### 2. Software Toolbox :
 ### This project will work with:
@@ -49,15 +56,15 @@ Libraries Added :
 
 > ## <center> *Modes*
 ## Scientific Mode
-![Scientific Mode ](images/2.jpg)
+![Scientific Mode ](images/scientific.jpg)
 ## Graphing Mode
-![Graphing Mode ](images/5.jpg)
+![Graphing Mode ](images/graphing.jpg)
 ## Programmer Mode
 ![Programmer Mode ](images/prog.png)
 ## Data Calculation Mode
-![Data Calculation Mode ](images/7.jpeg)
+![Data Calculation Mode ](images/dataCalc.jpeg)
 ## Converter Mode
-![Converter Mode ](images/8.png)
+![Converter Mode ](images/converter.png)
 
 ----------------------------
 
