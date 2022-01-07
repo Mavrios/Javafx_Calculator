@@ -10,7 +10,7 @@
 | Salma Salah El Din Abdullah |
 ## Demo
 
-![Demo](images/CalculatorDemo.gif)
+![Demo](images/CalculatorDemo.GIF)
 
 > ## <center> *Idea of Project*
 ### Engineers, students and many people need to do complex calculations very fast so we need a calculator with simple GUI and greet features to do these calculations. 
