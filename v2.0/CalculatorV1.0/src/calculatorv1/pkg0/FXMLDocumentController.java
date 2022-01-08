@@ -76,6 +76,7 @@ public class FXMLDocumentController implements Initializable {
     boolean AND_FLAG = false;
     boolean OR_FLAG = false;
     boolean XOR_FLAG = false;
+    boolean trigoInv = false;
     //boolean NOT_FLAG
     boolean TEXT_2 = false; // Flag for checking about which text Atrea(text_Area , text_Area2) will choose to append
 
@@ -1104,7 +1105,10 @@ public class FXMLDocumentController implements Initializable {
         if (!scnd_flag && !hypFlag) {
             TA.appendText("sec(");
         } else if (scnd_flag && !hypFlag) {
+            trioFlag = true;
             TA.appendText("sec-1(");
+            trioFlag = true;
+            trigoInv = true;
         } else if (!scnd_flag && hypFlag) {
             TA.appendText("sech(");
             trioFlag = true;
@@ -1128,6 +1132,8 @@ public class FXMLDocumentController implements Initializable {
             TA.appendText("csc(");
         } else if (scnd_flag && !hypFlag) {
             TA.appendText("csc-1(");
+            trioFlag = true;
+            trigoInv = true;
         } else if (!scnd_flag && hypFlag) {
             TA.appendText("csch(");
             trioFlag = true;
@@ -1151,6 +1157,8 @@ public class FXMLDocumentController implements Initializable {
             TA.appendText("cot(");
         } else if (scnd_flag && !hypFlag) {
             TA.appendText("cot-1(");
+            trioFlag = true;
+            trigoInv = true;
         } else if (!scnd_flag && hypFlag) {
             TA.appendText("coth(");
             trioFlag = true;
@@ -1278,47 +1286,63 @@ public class FXMLDocumentController implements Initializable {
             tmp = tmp.replace("(" + Y + "," + X + ")", "");
             logbase = false;
         }
-        tmp = tmp.
-                replace("ë", "Math.E").
-                replace("sqrt", "Math.sqrt").
-                replace("cbrt", "java.lang.Math.cbrt").
-                replace("pow", "Math.pow").
-                replace("log", "java.lang.Math.log10").
-                replace("java.lang.Math.log10yX", "java.lang.Math.log10(" + Y + ")/java.lang.Math.log10(" + X + ")").
-                replace("ln", "Math.log").
-                replace("π", "Math.PI").
-                replace("cube(", ('(' + TA_Value + '*' + TA_Value + '*')).
-                replace("Math.Exp", "Math.exp").
-                replace("abs", "Math.abs").
-                replace("10^(", "Math.pow(10,").
-                replace(".Math.E", ".e").
-                replace("floor", "Math.floor").
-                replace("ceil", "Math.ceil").
-                replace("rand", "Math.random()").
-                replace("sech-1(", " Math.log((1/" + TA_Value + ") + Math.sqrt((1/(" + TA_Value + "*" + TA_Value + ")) - 1.0))*-1*((" + TA_Value + "-1)-").
-                replace("csch-1(", "Math.log((1/(" + TA_Value + ")) + Math.sqrt((1/(" + TA_Value + "*" + TA_Value + ")) + 1.0))*-1*((" + TA_Value + "-1)-").
-                replace("coth-1(", "0.5*(Math.log((1/(" + TA_Value + " ))+ 1.0) - Math.log(" + "1-(1/(" + TA_Value + " ))))*-1*((" + TA_Value + "-1)-").
-                replace("sinh-1(", "Math.log(" + TA_Value + " + Math.sqrt(" + TA_Value + "*" + TA_Value + " + 1.0))*-1*((" + TA_Value + "-1)-").
-                replace("cosh-1(", " Math.log(" + TA_Value + " + Math.sqrt(" + TA_Value + "*" + TA_Value + " - 1.0))*-1*((" + TA_Value + "-1)-").
-                replace("tanh-1(", "0.5*(Math.log(" + TA_Value + " + 1.0) - Math.log(" + "1-" + TA_Value + " ))*-1*((" + TA_Value + "-1)-").
-                replace("sech(", "1/cosh( ").
-                replace("csch(", "1/sinh( ").
-                replace("coth(", "1 / (tanh( ").
-                replace("tanh(", "sinh(" + TA_Value + ")" + "/" + "cosh(" + TA_Value + ")*-1*((" + TA_Value + "-1)-").
-                replace("sinh(", "((Math.exp(" + TA_Value + ")" + "-Math.exp(-" + TA_Value + "))/2)*-1*((" + TA_Value + "-1)-").
-                replace("cosh(", "((Math.exp(" + TA_Value + ")" + "+Math.exp(-" + TA_Value + "))/2)*-1*((" + TA_Value + "-1)-").
-                replace("sec", "1/cos").
-                replace("csc", "1/sin").
-                replace("cot", "1/tan").
-                replace("sin(", "Math.sin( (Math.PI/180)*").
-                replace("cos(", "Math.cos( (Math.PI/180)*").
-                replace("tan(", "Math.tan( (Math.PI/180)*").
-                replace("sin-1(", "(180/Math.PI)*Math.asin(").
-                replace("cos-1(", "(180/Math.PI)*Math.acos(").
-                replace("tan-1(", "(180/Math.PI)*Math.atan(").
-                replace("cot", "1/tan").
-                replace("*-1*((" + TA_Value + "-1)-" + TA_Value + ")*-1*((" + TA_Value + "-1)- " + TA_Value + ")", "*-1*((" + TA_Value + "-1)-" + TA_Value + ")*-1*((" + TA_Value + "-1)- " + TA_Value + "))").
-                replace("sqr(", ('(' + TA_Value + '*'));
+        if (trigoInv) {
+            tmp = tmp.replace("sec-1(", "(180/Math.PI)*Math.acos(1/" + TA_Value + ")" + "*-1*((" + TA_Value + "-1)-")
+                    .replace("csc-1(", "(180/Math.PI)*Math.asin(1/" + TA_Value + ")" + "*-1*((" + TA_Value + "-1)-")
+                    .replace("cot-1(", "(180/Math.PI)*Math.atan(1/" + TA_Value + ")" + "*-1*((" + TA_Value + "-1)-");
+
+        } else {
+            tmp = tmp.
+                    replace("ë", "Math.E").
+                    replace("sqrt", "Math.sqrt").
+                    replace("cbrt", "java.lang.Math.cbrt").
+                    replace("pow", "Math.pow").
+                    replace("log", "java.lang.Math.log10").
+                    replace("java.lang.Math.log10yX", "java.lang.Math.log10(" + Y + ")/java.lang.Math.log10(" + X + ")").
+                    replace("ln", "Math.log").
+                    replace("π", "Math.PI").
+                    replace("cube(", ('(' + TA_Value + '*' + TA_Value + '*')).
+                    replace("Math.Exp", "Math.exp").
+                    replace("abs", "Math.abs").
+                    replace("10^(", "Math.pow(10,").
+                    replace(".Math.E", ".e").
+                    replace("floor", "Math.floor").
+                    replace("ceil", "Math.ceil").
+                    replace("rand", "Math.random()").
+                    replace("sech-1(", " Math.log((1/" + TA_Value + ") + Math.sqrt((1/(" + TA_Value + "*" + TA_Value + ")) - 1.0))*-1*((" + TA_Value + "-1)-").
+                    replace("csch-1(", "Math.log((1/(" + TA_Value + ")) + Math.sqrt((1/(" + TA_Value + "*" + TA_Value + ")) + 1.0))*-1*((" + TA_Value + "-1)-").
+                    replace("coth-1(", "0.5*(Math.log((1/(" + TA_Value + " ))+ 1.0) - Math.log(" + "1-(1/(" + TA_Value + " ))))*-1*((" + TA_Value + "-1)-").
+                    replace("sinh-1(", "Math.log(" + TA_Value + " + Math.sqrt(" + TA_Value + "*" + TA_Value + " + 1.0))*-1*((" + TA_Value + "-1)-").
+                    replace("cosh-1(", " Math.log(" + TA_Value + " + Math.sqrt(" + TA_Value + "*" + TA_Value + " - 1.0))*-1*((" + TA_Value + "-1)-").
+                    replace("tanh-1(", "0.5*(Math.log(" + TA_Value + " + 1.0) - Math.log(" + "1-" + TA_Value + " ))*-1*((" + TA_Value + "-1)-").
+                    replace("sech(", "1/cosh( ").
+                    replace("csch(", "1/sinh( ").
+                    replace("coth(", "1 / (tanh( ").
+                    replace("tanh(", "sinh(" + TA_Value + ")" + "/" + "cosh(" + TA_Value + ")*-1*((" + TA_Value + "-1)-").
+                    replace("sinh(", "((Math.exp(" + TA_Value + ")" + "-Math.exp(-" + TA_Value + "))/2)*-1*((" + TA_Value + "-1)-").
+                    replace("cosh(", "((Math.exp(" + TA_Value + ")" + "+Math.exp(-" + TA_Value + "))/2)*-1*((" + TA_Value + "-1)-").
+                    //replace("csc", "1/sin").
+                    //                replace("cot", "1/tan").
+
+                    replace("sec", "1/cos").
+                    replace("csc", "1/sin").
+                    replace("cot", "1/tan").
+                    replace("sin(", "Math.sin( (Math.PI/180)*").
+                    replace("cos(", "Math.cos( (Math.PI/180)*").
+                    replace("tan(", "Math.tan( (Math.PI/180)*").
+                    replace("sin-1(", "(180/Math.PI)*Math.asin(").
+                    replace("cos-1(", "(180/Math.PI)*Math.acos(").
+                    replace("tan-1(", "(180/Math.PI)*Math.atan(").
+                    //                
+                    //replace("sec-1(", "1/(Math.PI/180)*Math.acos((Math.PI/180)/").
+                    //                replace("csc-1", "1/sin").
+                    //                replace("cot-1", "1/tan").
+
+                    //                replace("cot", "1/tan").
+                    replace("*-1*((" + TA_Value + "-1)-" + TA_Value + ")*-1*((" + TA_Value + "-1)- " + TA_Value + ")", "*-1*((" + TA_Value + "-1)-" + TA_Value + ")*-1*((" + TA_Value + "-1)- " + TA_Value + "))").
+                    replace("sqr(", ('(' + TA_Value + '*'));
+        }
+        trigoInv = false;
         return tmp;
     }
 

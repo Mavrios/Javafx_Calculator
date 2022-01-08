@@ -8,9 +8,13 @@
 | Marwa Abdullah Mohamed Omar |
 | Fady Nashaat Sorial | 
 | Salma Salah El Din Abdullah |
+
+
+## **Documentation Link :**  [Documentaion](https://www.shorturl.at/bgBDS)
+## **Video Link :**  [Video](https://www.shorturl.at/boqQ5)
 ## Demo
 
-![Demo](images/CalculatorDemo.GIF)
+![Demo](images/calc.GIF)
 
 > ## <center> *Idea of Project*
 ### Engineers, students and many people need to do complex calculations very fast so we need a calculator with simple GUI and greet features to do these calculations. 
