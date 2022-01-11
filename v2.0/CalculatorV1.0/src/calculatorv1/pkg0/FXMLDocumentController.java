@@ -1321,9 +1321,6 @@ public class FXMLDocumentController implements Initializable {
                     replace("tanh(", "sinh(" + TA_Value + ")" + "/" + "cosh(" + TA_Value + ")*-1*((" + TA_Value + "-1)-").
                     replace("sinh(", "((Math.exp(" + TA_Value + ")" + "-Math.exp(-" + TA_Value + "))/2)*-1*((" + TA_Value + "-1)-").
                     replace("cosh(", "((Math.exp(" + TA_Value + ")" + "+Math.exp(-" + TA_Value + "))/2)*-1*((" + TA_Value + "-1)-").
-                    //replace("csc", "1/sin").
-                    //                replace("cot", "1/tan").
-
                     replace("sec", "1/cos").
                     replace("csc", "1/sin").
                     replace("cot", "1/tan").
@@ -1333,12 +1330,6 @@ public class FXMLDocumentController implements Initializable {
                     replace("sin-1(", "(180/Math.PI)*Math.asin(").
                     replace("cos-1(", "(180/Math.PI)*Math.acos(").
                     replace("tan-1(", "(180/Math.PI)*Math.atan(").
-                    //                
-                    //replace("sec-1(", "1/(Math.PI/180)*Math.acos((Math.PI/180)/").
-                    //                replace("csc-1", "1/sin").
-                    //                replace("cot-1", "1/tan").
-
-                    //                replace("cot", "1/tan").
                     replace("*-1*((" + TA_Value + "-1)-" + TA_Value + ")*-1*((" + TA_Value + "-1)- " + TA_Value + ")", "*-1*((" + TA_Value + "-1)-" + TA_Value + ")*-1*((" + TA_Value + "-1)- " + TA_Value + "))").
                     replace("sqr(", ('(' + TA_Value + '*'));
         }
